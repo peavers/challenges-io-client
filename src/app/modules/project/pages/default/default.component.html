@@ -1,0 +1,12 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <div class="column is-6 is-offset-3" *ngFor="let challenge of challenges | async">
+        <div class="review-list">
+          <app-project-header-component [challenge]="challenge"></app-project-header-component>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>

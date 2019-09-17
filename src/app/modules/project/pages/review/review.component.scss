@@ -1,0 +1,28 @@
+.review-list {
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.action-bar {
+  display: inline-block;
+  margin-top: 50px;
+}
+
+.action {
+  display: inline-block;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.87);
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-right: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+ul {
+  margin-top: 20px;
+  font-size: 14px;
+  padding: 15px;
+}

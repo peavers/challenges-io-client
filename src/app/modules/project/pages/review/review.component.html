@@ -1,0 +1,59 @@
+<div class="section" *ngIf="challengeObservable | async as challenge">
+  <div class="container">
+    <app-project-header-component [challenge]="challenge"></app-project-header-component>
+
+    <ul class="action-bar">
+      <li class="action">
+        <a mat-stroked-button [matMenuTriggerFor]="clone">
+          <mat-icon>get_app</mat-icon>
+          Clone
+        </a>
+      </li>
+
+      <mat-menu #clone="matMenu">
+        <ng-template matMenuContent>
+          <button mat-menu-item (click)="copyToClip(challenge.repository.sshUrl)">
+            Use SSH
+          </button>
+          <button mat-menu-item (click)="copyToClip(challenge.repository.htmlUrl)">
+            Use HTTPS
+          </button>
+        </ng-template>
+      </mat-menu>
+
+      <li class="action">
+        <a mat-stroked-button href="{{ challenge.repository.htmlUrl }}" target="_blank">
+          <mat-icon>code</mat-icon>
+          See on GitHub
+        </a>
+      </li>
+
+      <li (click)="deleteChallenge(challenge)" class="action">
+        <button mat-stroked-button>
+          <mat-icon>delete_forever</mat-icon>
+          Delete
+        </button>
+      </li>
+    </ul>
+
+    <hr />
+
+    <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">
+      <div class="column is-12">
+        <ul>
+          <li *ngFor="let codeFile of codeFiles">
+            <a pageScroll pageScrollDuration="0" pageScrollOffset="70" [href]="'#' + codeFile.id">{{
+              codeFile.location
+            }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngFor="let codeFile of codeFiles">
+        <app-code-file-component [codeFile]="codeFile"></app-code-file-component>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-scroll-to-top></app-scroll-to-top>

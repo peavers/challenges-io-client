@@ -1,0 +1,62 @@
+<td class="line-number" (click)="triggerCommentBox()">
+  {{ index + 1 }}
+</td>
+
+<td class="code">
+  <code [highlight]="codeLine.body"></code>
+
+  <div class="columns is-multiline" *ngIf="codeLine.comments.length >= 1">
+    <div class="column is-6">
+      <div class="comment-box mat-elevation-z3">
+        <div *ngFor="let comment of codeLine.comments">
+          <div class="comment ">
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <img class="rounded" [src]="comment.author.avatarUrl" />
+                </div>
+                <div class="level-item">
+                  <span class="author">{{ comment.author.name }}</span
+                  >: {{ comment.body }}
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <button mat-icon-button (click)="editComment(comment)"><mat-icon>edit</mat-icon></button>
+                  <button mat-icon-button (click)="deleteComment(comment)"><mat-icon>delete</mat-icon></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reply">
+          <mat-form-field>
+            <input
+              #reply
+              matInput
+              placeholder="Reply"
+              autocomplete="off"
+              [(ngModel)]="comment"
+              (keyup.enter)="save()"
+            />
+            <mat-hint>Press enter to submit</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showCommentBox">
+    <div class="columns is-multiline">
+      <div class="column is-6">
+        <div class="comment-box mat-elevation-z3">
+          <mat-form-field>
+            <input matInput placeholder="Comment" autocomplete="off" [(ngModel)]="comment" (keyup.enter)="save()" />
+            <mat-hint>Press enter to submit</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</td>
