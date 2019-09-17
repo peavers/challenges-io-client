@@ -1,0 +1,31 @@
+<nav class="navbar is-fixed-top scrolling" role="navigation" aria-label="main navigation">
+  <div class="navbar-item">
+    challenges.io
+  </div>
+
+  <div class="navbar-item">
+    <button mat-button routerLink="/">
+      Reviews
+    </button>
+  </div>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <button mat-button routerLink="/import">
+        Import
+      </button>
+    </div>
+
+    <div class="navbar-item">
+      <div class="profile-button">
+        <button [matMenuTriggerFor]="settingsMenu" mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<mat-menu #settingsMenu="matMenu">
+  <button (click)="googleLogout()" mat-menu-item>Logout</button>
+</mat-menu>

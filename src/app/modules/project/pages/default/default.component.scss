@@ -1,0 +1,35 @@
+.review-list {
+  padding: 15px;
+  border-radius: 3px;
+
+  .title {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .meta {
+    font-size: 12px;
+    color: #586069;
+  }
+
+  .imported-date {
+    font-size: 12px;
+    color: #586069;
+    padding: 10px 0;
+  }
+
+  .mat-chip {
+    font-size: 12px;
+    color: #586069;
+  }
+
+  h1 {
+    margin-bottom: 0;
+    font-size: 22px;
+  }
+}
+
+hr {
+  margin-bottom: 0;
+}

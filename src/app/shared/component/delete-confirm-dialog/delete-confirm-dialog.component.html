@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Delete request</h1>
+
+<div mat-dialog-content>This operation is irreversible.</div>
+
+<div mat-dialog-actions>
+  <button autofocus mat-button (click)="onNoClick()">Close</button>
+
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Delete</button>
+</div>

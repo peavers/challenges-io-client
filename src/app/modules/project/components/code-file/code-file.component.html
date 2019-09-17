@@ -1,0 +1,15 @@
+<div class="column is-12" *ngIf="codeFile">
+  <p class="filename" id="{{ codeFile.id }}">{{ codeFile.location }}</p>
+
+  <table>
+    <tr *ngFor="let line of codeFile.codeLines; let i = index">
+      <app-code-line-component
+        [codeLine]="line"
+        [index]="i"
+        (valueChange)="saveComment($event)"
+      ></app-code-line-component>
+    </tr>
+  </table>
+
+  <hr />
+</div>

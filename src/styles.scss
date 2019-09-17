@@ -1,0 +1,69 @@
+@import '~bulma';
+
+.is-fullheight {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-actions {
+  float: right;
+  padding-bottom: 22px !important;
+  padding-top: 22px !important;
+}
+
+.hero.has-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-background.is-transparent {
+  opacity: 0.3;
+}
+
+.section {
+  margin-top: 50px;
+}
+
+input {
+  font-size: 12px;
+}
+
+.mat-button-wrapper {
+  text-transform: capitalize;
+}
+
+img.rounded {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  background-color: white;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+@import '~highlight.js/styles/github.css';
