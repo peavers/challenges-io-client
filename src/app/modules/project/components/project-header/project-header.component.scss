@@ -16,6 +16,11 @@
 
 .title {
   margin-bottom: 0;
+
+  &:focus {
+    outline: none;
+  }
+
 }
 
 h1 {

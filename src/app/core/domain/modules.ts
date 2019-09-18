@@ -12,7 +12,7 @@ export interface Repository {
 }
 
 export interface Comment {
-  id?: string;
+  id?: string; // Line number
   author?: Author;
   body?: string;
   created?: number;
@@ -38,6 +38,7 @@ export interface CLOC {
 export interface CodeFile {
   id?: string;
   location?: string;
+  projectId?: string;
   codeLines?: CodeLine[];
 }
 
@@ -58,4 +59,6 @@ export interface Challenge {
   cloc?: CLOC;
   author?: Author;
   repository?: Repository;
+  level?: string;
+  position?: string;
 }

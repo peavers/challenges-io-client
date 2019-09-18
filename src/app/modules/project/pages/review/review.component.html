@@ -42,9 +42,14 @@
       <div class="column is-12">
         <ul>
           <li *ngFor="let codeFile of codeFiles">
-            <a pageScroll pageScrollDuration="0" pageScrollOffset="70" [href]="'#' + codeFile.id">{{
-              codeFile.location
-            }}</a>
+            <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
+              {{ codeFile.location }}
+            </a>
+
+            <span *ngIf="countComments(codeFile)" class="icon-count">
+              <mat-icon [inline]="true" [style]="'outline'" class="comment-icon">comment</mat-icon>
+              {{ countComments(codeFile) }}
+            </span>
           </li>
         </ul>
       </div>

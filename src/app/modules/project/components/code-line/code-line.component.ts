@@ -22,7 +22,8 @@ export class CodeLineComponent implements OnInit {
 
   comment: any;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.codeLine.id = this.index;
