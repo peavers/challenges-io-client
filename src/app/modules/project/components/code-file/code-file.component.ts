@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChallengeService } from '../../../../core/services/challenge.service';
 import { CodeFile } from '../../../../core/domain/modules';
+import { CodeFileService } from '../../../../core/services/code-file.service';
 
 @Component({
   selector: 'app-code-file-component',
@@ -11,12 +11,15 @@ export class CodeFileComponent implements OnInit {
   @Input()
   codeFile: CodeFile;
 
-  constructor(private challengeService: ChallengeService) {}
+  constructor(private codeFileService: CodeFileService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   saveComment($event) {
     this.codeFile.codeLines[$event.id].comments = $event.comments;
-    // this.challengeService.updateFile(this.codeFile).subscribe();
+    this.codeFileService.update(this.codeFile);
   }
+
 }

@@ -11,7 +11,10 @@ import { Challenge } from '../../../../core/domain/modules';
   styleUrls: ['./import.component.scss']
 })
 export class ImportComponent implements OnInit {
-  readOnlyMode: boolean = false;
+
+  levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
+
+  positions: string[] = ['Frontend', 'Backend', 'Full stack', 'Tech team'];
 
   btnOpts: MatProgressButtonOptions = {
     active: false,
@@ -26,9 +29,11 @@ export class ImportComponent implements OnInit {
 
   challenge: Challenge = {};
 
-  constructor(public challengeService: ChallengeService, private snackBar: MatSnackBar, private router: Router) {}
+  constructor(public challengeService: ChallengeService, private snackBar: MatSnackBar, private router: Router) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   import() {
     this.snackBar.open('Working');

@@ -1,16 +1,18 @@
 <div class="columns">
   <div class="column is-narrow">
-    <img class="rounded" [src]="challenge.author.avatarUrl" />
+    <img [src]="challenge.author.avatarUrl" class="rounded"/>
   </div>
 
   <div class="column is-10">
     <h1 class="title" routerLink="/review/{{ challenge.id }}">
-      <span *ngIf="challenge.author.name; else loginName">{{ challenge.author.name }}</span>
+      <span *ngIf="challenge.author.name; else loginName">{{ challenge.author.name }}
+        - {{challenge.level}} {{challenge.position}}</span>
 
-      <ng-template #loginName> {{ challenge.repository.owner.login }}</ng-template>
+      <ng-template #loginName> {{ challenge.repository.owner.login }}
+        - {{challenge.level}} {{challenge.position}}</ng-template>
     </h1>
 
-    <p class=" imported-date">{{ challenge.repository.name }}, added {{ challenge.created | amTimeAgo }}</p>
+    <p class="imported-date">{{ challenge.repository.name }}, added {{ challenge.created | amTimeAgo }}</p>
 
     <mat-chip-list>
       <mat-chip>{{ challenge.repository.language }} </mat-chip>

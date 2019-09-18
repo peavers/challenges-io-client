@@ -26,7 +26,8 @@ export class ReviewComponent implements OnInit {
     private pageScrollService: PageScrollService,
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -47,10 +48,19 @@ export class ReviewComponent implements OnInit {
     });
   }
 
-  scrollToElement(id: string): void {
-    this.pageScrollService.scroll({
-      document: this.document,
-      scrollTarget: id
+  countComments(codeFile: CodeFile) {
+    let comments = 0;
+
+    codeFile.codeLines.forEach(codeLine => {
+      comments = comments + codeLine.comments.length;
     });
+
+    if (comments == 0) {
+      return false;
+    }
+
+    return comments;
   }
+
 }
+
