@@ -19,6 +19,7 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(public angularFireAuth: AngularFireAuth, private router: Router) {
   }
 
@@ -28,6 +29,7 @@ export class AuthService {
       provider.setCustomParameters({ hd: 'codacy.com' });
       provider.addScope('profile');
       provider.addScope('email');
+
       this.angularFireAuth.auth.signInWithPopup(provider).then(res => {
         resolve(res);
         this.router.navigate(['/']);

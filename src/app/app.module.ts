@@ -28,6 +28,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './layout/login/login.component';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
+import 'brace';
+import 'brace/mode/markdown';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+
 
 export function hljsLanguages() {
   return [
@@ -52,6 +58,8 @@ export function hljsLanguages() {
     MaterialModule,
     BrowserAnimationsModule,
     MatProgressButtonsModule,
+    AngularEditorModule,
+    LMarkdownEditorModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule

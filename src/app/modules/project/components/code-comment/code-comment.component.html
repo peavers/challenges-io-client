@@ -1,0 +1,13 @@
+<article class="media">
+  <figure class="media-left">
+    <img [src]="comment.author.avatarUrl">
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p class="author-name">{{comment.author.name}} {{comment.created | amTimeAgo}}</p>
+
+      <ngx-md>{{comment.body}}</ngx-md>
+
+    </div>
+  </div>
+</article>

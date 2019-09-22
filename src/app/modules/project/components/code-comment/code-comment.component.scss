@@ -1,0 +1,44 @@
+
+.comment {
+  font-size: 14px;
+  margin-bottom: 15px;
+  padding: 10px;
+
+  &:hover {
+    background: rgba(219, 219, 219, 0.31);
+  }
+}
+
+.rounded {
+  width: 32px;
+  height: 32px;
+}
+
+.media {
+  padding: 10px;
+  background: white;
+}
+
+.media-left {
+  img {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    background: #dbdbdb;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+  }
+}
+
+.author-name {
+  color: #42526e;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+}
+
+.content {
+  white-space: normal;
+  font-size: 14px;
+}
