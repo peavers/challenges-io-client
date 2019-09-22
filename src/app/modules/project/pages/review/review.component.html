@@ -54,8 +54,7 @@
             </a>
 
             <span *ngIf="countComments(codeFile)" class="icon-count">
-              <mat-icon [inline]="true" [style]="'outline'" class="comment-icon">comment</mat-icon>
-              {{ countComments(codeFile) }}
+              <i class="fa fa-comment"></i> {{ countComments(codeFile) }}
             </span>
           </li>
         </ul>
