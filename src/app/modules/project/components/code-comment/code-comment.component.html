@@ -10,7 +10,17 @@
       <p>
         <ngx-md>{{comment.body}}</ngx-md>
       </p>
-
     </div>
   </div>
+
+  <div *ngIf="comment.author.email === user.email" class="media-right">
+    <button [matMenuTriggerFor]="editMenu" mat-icon-button>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
 </article>
+
+<mat-menu #editMenu="matMenu">
+  <button (click)="deleteComment()" mat-menu-item>Delete</button>
+</mat-menu>

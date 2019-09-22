@@ -55,10 +55,23 @@ export class CodeLineComponent implements OnInit {
     this.commentBox = !this.commentBox;
   }
 
+  generateUUID() {
+    let d = new Date().getTime();
+    let d2 = (performance && performance.now && (performance.now() * 1000)) || 0;
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      let r = Math.random() * 16;
+      if (d > 0) {
+        r = (d + r) % 16 | 0;
+        d = Math.floor(d / 16);
+      } else {
+        r = (d2 + r) % 16 | 0;
+        d2 = Math.floor(d2 / 16);
+      }
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+
   comment($event) {
-
-    console.log($event);
-
     const user = this.authService.getUser();
 
     let author: Author = {
@@ -68,6 +81,7 @@ export class CodeLineComponent implements OnInit {
     };
 
     let comment: Comment = {
+      id: this.generateUUID(),
       author: author,
       body: $event,
       lineNumber: this.lineNumber + 1
@@ -79,6 +93,7 @@ export class CodeLineComponent implements OnInit {
     // emit the changed code line
     this.codeLineChange.emit(this.codeLine);
 
+    this.reply = '';
     this.reviewThreadReplyBox = false;
     this.commentBox = false;
   }
@@ -87,4 +102,9 @@ export class CodeLineComponent implements OnInit {
     return this.reviewThreadReplyBox = !this.reviewThreadReplyBox;
   }
 
+  deleteComment($event) {
+    this.codeLine.comments = this.codeLine.comments.filter(x => x.id !== $event.id);
+
+    this.codeLineChange.emit(this.codeLine);
+  }
 }

@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CodeFileService } from '../../../../core/services/code-file.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Comment } from '../../../../core/domain/modules';
-import { MdEditorOption } from 'ngx-markdown-editor';
+import { AuthService, User } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-code-comment-component',
@@ -12,29 +11,20 @@ export class CodeCommentComponent implements OnInit {
 
   @Input()
   comment: Comment;
-  options: MdEditorOption = {
-    showPreviewPanel: false,
-    showBorder: false,
-    hideIcons: ['FullScreen'],
-    usingFontAwesome5: true,
-    scrollPastEnd: 0,
-    enablePreviewContentClick: false,
-    resizable: false
-  };
 
-  constructor(private codeFileService: CodeFileService) {
+  @Output()
+  deleteCommentEvent = new EventEmitter();
+
+  user: User;
+
+  constructor(private authService: AuthService) {
+    this.user = authService.getUser();
   }
 
   ngOnInit() {
   }
 
-  preRenderFunc() {
-    let content = this.comment.body;
-
-    console.log(content);
-
-    return content;
+  deleteComment() {
+    this.deleteCommentEvent.emit(this.comment);
   }
-
-
 }
