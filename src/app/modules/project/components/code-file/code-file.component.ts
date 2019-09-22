@@ -17,9 +17,10 @@ export class CodeFileComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveComment($event) {
-    this.codeFile.codeLines[$event.id].comments = $event.comments;
-    this.codeFileService.update(this.codeFile);
-  }
+  saveCodeLine($event) {
+    this.codeFile.codeLines[$event.id] = $event;
 
+    this.codeFileService.update(this.codeFile);
+
+  }
 }

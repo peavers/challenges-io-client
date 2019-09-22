@@ -16,6 +16,7 @@ export interface Comment {
   author?: Author;
   body?: string;
   created?: number;
+  lineNumber: number;
 }
 
 export interface Author {
@@ -61,4 +62,5 @@ export interface Challenge {
   repository?: Repository;
   level?: string;
   position?: string;
+  lever?: string;
 }

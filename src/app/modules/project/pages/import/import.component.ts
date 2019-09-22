@@ -11,10 +11,9 @@ import { Challenge } from '../../../../core/domain/modules';
   styleUrls: ['./import.component.scss']
 })
 export class ImportComponent implements OnInit {
-
   levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
 
-  positions: string[] = ['Frontend', 'Backend', 'Full stack', 'Tech team'];
+  positions: string[] = ['Frontend', 'Backend', 'Fullstack', 'Tech team'];
 
   btnOpts: MatProgressButtonOptions = {
     active: false,

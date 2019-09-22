@@ -13,6 +13,11 @@ import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { CodeCommentComponent } from './components/code-comment/code-comment.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { WysiwygEditorComponent } from './components/wysiwyg-editor/wysiwyg-editor.component';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import { NgxMdModule } from 'ngx-md';
 
 @NgModule({
   declarations: [
@@ -21,9 +26,13 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
     ReviewComponent,
     CodeFileComponent,
     CodeLineComponent,
-    ProjectHeaderComponent
+    CodeCommentComponent,
+    ProjectHeaderComponent,
+    WysiwygEditorComponent
+
   ],
   imports: [
+    NgxMdModule.forRoot(),
     SharedModule,
     CircleRoutingModule,
     MomentModule,
@@ -31,8 +40,11 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
     HighlightModule,
     MatProgressButtonsModule,
     VirtualScrollerModule,
-    NgxPageScrollModule
+    NgxPageScrollModule,
+    AngularEditorModule,
+    LMarkdownEditorModule
   ],
   entryComponents: []
 })
-export class ProjectModule {}
+export class ProjectModule {
+}

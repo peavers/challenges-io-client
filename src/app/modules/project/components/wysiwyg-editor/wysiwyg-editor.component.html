@@ -1,0 +1,21 @@
+<div *ngIf="show" class="columns">
+  <div class="column is-8">
+    <div class="comment-box mat-elevation-z4">
+      <div class="column is-12">
+
+        <md-editor
+          [(ngModel)]="editorContent"
+          [height]="'200px'"
+          [mode]="'editor'"
+          [options]="options"
+          name="Content">
+        </md-editor>
+
+        <div class="column is-12 has-text-right is-paddingless">
+          <button (click)="hide()" mat-button>Cancel</button>
+          <button (click)="save()" mat-button>Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { AuthService } from '../../../../core/services/auth.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService, User } from '../../../../core/services/auth.service';
 import { Author, CodeLine, Comment } from '../../../../core/domain/modules';
+import { MdEditorOption } from 'ngx-markdown-editor';
 
 @Component({
   selector: 'app-code-line-component',
@@ -8,36 +9,56 @@ import { Author, CodeLine, Comment } from '../../../../core/domain/modules';
   styleUrls: ['./code-line.component.scss']
 })
 export class CodeLineComponent implements OnInit {
-  @ViewChild('reply', { static: false }) input: ElementRef;
-
-  @Output() valueChange = new EventEmitter();
+  @Output()
+  codeLineChange = new EventEmitter();
 
   @Input()
   codeLine: CodeLine;
 
   @Input()
-  index: number;
+  lineNumber: number;
 
-  showCommentBox: boolean = false;
+  commentBox: boolean = false;
 
-  comment: any;
+  reviewThreadReplyBox: boolean = false;
+
+  hasComments: boolean = true;
+
+  user: User;
+
+
+  options: MdEditorOption = {
+    showPreviewPanel: false,
+    showBorder: false,
+    hideIcons: ['FullScreen'],
+    usingFontAwesome5: true,
+    scrollPastEnd: 0,
+    enablePreviewContentClick: false,
+    resizable: false
+  };
+
 
   constructor(private authService: AuthService) {
   }
 
-  ngOnInit() {
-    this.codeLine.id = this.index;
-  }
+  reply: string;
 
-  triggerCommentBox() {
-    if (this.codeLine.comments.length >= 1) {
-      this.input.nativeElement.focus();
-    } else {
-      this.showCommentBox = !this.showCommentBox;
+  ngOnInit() {
+    this.user = this.authService.getUser();
+
+    if (this.codeLine.comments === undefined || this.codeLine.comments.length == 0) {
+      this.hasComments = false;
     }
   }
 
-  save() {
+  triggerCommentBox() {
+    this.commentBox = !this.commentBox;
+  }
+
+  comment($event) {
+
+    console.log($event);
+
     const user = this.authService.getUser();
 
     let author: Author = {
@@ -48,25 +69,22 @@ export class CodeLineComponent implements OnInit {
 
     let comment: Comment = {
       author: author,
-      body: this.comment
+      body: $event,
+      lineNumber: this.lineNumber + 1
     };
 
+    //add the comment to the line
     this.codeLine.comments.push(comment);
-    this.valueChange.emit(this.codeLine);
 
-    this.comment = '';
-    this.showCommentBox = false;
+    // emit the changed code line
+    this.codeLineChange.emit(this.codeLine);
+
+    this.reviewThreadReplyBox = false;
+    this.commentBox = false;
   }
 
-  editComment(comment: Comment) {
-    this.comment = comment.body;
+  reviewThreadReply() {
+    return this.reviewThreadReplyBox = !this.reviewThreadReplyBox;
   }
 
-  deleteComment(comment: Comment) {
-    this.codeLine.comments = this.codeLine.comments.filter(function(element) {
-      return element.id !== comment.id;
-    });
-
-    this.valueChange.emit(this.codeLine);
-  }
 }
