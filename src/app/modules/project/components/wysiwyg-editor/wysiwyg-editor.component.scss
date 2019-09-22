@@ -1,4 +1,21 @@
 .comment-box {
-  padding: 0;
+  padding: 10px;
   margin: 5px 0;
+}
+
+
+.media-left {
+  img {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    background: #dbdbdb;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+  }
+}
+
+.media-left {
+  margin-right: 10px;
 }
