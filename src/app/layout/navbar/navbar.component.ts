@@ -12,12 +12,8 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit() {}
 
-  getDisplayName() {
+  getUser() {
     return this.authService.getUser();
-  }
-
-  googleLogin() {
-    this.authService.doGoogleLogin();
   }
 
   googleLogout() {

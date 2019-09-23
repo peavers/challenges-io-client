@@ -1,3 +1,10 @@
+export interface Feedback {
+  author: Author;
+  positive?: string;
+  negative?: string;
+  rating?: number;
+}
+
 export interface Owner {
   login?: string;
 }
@@ -12,7 +19,7 @@ export interface Repository {
 }
 
 export interface Comment {
-  id?: string; // Line number
+  id?: string;
   author?: Author;
   body?: string;
   created?: number;
@@ -63,4 +70,5 @@ export interface Challenge {
   level?: string;
   position?: string;
   lever?: string;
+  feedback?: Feedback[];
 }

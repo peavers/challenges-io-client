@@ -1,10 +1,11 @@
-<div class="section" *ngIf="challengeObservable | async as challenge">
+<div *ngIf="challenge" class="section">
   <div class="container">
     <app-project-header-component [challenge]="challenge"></app-project-header-component>
 
     <ul class="action-bar">
+
       <li class="action">
-        <a mat-stroked-button [matMenuTriggerFor]="clone">
+        <a [matMenuTriggerFor]="clone" mat-button>
           <mat-icon>get_app</mat-icon>
           Clone
         </a>
@@ -22,28 +23,34 @@
       </mat-menu>
 
       <li class="action">
-        <a mat-stroked-button href="{{ challenge.repository.htmlUrl }}" target="_blank">
+        <a href="{{ challenge.repository.htmlUrl }}" mat-button target="_blank">
           <mat-icon>code</mat-icon>
           See on GitHub
         </a>
       </li>
 
       <li class="action">
-        <a href="{{ challenge.lever }}" mat-stroked-button target="_blank">
+        <a href="{{ challenge.lever }}" mat-button target="_blank">
           <mat-icon>link</mat-icon>
           See on Lever
         </a>
       </li>
 
-      <li (click)="deleteChallenge(challenge)" class="action">
-        <button mat-stroked-button>
+      <!--      <li class="action">-->
+      <!--        <a mat-raised-button color="primary" (click)="feedback()">-->
+      <!--          <i class="fa fa-comments"></i>-->
+      <!--          Feedback-->
+      <!--        </a>-->
+      <!--      </li>-->
+
+      <li (click)="deleteChallenge(challenge)" class="action is-pulled-right">
+        <button mat-button>
           <mat-icon>delete_forever</mat-icon>
-          Delete
         </button>
       </li>
     </ul>
 
-    <hr />
+    <hr>
 
     <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">
       <div class="column is-12 contents">
@@ -54,7 +61,7 @@
             </a>
 
             <span *ngIf="countComments(codeFile)" class="icon-count">
-              <i class="fa fa-comment"></i> {{ countComments(codeFile) }}
+              <i class="fa fa-comment-o"> </i>{{countComments(codeFile)}}
             </span>
           </li>
         </ul>

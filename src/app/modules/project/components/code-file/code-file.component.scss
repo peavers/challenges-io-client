@@ -2,8 +2,11 @@ table {
   table-layout: fixed;
   width: 100%;
   border: 1px solid #f6f8fa;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-radius: 8px;
+}
+
+.code-file {
+  margin-bottom: 35px;
 }
 
 .filename {
@@ -13,8 +16,13 @@ table {
   padding: 8px 10px;
   background-color: #fafbfc;
 
-  font-family: monospace;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.rounded {
+  width: 32px;
+  height: 32px;
 }

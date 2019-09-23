@@ -22,10 +22,7 @@ export class CodeLineComponent implements OnInit {
 
   reviewThreadReplyBox: boolean = false;
 
-  hasComments: boolean = true;
-
   user: User;
-
 
   options: MdEditorOption = {
     showPreviewPanel: false,
@@ -37,7 +34,6 @@ export class CodeLineComponent implements OnInit {
     resizable: false
   };
 
-
   constructor(private authService: AuthService) {
   }
 
@@ -45,19 +41,19 @@ export class CodeLineComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.getUser();
-
-    if (this.codeLine.comments === undefined || this.codeLine.comments.length == 0) {
-      this.hasComments = false;
-    }
   }
 
   triggerCommentBox() {
-    this.commentBox = !this.commentBox;
+    if (this.codeLine.comments.length >= 1) {
+      this.reviewThreadReplyBox = !this.reviewThreadReplyBox;
+    } else {
+      this.commentBox = !this.commentBox;
+    }
   }
 
   generateUUID() {
     let d = new Date().getTime();
-    let d2 = (performance && performance.now && (performance.now() * 1000)) || 0;
+    let d2 = (performance && performance.now && performance.now() * 1000) || 0;
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       let r = Math.random() * 16;
       if (d > 0) {
@@ -67,7 +63,7 @@ export class CodeLineComponent implements OnInit {
         r = (d2 + r) % 16 | 0;
         d2 = Math.floor(d2 / 16);
       }
-      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+      return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
     });
   }
 
@@ -99,12 +95,20 @@ export class CodeLineComponent implements OnInit {
   }
 
   reviewThreadReply() {
-    return this.reviewThreadReplyBox = !this.reviewThreadReplyBox;
+    return (this.reviewThreadReplyBox = !this.reviewThreadReplyBox);
   }
 
   deleteComment($event) {
     this.codeLine.comments = this.codeLine.comments.filter(x => x.id !== $event.id);
 
     this.codeLineChange.emit(this.codeLine);
+  }
+
+  showRedBackground(): boolean {
+    return this.codeLine.comments.length >= 1
+      ? true
+      : this.reviewThreadReplyBox
+        ? true
+        : this.commentBox;
   }
 }

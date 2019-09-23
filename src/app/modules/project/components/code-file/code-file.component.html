@@ -1,8 +1,22 @@
-<div class="column is-12" *ngIf="codeFile">
+<div *ngIf="codeFile" class="column is-12 code-file">
 
-  <div class="mat-elevation-z2">
+  <div class="mat-elevation-z6">
 
-    <div class="filename" id="{{ codeFile.id }}">{{ codeFile.location }}</div>
+    <div class="filename" id="{{ codeFile.id }}">
+      <div class="level">
+        <div class="level-left">
+          {{ codeFile.location }}
+        </div>
+
+        <div class="level-right">
+          <div *ngFor="let author  of uniqueCommentAuthor()" class="level-item">
+            <img [src]="author.avatarUrl" class="rounded"
+                 matTooltip="{{author.name}} has something to say">
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <table>
       <tr *ngFor="let line of codeFile.codeLines; let i = index">
