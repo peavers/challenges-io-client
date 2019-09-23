@@ -27,5 +27,5 @@
 </nav>
 
 <mat-menu #settingsMenu="matMenu">
-  <button (click)="googleLogout()" mat-menu-item>Logout</button>
+  <button (click)="googleLogout()" mat-menu-item>Logout of {{getUser().email}}</button>
 </mat-menu>

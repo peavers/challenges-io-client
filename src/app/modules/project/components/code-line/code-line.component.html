@@ -3,32 +3,35 @@
 </td>
 
 <td class="code">
-  <code [highlight]="codeLine.body"></code>
+  <code
+    [highlight]="codeLine.body"
+    [ngClass]="{
+      'error-line': showRedBackground()
+    }"
+  ></code>
 
-  <app-wysiwyg-editor-component
-    (editorContentChange)="comment($event)"
-    [show]="commentBox">
+  <app-wysiwyg-editor-component (editorContentChange)="comment($event)" [show]="commentBox">
   </app-wysiwyg-editor-component>
 
   <div *ngIf="codeLine.comments.length >= 1">
     <div class="columns is-multiline">
       <div class="column is-8">
-        <div class="comment-box mat-elevation-z4">
+        <div class="comment-box mat-elevation-z1">
           <div *ngFor="let comment of codeLine.comments">
-            <app-code-comment-component (deleteCommentEvent)="deleteComment($event)"
-                                        [comment]="comment"></app-code-comment-component>
+            <app-code-comment-component
+              (deleteCommentEvent)="deleteComment($event)"
+              [comment]="comment"
+            ></app-code-comment-component>
           </div>
-
 
           <div *ngIf="codeLine.comments.length >= 1">
             <div class="review-thread-reply">
               <article class="media">
                 <figure class="media-left">
-                  <img [src]="user.photoURL">
+                  <img [src]="user.photoURL"/>
                 </figure>
                 <div class="media-content">
                   <div class="content">
-
                     <div *ngIf="!reviewThreadReplyBox; else reviewBox">
                       <button (click)="reviewThreadReply()" class="is-fullwidth" mat-button>Reply...</button>
                     </div>
@@ -39,22 +42,20 @@
                         [height]="'200px'"
                         [mode]="'editor'"
                         [options]="options"
-                        name="Content">
+                        name="Content"
+                      >
                       </md-editor>
 
                       <div class="column is-12 has-text-right is-paddingless">
                         <button (click)="reviewThreadReply()" mat-button>Cancel</button>
                         <button (click)="comment(reply)" mat-button>Comment</button>
                       </div>
-
                     </ng-template>
-
                   </div>
                 </div>
               </article>
             </div>
           </div>
-
         </div>
       </div>
     </div>

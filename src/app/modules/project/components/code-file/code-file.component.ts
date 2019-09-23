@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CodeFile } from '../../../../core/domain/modules';
+import { Author, CodeFile, CodeLine, Comment } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 
 @Component({
@@ -21,6 +21,17 @@ export class CodeFileComponent implements OnInit {
     this.codeFile.codeLines[$event.id] = $event;
 
     this.codeFileService.update(this.codeFile);
+  }
 
+  uniqueCommentAuthor(): Set<Author> {
+    let authors = [];
+
+    this.codeFile.codeLines.forEach((codeLine: CodeLine) => {
+      codeLine.comments.forEach((comment: Comment) => {
+        authors.push(comment.author);
+      });
+    });
+
+    return new Set(authors);
   }
 }
