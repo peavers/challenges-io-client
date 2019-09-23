@@ -1,15 +1,18 @@
 <div class="column is-12" *ngIf="codeFile">
-  <p class="filename" id="{{ codeFile.id }}">{{ codeFile.location }}</p>
 
-  <table>
-    <tr *ngFor="let line of codeFile.codeLines; let i = index">
-      <app-code-line-component
-        [codeLine]="line"
-        (codeLineChange)="saveCodeLine($event)"
-        [lineNumber]="i"
-      ></app-code-line-component>
-    </tr>
-  </table>
+  <div class="mat-elevation-z2">
 
-  <hr />
+    <div class="filename" id="{{ codeFile.id }}">{{ codeFile.location }}</div>
+
+    <table>
+      <tr *ngFor="let line of codeFile.codeLines; let i = index">
+        <app-code-line-component
+          [codeLine]="line"
+          (codeLineChange)="saveCodeLine($event)"
+          [lineNumber]="i"
+        ></app-code-line-component>
+      </tr>
+    </table>
+  </div>
+
 </div>
