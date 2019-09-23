@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  postServer: 'http://localhost:8080',
+  postServer: 'https://challenges.forloop.space',
 
   firebase: {
     apiKey: 'AIzaSyDq_D1PZXCjyTuXgEfrwfaha9ct1CCygdQ',

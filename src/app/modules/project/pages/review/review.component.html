@@ -46,7 +46,7 @@
     <hr />
 
     <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">
-      <div class="column is-12">
+      <div class="column is-12 contents">
         <ul>
           <li *ngFor="let codeFile of codeFiles">
             <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
