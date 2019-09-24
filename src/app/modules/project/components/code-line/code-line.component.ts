@@ -24,6 +24,8 @@ export class CodeLineComponent implements OnInit {
 
   user: User;
 
+  reply: string;
+
   options: MdEditorOption = {
     showPreviewPanel: false,
     showBorder: false,
@@ -36,8 +38,6 @@ export class CodeLineComponent implements OnInit {
 
   constructor(private authService: AuthService) {
   }
-
-  reply: string;
 
   ngOnInit() {
     this.user = this.authService.getUser();

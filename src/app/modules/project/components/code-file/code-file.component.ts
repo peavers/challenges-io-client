@@ -23,7 +23,7 @@ export class CodeFileComponent implements OnInit {
     this.codeFileService.update(this.codeFile);
   }
 
-  uniqueCommentAuthor(): Set<Author> {
+  uniqueCommentAuthor(): Array<Author> {
     let authors = [];
 
     this.codeFile.codeLines.forEach((codeLine: CodeLine) => {
@@ -32,6 +32,6 @@ export class CodeFileComponent implements OnInit {
       });
     });
 
-    return new Set(authors);
+    return authors.filter((e, i) => authors.findIndex(a => a.email === e.email) === i);
   }
 }

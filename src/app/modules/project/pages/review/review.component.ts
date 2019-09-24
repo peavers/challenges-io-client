@@ -1,16 +1,16 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ChallengeService} from '../../../../core/services/challenge.service';
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ClipboardService} from 'ngx-clipboard';
-import {Author, Challenge, CodeFile, Comment, Feedback} from '../../../../core/domain/modules';
-import {CodeFileService} from '../../../../core/services/code-file.service';
-import {PageScrollService} from 'ngx-page-scroll-core';
-import {DOCUMENT} from '@angular/common';
-import {MatDialog} from '@angular/material/dialog';
-import {FeedbackDialogComponent} from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
-import {AuthService, User} from '../../../../core/services/auth.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ChallengeService } from '../../../../core/services/challenge.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ClipboardService } from 'ngx-clipboard';
+import { Author, Challenge, CodeFile, Comment, Feedback } from '../../../../core/domain/modules';
+import { CodeFileService } from '../../../../core/services/code-file.service';
+import { PageScrollService } from 'ngx-page-scroll-core';
+import { DOCUMENT } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { FeedbackDialogComponent } from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
+import { AuthService, User } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-default',
@@ -78,11 +78,8 @@ export class ReviewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((response: Feedback) => {
       if (response) {
-
-        console.log(response);
-
         if (this.challenge.feedback == undefined) {
-          this.challenge.feedback = []
+          this.challenge.feedback = [];
         }
 
         this.challenge.feedback.push(response[0]);
@@ -92,7 +89,7 @@ export class ReviewComponent implements OnInit {
     });
   }
 
-  uniqueCommentAuthor(codeFile: CodeFile): Set<Author> {
+  uniqueCommentAuthor(codeFile: CodeFile): Array<Author> {
     let authors = [];
 
     if (codeFile.codeLines === undefined) {
@@ -110,9 +107,7 @@ export class ReviewComponent implements OnInit {
       });
     }
 
-    console.log(new Set(authors));
-
-    return new Set(authors);
+    return authors.filter((e, i) => authors.findIndex(a => a.email === e.email) === i);
   }
 }
 
