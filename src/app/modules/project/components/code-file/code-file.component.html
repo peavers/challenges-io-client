@@ -1,27 +1,33 @@
 <div *ngIf="codeFile" class="column is-12 code-file">
-  <div class="mat-elevation-z20">
-    <div class="filename" id="{{ codeFile.id }}">
-      <div class="level">
-        <div class="level-left">
+  <div class="filename" id="{{ codeFile.id }}">
+    <div class="level">
+      <div class="level-left">
+
+        <div class="level-item">
+          <i class="fa fa-file-code-o"></i>
+        </div>
+
+        <div class="level-item">
           {{ codeFile.location }}
         </div>
 
-        <div class="level-right">
-          <div *ngFor="let author of uniqueCommentAuthor()" class="level-item">
-            <img [src]="author.avatarUrl" class="rounded" matTooltip="{{ author.name }}"/>
-          </div>
+      </div>
+
+      <div class="level-right">
+        <div *ngFor="let author of uniqueCommentAuthor()" class="level-item">
+          <img [src]="author.avatarUrl" class="rounded" matTooltip="{{ author.name }}"/>
         </div>
       </div>
     </div>
-
-    <table>
-      <tr *ngFor="let line of codeFile.codeLines; let i = index">
-        <app-code-line-component
-          [codeLine]="line"
-          (codeLineChange)="saveCodeLine($event)"
-          [lineNumber]="i"
-        ></app-code-line-component>
-      </tr>
-    </table>
   </div>
+
+  <table>
+    <tr *ngFor="let line of codeFile.codeLines; let i = index">
+      <app-code-line-component
+        (codeLineChange)="saveCodeLine($event)"
+        [codeLine]="line"
+        [lineNumber]="i"
+      ></app-code-line-component>
+    </tr>
+  </table>
 </div>

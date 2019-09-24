@@ -19,7 +19,6 @@ import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import java from 'highlight.js/lib/languages/java';
-import css from 'highlight.js/lib/languages/css';
 import scala from 'highlight.js/lib/languages/scala';
 import go from 'highlight.js/lib/languages/go';
 
@@ -33,6 +32,8 @@ import { LoginComponent } from './layout/login/login.component';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import { LoadingScreenInterceptor } from './shared/helper/loading.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export function hljsLanguages() {
   return [
@@ -43,7 +44,6 @@ export function hljsLanguages() {
     { name: 'xml', func: xml },
     { name: 'yml', func: yaml },
     { name: 'md', func: md },
-    { name: 'css', func: css },
     { name: 'scala', func: scala },
     { name: 'go', func: go }
   ];
@@ -66,6 +66,11 @@ export function hljsLanguages() {
     AngularFireAuthModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingScreenInterceptor,
+      multi: true
+    },
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
