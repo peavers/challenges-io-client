@@ -44,6 +44,9 @@ import { NgxMdModule } from 'ngx-md';
     AngularEditorModule,
     LMarkdownEditorModule
   ],
+  exports: [
+    CodeCommentComponent
+  ],
   entryComponents: []
 })
 export class ProjectModule {

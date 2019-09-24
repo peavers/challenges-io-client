@@ -1,6 +1,6 @@
 <div *ngIf="codeFile" class="column is-12 code-file">
 
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z20">
 
     <div class="filename" id="{{ codeFile.id }}">
       <div class="level">
@@ -10,7 +10,7 @@
 
         <div class="level-right">
           <div *ngFor="let author  of uniqueCommentAuthor()" class="level-item">
-            <img [src]="author.avatarUrl" class="rounded" matTooltip="{{author.name}} has something to say">
+            <img [src]="author.avatarUrl" class="rounded" matTooltip="{{author.name}}">
           </div>
         </div>
 

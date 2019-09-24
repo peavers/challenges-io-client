@@ -36,21 +36,20 @@
         </a>
       </li>
 
+      <li (click)="deleteChallenge(challenge)" class="action">
+        <button mat-button>
+          <mat-icon>delete_forever</mat-icon>
+          Delete
+        </button>
+      </li>
+
       <li class="action">
-        <a mat-raised-button color="primary" (click)="feedback()">
+        <a (click)="feedback()" color="primary" mat-raised-button>
           <i class="fa fa-comments"></i>
           Feedback
         </a>
       </li>
-
-      <li (click)="deleteChallenge(challenge)" class="action is-pulled-right">
-        <button mat-button>
-          <mat-icon>delete_forever</mat-icon>
-        </button>
-      </li>
     </ul>
-
-    <hr>
 
     <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">
       <div class="column is-12 contents">
@@ -63,8 +62,8 @@
               </a>
             </td>
 
-            <td >
-              <div *ngFor="let author of uniqueCommentAuthor(codeFile)" class="users is-pulled-right">
+            <td class="is-vertical-center">
+              <div *ngFor="let author of uniqueCommentAuthor(codeFile)" class="is-pulled-right is-vertical-center">
                 <img [src]="author.avatarUrl" class="rounded" matTooltip="{{author.name}}">
               </div>
             </td>
