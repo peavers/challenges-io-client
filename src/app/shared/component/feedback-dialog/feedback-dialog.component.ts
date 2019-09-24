@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Challenge, Feedback } from '../../../core/domain/modules';
 import { User } from '../../../core/services/auth.service';
+import {MdEditorOption} from "ngx-markdown-editor";
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -24,7 +25,13 @@ export class FeedbackDialogComponent {
     this.dialogRef.close();
   }
 
-  deleteComment() {
-
-  }
+  options: MdEditorOption = {
+    showPreviewPanel: false,
+    showBorder: false,
+    hideIcons: ['FullScreen'],
+    usingFontAwesome5: true,
+    scrollPastEnd: 0,
+    enablePreviewContentClick: false,
+    resizable: false
+  };
 }
