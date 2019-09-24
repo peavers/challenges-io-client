@@ -16,7 +16,7 @@
   <div *ngIf="codeLine.comments.length >= 1">
     <div class="columns is-multiline">
       <div class="column is-8">
-        <div class="comment-box mat-elevation-z1">
+        <div class="comment-box">
           <div *ngFor="let comment of codeLine.comments">
             <app-code-comment-component
               (deleteCommentEvent)="deleteComment($event)"

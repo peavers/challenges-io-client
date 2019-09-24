@@ -36,12 +36,12 @@
         </a>
       </li>
 
-      <!--      <li class="action">-->
-      <!--        <a mat-raised-button color="primary" (click)="feedback()">-->
-      <!--          <i class="fa fa-comments"></i>-->
-      <!--          Feedback-->
-      <!--        </a>-->
-      <!--      </li>-->
+      <li class="action">
+        <a mat-raised-button color="primary" (click)="feedback()">
+          <i class="fa fa-comments"></i>
+          Feedback
+        </a>
+      </li>
 
       <li (click)="deleteChallenge(challenge)" class="action is-pulled-right">
         <button mat-button>
@@ -54,17 +54,23 @@
 
     <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">
       <div class="column is-12 contents">
-        <ul>
-          <li *ngFor="let codeFile of codeFiles">
-            <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
-              {{ codeFile.location }}
-            </a>
 
-            <span *ngIf="countComments(codeFile)" class="icon-count">
-              <i class="fa fa-comment-o"></i>{{countComments(codeFile)}}
-            </span>
-          </li>
-        </ul>
+        <table class="table">
+          <tr *ngFor="let codeFile of codeFiles">
+            <td>
+              <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
+                {{ codeFile.location }}
+              </a>
+            </td>
+
+            <td >
+              <div *ngFor="let author of uniqueCommentAuthor(codeFile)" class="users is-pulled-right">
+                <img [src]="author.avatarUrl" class="rounded" matTooltip="{{author.name}}">
+              </div>
+            </td>
+          </tr>
+        </table>
+
       </div>
 
       <div *ngFor="let codeFile of codeFiles">

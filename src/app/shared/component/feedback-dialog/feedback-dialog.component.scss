@@ -1,24 +1,8 @@
-
-.comment {
-  font-size: 14px;
-  margin-bottom: 15px;
+.comment-box {
   padding: 10px;
-
-  &:hover {
-    background: rgba(219, 219, 219, 0.31);
-  }
+  margin: 5px 0;
 }
 
-.rounded {
-  width: 32px;
-  height: 32px;
-}
-
-.media {
-  padding: 15px 10px;
-  background: white;
-  width: 100%;
-}
 
 .media-left {
   img {
@@ -32,14 +16,6 @@
   }
 }
 
-.author-name {
-  color: #42526e;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 500;
-}
-
-.content {
-  white-space: normal;
-  font-size: 14px;
+.media-left {
+  margin-right: 10px;
 }

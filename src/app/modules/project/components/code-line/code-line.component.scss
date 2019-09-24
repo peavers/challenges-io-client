@@ -36,12 +36,12 @@ code {
 .error-line {
   background: #fff7f8;
   border: 1px solid #ffd6dc;
-  border-radius: 3px;
   box-sizing: border-box;
 }
 
 .comment-box {
   margin: 5px 0;
+  border: 1px solid #e7e9eb;
 }
 
 .comment {
@@ -69,7 +69,6 @@ code {
 .review-thread-reply {
   padding: 8px 10px;
   background-color: #f6f8fa;
-  border-radius: 0 0 3px 3px;
 }
 
 

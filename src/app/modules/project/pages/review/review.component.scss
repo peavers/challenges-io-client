@@ -1,6 +1,5 @@
 .review-list {
   padding: 15px;
-  border-radius: 3px;
 }
 
 .action-bar {
@@ -37,3 +36,31 @@ ul {
   margin-left: 5px;
 }
 
+.table {
+  width: 100%;
+  margin: 25px 0;
+
+  td {
+    vertical-align: middle;
+    height: 42px;
+    padding: 0;
+    border-color: #e7e9eb;
+    font-size: 14px;
+  }
+
+}
+
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.rounded {
+  height: 32px;
+  width: 32px;
+}
+
+.users {
+  display: inline-block;
+  margin-right: 5px;
+}

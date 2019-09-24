@@ -1,72 +1,31 @@
-<h1 mat-dialog-title>Feedback</h1>
+<h1 mat-dialog-title>Overall feedback</h1>
 
 <div mat-dialog-content>
 
-  <div *ngFor="let feedback of data[1].feedback" class="columns is-multiline">
-
+  <div class="review-thread-reply">
     <article class="media">
       <figure class="media-left">
-        <img [src]="feedback.author.avatarUrl">
+        <img [src]="data[2].photoURL">
       </figure>
       <div class="media-content">
         <div class="content">
-          <p class="author-name">{{feedback.author.name}}</p>
-          <p>
-            <i class="fa fa-thumbs-o-up"></i> {{feedback.positive}}
-          </p>
 
-          <p>
-            <i class="fa fa-thumbs-o-down"></i> {{feedback.negative}}
-          </p>
+          <md-editor
+            [(ngModel)]="data[0].positive"
+            [height]="'200px'"
+            [mode]="'editor'"
+            [options]="options"
+            name="Content">
+          </md-editor>
 
+          <div class="column is-12 has-text-right is-paddingless">
+            <button (click)="onNoClick()" mat-button>Cancel</button>
+            <button [mat-dialog-close]="data" mat-button>Comment</button>
+          </div>
         </div>
       </div>
-
-      <div *ngIf="feedback.author.email === data[2].email" class="media-right">
-        <button [matMenuTriggerFor]="editMenu" mat-icon-button>
-          <mat-icon>more_vert</mat-icon>
-        </button>
-      </div>
-
     </article>
-
-    <mat-menu #editMenu="matMenu">
-      <button (click)="deleteComment()" mat-menu-item>Delete</button>
-    </mat-menu>
-
-
   </div>
-
-  <hr>
-
-
-  <mat-form-field>
-    <mat-label><i class="fa fa-thumbs-o-up"></i></mat-label>
-    <textarea
-      #autosize="cdkTextareaAutosize"
-      [(ngModel)]="data[0].positive"
-      cdkAutosizeMaxRows="5"
-      cdkAutosizeMinRows="1"
-      cdkTextareaAutosize
-      matInput
-    ></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label><i class="fa fa-thumbs-o-down"></i></mat-label>
-    <textarea
-      #autosize="cdkTextareaAutosize"
-      [(ngModel)]="data[0].negative"
-      cdkAutosizeMaxRows="5"
-      cdkAutosizeMinRows="1"
-      cdkTextareaAutosize
-      matInput
-    ></textarea>
-  </mat-form-field>
 </div>
 
-<div mat-dialog-actions>
-  <button (click)="onNoClick()" autofocus mat-button>Close</button>
 
-  <button [mat-dialog-close]="data" mat-button>Save</button>
-</div>

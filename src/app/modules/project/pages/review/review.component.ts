@@ -1,16 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { ChallengeService } from '../../../../core/services/challenge.service';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClipboardService } from 'ngx-clipboard';
-import { Author, Challenge, CodeFile, Feedback } from '../../../../core/domain/modules';
-import { CodeFileService } from '../../../../core/services/code-file.service';
-import { PageScrollService } from 'ngx-page-scroll-core';
-import { DOCUMENT } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { FeedbackDialogComponent } from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
-import { AuthService, User } from '../../../../core/services/auth.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ChallengeService} from '../../../../core/services/challenge.service';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ClipboardService} from 'ngx-clipboard';
+import {Author, Challenge, CodeFile, Comment, Feedback} from '../../../../core/domain/modules';
+import {CodeFileService} from '../../../../core/services/code-file.service';
+import {PageScrollService} from 'ngx-page-scroll-core';
+import {DOCUMENT} from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
+import {FeedbackDialogComponent} from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
+import {AuthService, User} from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-default',
@@ -78,25 +78,41 @@ export class ReviewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((response: Feedback) => {
       if (response) {
-        this.challenge.feedback.push(response);
+
+        console.log(response);
+
+        if (this.challenge.feedback == undefined) {
+          this.challenge.feedback = []
+        }
+
+        this.challenge.feedback.push(response[0]);
 
         this.challengeService.update(this.challenge);
       }
     });
   }
 
-  countComments(codeFile: CodeFile) {
-    let comments = 0;
+  uniqueCommentAuthor(codeFile: CodeFile): Set<Author> {
+    let authors = [];
 
-    codeFile.codeLines.forEach(codeLine => {
-      comments = comments + codeLine.comments.length;
-    });
-
-    if (comments == 0) {
-      return false;
+    if (codeFile.codeLines === undefined) {
+      return;
     }
 
-    return comments;
+    for (const codeLine of codeFile.codeLines) {
+
+      if (codeLine.comments.length == 0) {
+        continue;
+      }
+
+      codeLine.comments.forEach((comment: Comment) => {
+        authors.push(comment.author);
+      });
+    }
+
+    console.log(new Set(authors));
+
+    return new Set(authors);
   }
 }
 
