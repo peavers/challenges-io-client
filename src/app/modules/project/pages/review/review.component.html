@@ -3,7 +3,6 @@
     <app-project-header-component [challenge]="challenge"></app-project-header-component>
 
     <ul class="action-bar">
-
       <li class="action">
         <a [matMenuTriggerFor]="clone" mat-button>
           <mat-icon>get_app</mat-icon>
@@ -53,7 +52,6 @@
 
     <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">
       <div class="column is-12 contents">
-
         <table class="table">
           <tr *ngFor="let codeFile of codeFiles">
             <td>
@@ -64,12 +62,11 @@
 
             <td class="is-vertical-center">
               <div *ngFor="let author of uniqueCommentAuthor(codeFile)" class="is-pulled-right is-vertical-center">
-                <img [src]="author.avatarUrl" class="rounded" matTooltip="{{author.name}}">
+                <img [src]="author.avatarUrl" class="rounded" matTooltip="{{ author.name }}"/>
               </div>
             </td>
           </tr>
         </table>
-
       </div>
 
       <div *ngFor="let codeFile of codeFiles">

@@ -19,6 +19,9 @@ import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import java from 'highlight.js/lib/languages/java';
+import css from 'highlight.js/lib/languages/css';
+import scala from 'highlight.js/lib/languages/scala';
+import go from 'highlight.js/lib/languages/go';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
@@ -28,12 +31,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './layout/login/login.component';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import 'brace';
-import 'brace/mode/markdown';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
-
 
 export function hljsLanguages() {
   return [
@@ -43,7 +42,10 @@ export function hljsLanguages() {
     { name: 'scss', func: scss },
     { name: 'xml', func: xml },
     { name: 'yml', func: yaml },
-    { name: 'md', func: md }
+    { name: 'md', func: md },
+    { name: 'css', func: css },
+    { name: 'scala', func: scala },
+    { name: 'go', func: go }
   ];
 }
 
@@ -58,7 +60,6 @@ export function hljsLanguages() {
     MaterialModule,
     BrowserAnimationsModule,
     MatProgressButtonsModule,
-    AngularEditorModule,
     LMarkdownEditorModule,
 
     AngularFireModule.initializeApp(environment.firebase),
@@ -74,4 +75,5 @@ export function hljsLanguages() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

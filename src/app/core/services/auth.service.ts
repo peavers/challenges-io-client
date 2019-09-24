@@ -19,7 +19,6 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(public angularFireAuth: AngularFireAuth, private router: Router) {
   }
 

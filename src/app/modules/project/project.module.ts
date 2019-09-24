@@ -10,11 +10,9 @@ import { HighlightModule } from 'ngx-highlightjs';
 import { CodeLineComponent } from './components/code-line/code-line.component';
 import { CodeFileComponent } from './components/code-file/code-file.component';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
-import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { CodeCommentComponent } from './components/code-comment/code-comment.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { WysiwygEditorComponent } from './components/wysiwyg-editor/wysiwyg-editor.component';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
@@ -29,7 +27,6 @@ import { NgxMdModule } from 'ngx-md';
     CodeCommentComponent,
     ProjectHeaderComponent,
     WysiwygEditorComponent
-
   ],
   imports: [
     NgxMdModule.forRoot(),
@@ -39,14 +36,10 @@ import { NgxMdModule } from 'ngx-md';
     MaterialModule,
     HighlightModule,
     MatProgressButtonsModule,
-    VirtualScrollerModule,
     NgxPageScrollModule,
-    AngularEditorModule,
     LMarkdownEditorModule
   ],
-  exports: [
-    CodeCommentComponent
-  ],
+  exports: [CodeCommentComponent],
   entryComponents: []
 })
 export class ProjectModule {

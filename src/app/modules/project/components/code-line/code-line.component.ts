@@ -105,10 +105,6 @@ export class CodeLineComponent implements OnInit {
   }
 
   showRedBackground(): boolean {
-    return this.codeLine.comments.length >= 1
-      ? true
-      : this.reviewThreadReplyBox
-        ? true
-        : this.commentBox;
+    return this.codeLine.comments.length >= 1 ? true : this.reviewThreadReplyBox ? true : this.commentBox;
   }
 }

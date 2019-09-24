@@ -3,10 +3,8 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { from, Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
   constructor(private angularFireAuth: AngularFireAuth) {
   }
 
@@ -15,10 +13,9 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private async handleAccess(request: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
-
     let accessToken = '';
 
-    await this.angularFireAuth.auth.currentUser.getIdToken(true).then((token) => accessToken = token);
+    await this.angularFireAuth.auth.currentUser.getIdToken(true).then(token => (accessToken = token));
 
     console.log(accessToken);
 

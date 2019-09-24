@@ -8,7 +8,6 @@ import { AuthService, User } from '../../../../core/services/auth.service';
   styleUrls: ['./code-comment.component.scss']
 })
 export class CodeCommentComponent implements OnInit {
-
   @Input()
   comment: Comment;
 

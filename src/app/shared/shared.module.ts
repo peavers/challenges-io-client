@@ -10,7 +10,16 @@ import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, MaterialModule, ReactiveFormsModule, LMarkdownEditorModule, NgxMdModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    LMarkdownEditorModule,
+    NgxMdModule
+  ],
   exports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ScrollToTopComponent],
   declarations: [DeleteConfirmDialogComponent, ScrollToTopComponent, FeedbackDialogComponent],
   entryComponents: [DeleteConfirmDialogComponent, FeedbackDialogComponent],
