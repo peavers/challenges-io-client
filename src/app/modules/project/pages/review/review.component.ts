@@ -97,7 +97,6 @@ export class ReviewComponent implements OnInit {
     }
 
     for (const codeLine of codeFile.codeLines) {
-
       if (codeLine.comments.length == 0) {
         continue;
       }
@@ -110,4 +109,3 @@ export class ReviewComponent implements OnInit {
     return authors.filter((e, i) => authors.findIndex(a => a.email === e.email) === i);
   }
 }
-

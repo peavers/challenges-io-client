@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Author, Challenge, CodeLine, Comment} from '../../../../core/domain/modules';
+import { Challenge } from '../../../../core/domain/modules';
 
 @Component({
   selector: 'app-project-header-component',
@@ -11,5 +11,4 @@ export class ProjectHeaderComponent implements OnInit {
   challenge: Challenge;
 
   ngOnInit(): void {}
-
 }

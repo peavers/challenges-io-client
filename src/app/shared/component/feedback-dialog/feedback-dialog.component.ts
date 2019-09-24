@@ -11,7 +11,6 @@ import { MdEditorOption } from 'ngx-markdown-editor';
   styleUrls: ['./feedback-dialog.component.scss']
 })
 export class FeedbackDialogComponent {
-
   @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
 
   feedback: Feedback;
@@ -41,21 +40,17 @@ export class FeedbackDialogComponent {
     public dialogRef: MatDialogRef<FeedbackDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: [Feedback, Challenge, User]
   ) {
-
     this.feedback = data[0];
     this.challenge = data[1];
     this.user = data[2];
   }
 
   deleteComment($event: any) {
-
   }
 
   reviewThreadReply() {
-
   }
 
   comment(reply: any) {
-
   }
 }

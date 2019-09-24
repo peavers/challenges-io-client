@@ -1,21 +1,20 @@
 <div *ngIf="show" class="columns is-multiline">
   <div class="column is-8">
     <div class="comment-box">
-
       <div class="review-thread-reply">
         <article class="media">
           <figure class="media-left">
-            <img [src]="user.photoURL">
+            <img [src]="user.photoURL"/>
           </figure>
           <div class="media-content">
             <div class="content">
-
               <md-editor
                 [(ngModel)]="editorContent"
                 [height]="'200px'"
                 [mode]="'editor'"
                 [options]="options"
-                name="Content">
+                name="Content"
+              >
               </md-editor>
 
               <div class="column is-12 has-text-right is-paddingless">
@@ -29,4 +28,3 @@
     </div>
   </div>
 </div>
-

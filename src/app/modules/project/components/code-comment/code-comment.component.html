@@ -1,14 +1,15 @@
 <article class="media">
   <figure class="media-left">
-    <img [src]="comment.author.avatarUrl">
+    <img [src]="comment.author.avatarUrl"/>
   </figure>
   <div class="media-content">
     <div class="content">
-      <p class="author-name">{{comment.author.name}} <span
-        class="imported-date">{{ comment.created | amTimeAgo }}</span></p>
+      <p class="author-name">
+        {{ comment.author.name }} <span class="imported-date">{{ comment.created | amTimeAgo }}</span>
+      </p>
 
       <p>
-        <ngx-md>{{comment.body}}</ngx-md>
+        <ngx-md>{{ comment.body }}</ngx-md>
       </p>
     </div>
   </div>
@@ -18,7 +19,6 @@
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
-
 </article>
 
 <mat-menu #editMenu="matMenu">

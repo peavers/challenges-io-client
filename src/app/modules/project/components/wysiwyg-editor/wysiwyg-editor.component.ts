@@ -8,7 +8,6 @@ import { MdEditorOption } from 'ngx-markdown-editor';
   styleUrls: ['./wysiwyg-editor.component.scss']
 })
 export class WysiwygEditorComponent implements OnInit {
-
   @Output()
   editorContentChange = new EventEmitter();
 
