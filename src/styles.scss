@@ -1,5 +1,4 @@
 @import '~bulma';
-@import '~highlight.js/styles/github.css';
 
 .is-fullheight {
   height: 100%;
@@ -122,9 +121,12 @@ hr {
 
 .md-editor-container {
   margin-bottom: 10px !important;
+  background: white !important;
 }
 
 .imported-date {
   font-size: 12px;
   color: #586069;
 }
+
+@import '~highlight.js/styles/github.css';
