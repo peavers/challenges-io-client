@@ -9,6 +9,7 @@ import { FeedbackDialogComponent } from './component/feedback-dialog/feedback-di
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 import { LoadingScreenComponent } from './component/loading-screen/loading-screen.component';
+import { UserPictureComponent } from './component/user-picture/user-picture.component';
 
 @NgModule({
   imports: [
@@ -21,8 +22,22 @@ import { LoadingScreenComponent } from './component/loading-screen/loading-scree
     LMarkdownEditorModule,
     NgxMdModule
   ],
-  declarations: [DeleteConfirmDialogComponent, ScrollToTopComponent, FeedbackDialogComponent, LoadingScreenComponent],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ScrollToTopComponent, LoadingScreenComponent],
+  declarations: [
+    DeleteConfirmDialogComponent,
+    ScrollToTopComponent,
+    FeedbackDialogComponent,
+    LoadingScreenComponent,
+    UserPictureComponent
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    ScrollToTopComponent,
+    LoadingScreenComponent,
+    UserPictureComponent
+  ],
   entryComponents: [DeleteConfirmDialogComponent, FeedbackDialogComponent],
   providers: [MaterialModule]
 })

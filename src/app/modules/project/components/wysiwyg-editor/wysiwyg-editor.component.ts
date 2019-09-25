@@ -1,18 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService, User } from '../../../../core/services/auth.service';
 import { MdEditorOption } from 'ngx-markdown-editor';
 
 @Component({
-  selector: 'app-wysiwyg-editor-component',
+  selector: 'app-wysiwyg-component',
   templateUrl: './wysiwyg-editor.component.html',
   styleUrls: ['./wysiwyg-editor.component.scss']
 })
-export class WysiwygEditorComponent implements OnInit {
+export class WysiwygEditorComponent {
   @Output()
   editorContentChange = new EventEmitter();
 
-  @Input()
-  show: boolean = false;
+  @Output()
+  cancelEvent = new EventEmitter();
 
   editorContent: string;
 
@@ -32,14 +32,15 @@ export class WysiwygEditorComponent implements OnInit {
     this.user = this.authService.getUser();
   }
 
-  ngOnInit() {
-  }
-
   save() {
     this.editorContentChange.emit(this.editorContent);
+
+    this.editorContent = '';
   }
 
-  hide() {
-    this.show = false;
+  cancel() {
+    this.cancelEvent.emit(false);
+
+    this.editorContent = '';
   }
 }

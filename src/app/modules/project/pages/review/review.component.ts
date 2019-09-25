@@ -76,16 +76,18 @@ export class ReviewComponent implements OnInit {
       data: [feedback, this.challenge, this.user]
     });
 
-    dialogRef.afterClosed().subscribe((response: Feedback) => {
-      if (response) {
-        if (this.challenge.feedback == undefined) {
-          this.challenge.feedback = [];
-        }
+    dialogRef.afterClosed().subscribe((response: boolean) => {
+      feedback.moveToNextRound = response;
 
-        this.challenge.feedback.push(response[0]);
+      this.challenge.feedback.push(feedback);
 
-        this.challengeService.update(this.challenge);
-      }
+      this.challenge.feedback.filter(
+        (e, i) => this.challenge.feedback.findIndex(a => a.author.email === this.user.email) === i
+      );
+
+      console.log(this.challenge.feedback);
+
+      this.challengeService.update(this.challenge);
     });
   }
 

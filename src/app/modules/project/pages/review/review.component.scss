@@ -47,17 +47,17 @@ ul {
     border-color: #e7e9eb;
     font-size: 14px;
   }
+
+  .rounded {
+    height: 32px;
+    width: 32px;
+  }
 }
 
 .is-vertical-center {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
-
-.rounded {
-  height: 32px;
-  width: 32px;
 }
 
 .users {

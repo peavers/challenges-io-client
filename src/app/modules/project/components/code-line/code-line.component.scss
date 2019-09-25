@@ -17,7 +17,6 @@ code {
   white-space: pre;
   max-width: 100px;
   overflow: visible;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace
 }
 
 .line-number {
@@ -42,34 +41,6 @@ code {
   box-sizing: border-box;
 }
 
-.comment-box {
-  margin: 5px 0;
-  border: 1px solid #e7e9eb;
-}
-
-.comment {
-  font-size: 14px;
-  margin-bottom: 15px;
-  padding: 10px;
-
-  &:hover {
-    background: rgba(219, 219, 219, 0.31);
-  }
-}
-
-.media-left {
-  img {
-    object-fit: cover;
-    border-radius: 50%;
-    height: 32px;
-    width: 32px;
-    background: #dbdbdb;
-    border: 1px solid #dbdbdb;
-    overflow: hidden;
-  }
-}
-
-.review-thread-reply {
-  padding: 8px 10px;
-  background-color: #f6f8fa;
+.reply-to-comment {
+  background: #f6f8fa;
 }
