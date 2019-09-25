@@ -1,6 +1,23 @@
 <div *ngIf="challenge" class="section">
   <div class="container">
-    <app-project-header-component [challenge]="challenge"></app-project-header-component>
+    <div class="columns">
+      <div class="column is-narrow">
+        <app-user-picture
+          [large]="true"
+          [name]="challenge.author.name"
+          [pictureUrl]="challenge.author.avatarUrl"
+        ></app-user-picture>
+      </div>
+
+      <div class="column is-10">
+        <h1 class="title">{{ challenge.author.name }}</h1>
+
+        <p class="imported-date">
+          <span *ngIf="challenge.level && challenge.position">{{ challenge.level }} {{ challenge.position }},</span>
+          {{ challenge.repository.name }}, added {{ challenge.created | amTimeAgo }}
+        </p>
+      </div>
+    </div>
 
     <ul class="action-bar">
       <li class="action">
@@ -62,7 +79,7 @@
 
             <td class="is-vertical-center">
               <div *ngFor="let author of uniqueCommentAuthor(codeFile)" class="is-pulled-right is-vertical-center">
-                <img [src]="author.avatarUrl" class="rounded" matTooltip="{{ author.name }}"/>
+                <app-user-picture [name]="author.name" [pictureUrl]="author.avatarUrl"></app-user-picture>
               </div>
             </td>
           </tr>

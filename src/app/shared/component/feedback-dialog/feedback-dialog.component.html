@@ -1,1 +1,9 @@
-//TODO
+<h1 mat-dialog-title>Feedback</h1>
+
+<div mat-dialog-content>Should {{ challenge.author.name }} move on to the next round?</div>
+
+<div mat-dialog-actions>
+  <button [mat-dialog-close]="false" mat-button>No</button>
+
+  <button [mat-dialog-close]="true" mat-button>Yes</button>
+</div>

@@ -10,7 +10,6 @@ import { HighlightModule } from 'ngx-highlightjs';
 import { CodeLineComponent } from './components/code-line/code-line.component';
 import { CodeFileComponent } from './components/code-file/code-file.component';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
-import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { CodeCommentComponent } from './components/code-comment/code-comment.component';
 import { WysiwygEditorComponent } from './components/wysiwyg-editor/wysiwyg-editor.component';
@@ -25,7 +24,6 @@ import { NgxMdModule } from 'ngx-md';
     CodeFileComponent,
     CodeLineComponent,
     CodeCommentComponent,
-    ProjectHeaderComponent,
     WysiwygEditorComponent
   ],
   imports: [

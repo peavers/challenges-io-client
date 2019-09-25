@@ -2,7 +2,6 @@
   <div class="filename" id="{{ codeFile.id }}">
     <div class="level">
       <div class="level-left">
-
         <div class="level-item">
           <i class="fa fa-file-code-o"></i>
         </div>
@@ -10,12 +9,11 @@
         <div class="level-item">
           {{ codeFile.location }}
         </div>
-
       </div>
 
       <div class="level-right">
         <div *ngFor="let author of uniqueCommentAuthor()" class="level-item">
-          <img [src]="author.avatarUrl" class="rounded" matTooltip="{{ author.name }}"/>
+          <app-user-picture [name]="author.name" [pictureUrl]="author.avatarUrl"></app-user-picture>
         </div>
       </div>
     </div>

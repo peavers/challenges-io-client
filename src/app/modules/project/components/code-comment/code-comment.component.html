@@ -1,13 +1,11 @@
 <article class="media">
   <figure class="media-left">
-    <img [src]="comment.author.avatarUrl"/>
+    <app-user-picture [name]="comment.author.name" [pictureUrl]="comment.author.avatarUrl"></app-user-picture>
   </figure>
   <div class="media-content">
     <div class="content">
-      <p class="author-name">
-        {{ comment.author.name }} <span class="imported-date">{{ comment.created | amTimeAgo }}</span>
-      </p>
-
+      <p class="author-name">{{ comment.author.name }} <span
+        class="imported-date">{{ comment.created | amTimeAgo }}</span></p>
       <p>
         <ngx-md>{{ comment.body }}</ngx-md>
       </p>

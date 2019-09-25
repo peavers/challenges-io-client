@@ -1,62 +1,45 @@
-<td class="line-number" (click)="triggerCommentBox()">
+<td (click)="showCommentOrReplyBox()" class="line-number">
   {{ lineNumber + 1 }}
 </td>
 
 <td class="code">
-  <code
-    [highlight]="codeLine.body"
-    [ngClass]="{
-      'error-line': showRedBackground()
-    }"
-  ></code>
+  <code [highlight]="codeLine.body" [ngClass]="{ 'error-line': showRedBackground() }"></code>
 
-  <app-wysiwyg-editor-component (editorContentChange)="comment($event)" [show]="commentBox">
-  </app-wysiwyg-editor-component>
+  <div class="columns is-multiline">
+    <div class="column is-8">
+      <div *ngIf="showCommentBox" class="comment-box">
+        <app-wysiwyg-component (cancelEvent)="showCommentOrReplyBox()" (editorContentChange)="addNewComment($event)">
+        </app-wysiwyg-component>
+      </div>
 
-  <div *ngIf="codeLine.comments.length >= 1">
-    <div class="columns is-multiline">
-      <div class="column is-8">
-        <div class="comment-box">
-          <div *ngFor="let comment of codeLine.comments">
-            <app-code-comment-component
-              (deleteCommentEvent)="deleteComment($event)"
-              [comment]="comment"
-            ></app-code-comment-component>
-          </div>
-
-          <div *ngIf="codeLine.comments.length >= 1">
-            <div class="review-thread-reply">
-              <article class="media">
-                <figure class="media-left">
-                  <img [src]="user.photoURL"/>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <div *ngIf="!reviewThreadReplyBox; else reviewBox">
-                      <button (click)="reviewThreadReply()" class="is-fullwidth" mat-button>Reply...</button>
-                    </div>
-
-                    <ng-template #reviewBox>
-                      <md-editor
-                        [(ngModel)]="reply"
-                        [height]="'200px'"
-                        [mode]="'editor'"
-                        [options]="options"
-                        name="Content"
-                      >
-                      </md-editor>
-
-                      <div class="column is-12 has-text-right is-paddingless">
-                        <button (click)="reviewThreadReply()" mat-button>Cancel</button>
-                        <button (click)="comment(reply)" mat-button>Comment</button>
-                      </div>
-                    </ng-template>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
+      <div *ngIf="codeLine.comments.length >= 1" class="comment-box">
+        <!-- Display all comments -->
+        <div *ngFor="let comment of codeLine.comments">
+          <app-code-comment-component
+            (deleteCommentEvent)="deleteComment($event)"
+            [comment]="comment"
+          ></app-code-comment-component>
         </div>
+
+        <!-- Reply button-->
+        <div *ngIf="!showReplyBox; else reviewBox">
+          <article class="media reply-to-comment">
+            <figure class="media-left">
+              <app-user-picture></app-user-picture>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <button (click)="showCommentOrReplyBox()" mat-button>Reply...</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Reply content editor, replaces the button-->
+        <ng-template #reviewBox>
+          <app-wysiwyg-component (cancelEvent)="showCommentOrReplyBox()" (editorContentChange)="addNewComment($event)">
+          </app-wysiwyg-component>
+        </ng-template>
       </div>
     </div>
   </div>

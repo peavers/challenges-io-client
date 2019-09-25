@@ -3,7 +3,25 @@
     <div class="columns is-multiline">
       <div class="column is-6 is-offset-3" *ngFor="let challenge of challenges | async">
         <div class="review-list">
-          <app-project-header-component [challenge]="challenge"></app-project-header-component>
+          <div class="columns">
+            <div class="column is-narrow">
+              <app-user-picture
+                [name]="challenge.author.name"
+                [pictureUrl]="challenge.author.avatarUrl"
+              ></app-user-picture>
+            </div>
+
+            <div class="column is-10">
+              <h1 class="title" routerLink="/review/{{ challenge.id }}">{{ challenge.author.name }}</h1>
+
+              <p class="imported-date">
+                <span *ngIf="challenge.level && challenge.position"
+                >{{ challenge.level }} {{ challenge.position }} ,</span
+                >
+                {{ challenge.repository.name }}, added {{ challenge.created | amTimeAgo }}
+              </p>
+            </div>
+          </div>
         </div>
         <hr />
       </div>
