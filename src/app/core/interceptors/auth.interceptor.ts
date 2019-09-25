@@ -16,9 +16,6 @@ export class AuthInterceptor implements HttpInterceptor {
     let accessToken = '';
 
     await this.angularFireAuth.auth.currentUser.getIdToken(true).then(token => (accessToken = token));
-
-    console.log(accessToken);
-
     request = request.clone({
       setHeaders: {
         Authorization: 'Bearer ' + accessToken

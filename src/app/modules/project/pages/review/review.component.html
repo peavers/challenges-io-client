@@ -45,7 +45,7 @@
         </a>
       </li>
 
-      <li class="action">
+      <li *ngIf="challenge.lever" class="action">
         <a href="{{ challenge.lever }}" mat-button target="_blank">
           <mat-icon>link</mat-icon>
           See on Lever
@@ -59,12 +59,12 @@
         </button>
       </li>
 
-      <li class="action">
-        <a (click)="feedback()" color="primary" mat-raised-button>
-          <i class="fa fa-comments"></i>
-          Feedback
-        </a>
-      </li>
+      <!--      <li class="action">-->
+      <!--        <a (click)="feedback()" color="primary" mat-raised-button>-->
+      <!--          <i class="fa fa-comments"></i>-->
+      <!--          Feedback-->
+      <!--        </a>-->
+      <!--      </li>-->
     </ul>
 
     <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">

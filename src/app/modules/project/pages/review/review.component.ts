@@ -85,8 +85,6 @@ export class ReviewComponent implements OnInit {
         (e, i) => this.challenge.feedback.findIndex(a => a.author.email === this.user.email) === i
       );
 
-      console.log(this.challenge.feedback);
-
       this.challengeService.update(this.challenge);
     });
   }
