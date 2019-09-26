@@ -54,16 +54,6 @@ input {
   text-transform: capitalize;
 }
 
-img.rounded {
-  object-fit: cover;
-  border-radius: 50%;
-  height: 48px;
-  width: 48px;
-  background: #dbdbdb;
-  border: 1px solid #dbdbdb;
-  overflow: hidden;
-}
-
 hr {
   margin-bottom: 0;
 }
@@ -135,6 +125,10 @@ hr {
 
 .comment-box {
   border: 1px solid #e7e9eb;
+}
+
+*:focus {
+  outline: none;
 }
 
 @import '~highlight.js/styles/github.css';
