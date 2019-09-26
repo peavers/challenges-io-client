@@ -17,6 +17,7 @@ code {
   white-space: pre;
   max-width: 100px;
   overflow: visible;
+  border: 1px transparent;
 }
 
 .line-number {
@@ -39,8 +40,15 @@ code {
   background: #fff7f8;
   border: 1px solid #ffd6dc;
   box-sizing: border-box;
+  margin-bottom: 5px;
 }
 
 .reply-to-comment {
   background: #f6f8fa;
+
+  .mat-button {
+    width: 100%;
+    text-align: left;
+  }
+
 }
