@@ -19,6 +19,7 @@ import { AuthService, User } from '../../../../core/services/auth.service';
 })
 export class ReviewComponent implements OnInit {
   challenge: Challenge;
+
   codeFileObservable: Observable<CodeFile[]> = new Observable<CodeFile[]>();
 
   user: User;
@@ -77,15 +78,7 @@ export class ReviewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((response: boolean) => {
-      feedback.moveToNextRound = response;
 
-      this.challenge.feedback.push(feedback);
-
-      this.challenge.feedback.filter(
-        (e, i) => this.challenge.feedback.findIndex(a => a.author.email === this.user.email) === i
-      );
-
-      this.challengeService.update(this.challenge);
     });
   }
 
