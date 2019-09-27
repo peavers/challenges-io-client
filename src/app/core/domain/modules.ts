@@ -49,6 +49,7 @@ export interface CodeFile {
   id?: string;
   location?: string;
   projectId?: string;
+  size?: number;
   cloc?: CLOC;
   codeLines?: CodeLine[];
 }

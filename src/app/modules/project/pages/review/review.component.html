@@ -67,39 +67,14 @@
       </li>
     </ul>
 
-    <div class="columns is-multiline" *ngIf="codeFileObservable | async as codeFiles">
+    <div *ngIf="tableOfContent as codeFiles" class="columns is-multiline">
       <div class="column is-12 contents">
         <table class="table">
-
-          <tr>
-            <th>File</th>
-            <th>Lines of code</th>
-            <th>Lines of comments</th>
-            <th>Blank lines</th>
-          </tr>
           <tr *ngFor="let codeFile of codeFiles">
             <td>
               <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
                 {{ codeFile.location }}
               </a>
-            </td>
-
-            <td>
-              <div *ngIf="codeFile.cloc">
-                {{codeFile.cloc.SUM.code}}
-              </div>
-            </td>
-
-            <td>
-              <div *ngIf="codeFile.cloc">
-                {{codeFile.cloc.SUM.comment}}
-              </div>
-            </td>
-
-            <td>
-              <div *ngIf="codeFile.cloc">
-                {{codeFile.cloc.SUM.blank}}
-              </div>
             </td>
 
             <td class="is-vertical-center">
@@ -112,7 +87,7 @@
       </div>
 
       <div *ngFor="let codeFile of codeFiles">
-        <app-code-file-component [codeFile]="codeFile"></app-code-file-component>
+        <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
       </div>
     </div>
   </div>

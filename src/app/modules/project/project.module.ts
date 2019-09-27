@@ -15,6 +15,7 @@ import { CodeCommentComponent } from './components/code-comment/code-comment.com
 import { WysiwygEditorComponent } from './components/wysiwyg-editor/wysiwyg-editor.component';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
+import { NgPipesModule } from 'angular-pipes';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NgxMdModule } from 'ngx-md';
     HighlightModule,
     MatProgressButtonsModule,
     NgxPageScrollModule,
-    LMarkdownEditorModule
+    LMarkdownEditorModule,
+    NgPipesModule
   ],
   exports: [CodeCommentComponent],
   entryComponents: []

@@ -17,30 +17,25 @@ import { NgModule } from '@angular/core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { SharedModule } from './shared';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
-
-import md from 'highlight.js/lib/languages/markdown';
-import yaml from 'highlight.js/lib/languages/yaml';
-import xml from 'highlight.js/lib/languages/xml';
-import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import java from 'highlight.js/lib/languages/java';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 export function hljsLanguages() {
   return [
     { name: 'java', func: java },
     { name: 'typescript', func: typescript },
-    { name: 'javascript', func: javascript },
-    { name: 'scss', func: scss },
-    { name: 'xml', func: xml },
-    { name: 'yml', func: yaml },
-    { name: 'md', func: md }
+    { name: 'javascript', func: javascript }
   ];
 }
 
 @NgModule({
   declarations: [AppComponent, ContentLayoutComponent, SidebarComponent, NavbarComponent, LoginComponent],
   imports: [
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
     NgxPageScrollModule,
     BrowserModule,
     CoreModule,
