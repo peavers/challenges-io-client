@@ -18,6 +18,14 @@ export class CodeFileService {
     this.endpoint = `${environment.postServer}/v1/files`;
   }
 
+  getTableOfContent(projectId: string): Observable<CodeFile[]> {
+    return this.httpClient.get<CodeFile[]>(`${this.endpoint}/${projectId}/toc`);
+  }
+
+  findById(projectId: string, fileId: string): Observable<CodeFile> {
+    return this.httpClient.get<CodeFile>(`${this.endpoint}/${projectId}/${fileId}`);
+  }
+
   findAllByProjectId(projectId: string): Observable<CodeFile[]> {
     this.httpClient.get<CodeFile[]>(`${this.endpoint}/${projectId}`).subscribe(codeFiles => {
       this.codeFileStore = codeFiles;

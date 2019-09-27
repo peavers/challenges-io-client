@@ -5,9 +5,9 @@
 <td class="code">
   <code [highlight]="codeLine.body" [ngClass]="{ 'error-line': showRedBackground() }"></code>
 
-  <div class="columns is-multiline">
+  <div *ngIf="showCommentBox" class="columns is-multiline">
     <div class="column is-8">
-      <div *ngIf="showCommentBox" class="comment-box">
+      <div class="comment-box">
         <app-wysiwyg-component (cancelEvent)="showCommentOrReplyBox()" (editorContentChange)="addNewComment($event)">
         </app-wysiwyg-component>
       </div>

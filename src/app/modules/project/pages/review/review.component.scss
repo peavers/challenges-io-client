@@ -57,10 +57,19 @@ ul {
 .is-vertical-center {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .users {
   display: inline-block;
   margin-right: 5px;
+}
+
+.example-viewport {
+  height: 1000px;
+  width: 100%;
+}
+
+.example-item {
+  height: 1000px;
 }

@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ChallengeService } from '../../../../core/services/challenge.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClipboardService } from 'ngx-clipboard';
 import { Author, Challenge, CodeFile, Comment, Feedback } from '../../../../core/domain/modules';
@@ -10,7 +9,7 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { FeedbackDialogComponent } from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
-import { AuthService, User } from '../../../../core/services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-default',
@@ -20,15 +19,15 @@ import { AuthService, User } from '../../../../core/services/auth.service';
 export class ReviewComponent implements OnInit {
   challenge: Challenge;
 
-  codeFileObservable: Observable<CodeFile[]> = new Observable<CodeFile[]>();
+  tableOfContent;
 
-  user: User;
+  user;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private challengeService: ChallengeService,
-    private clipboardService: ClipboardService,
     private codeFileService: CodeFileService,
+    private clipboardService: ClipboardService,
     private pageScrollService: PageScrollService,
     private authService: AuthService,
     private snackBar: MatSnackBar,
@@ -38,12 +37,10 @@ export class ReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.challengeService.findById(params['id']).subscribe(challenge => {
-        this.challenge = challenge;
-      });
 
-      this.codeFileObservable = this.codeFileService.findAllByProjectId(params['id']);
+    this.activatedRoute.data.subscribe(data => {
+      this.challenge = data['data']['challenge'];
+      this.tableOfContent = data['data']['toc'];
     });
 
     this.user = this.authService.getUser();
@@ -101,4 +98,6 @@ export class ReviewComponent implements OnInit {
 
     return authors.filter((e, i) => authors.findIndex(a => a.email === e.email) === i);
   }
+
+
 }

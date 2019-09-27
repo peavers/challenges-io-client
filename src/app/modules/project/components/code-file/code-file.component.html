@@ -20,6 +20,21 @@
   </div>
 
   <table>
+
+    <tr *ngIf="codeFile.codeLines.length == 0">
+      <td>
+
+        <div class="failed-to-load has-text-centered">
+
+          <p><strong>This file is big... Try and fetch it, things might get a little awkward though.</strong></p>
+          <p>
+            <button (click)="getContent()" mat-button>fetch file</button>
+          </p>
+        </div>
+
+      </td>
+    </tr>
+
     <tr *ngFor="let line of codeFile.codeLines; let i = index">
       <app-code-line-component
         (codeLineChange)="saveCodeLine($event)"
@@ -27,5 +42,6 @@
         [lineNumber]="i"
       ></app-code-line-component>
     </tr>
+
   </table>
 </div>

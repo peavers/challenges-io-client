@@ -8,6 +8,10 @@ import { CodeFileService } from '../../../../core/services/code-file.service';
   styleUrls: ['./code-file.component.scss']
 })
 export class CodeFileComponent implements OnInit {
+
+  @Input()
+  challengeId: string;
+
   @Input()
   codeFile: CodeFile;
 
@@ -15,6 +19,11 @@ export class CodeFileComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.codeFile.size <= 4000) {
+      this.getContent();
+    } else {
+      console.log('skipping large file: ', this.codeFile.location);
+    }
   }
 
   saveCodeLine($event) {
@@ -34,4 +43,9 @@ export class CodeFileComponent implements OnInit {
 
     return authors.filter((e, i) => authors.findIndex(a => a.email === e.email) === i);
   }
+
+  getContent() {
+    this.codeFileService.findById(this.challengeId, this.codeFile.id).subscribe(result => this.codeFile = result);
+  }
+
 }
