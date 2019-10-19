@@ -4,8 +4,9 @@
   </figure>
   <div class="media-content">
     <div class="content">
-      <p class="author-name">{{ comment.author.name }} <span
-        class="imported-date">{{ comment.created | amTimeAgo }}</span></p>
+      <p class="author-name">
+        {{ comment.author.name }} <span class="imported-date">{{ comment.created | amTimeAgo }}</span>
+      </p>
       <p>
         <ngx-md>{{ comment.body }}</ngx-md>
       </p>

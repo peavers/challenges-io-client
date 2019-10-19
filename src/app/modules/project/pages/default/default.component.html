@@ -16,13 +16,14 @@
               <h1 class="title" routerLink="/review/{{ challenge.id }}">{{ challenge.author.name }}</h1>
 
               <p class="imported-date">
-                <span *ngIf="challenge.level && challenge.position">{{ challenge.level }} {{ challenge.position }},
-                </span>{{ challenge.repository.name }}, added {{ challenge.created | amTimeAgo }}
+                <span *ngIf="challenge.level && challenge.position"
+                  >{{ challenge.level }} {{ challenge.position }}, </span
+                >{{ challenge.repository.name }}, added {{ challenge.created | amTimeAgo }}
               </p>
             </div>
           </div>
         </div>
-        <hr/>
+        <hr />
       </div>
     </div>
   </div>
