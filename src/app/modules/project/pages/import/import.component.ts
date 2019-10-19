@@ -28,11 +28,9 @@ export class ImportComponent implements OnInit {
 
   challenge: Challenge = {};
 
-  constructor(public challengeService: ChallengeService, private snackBar: MatSnackBar, private router: Router) {
-  }
+  constructor(public challengeService: ChallengeService, private snackBar: MatSnackBar, private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   import() {
     this.snackBar.open('Working');

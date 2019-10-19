@@ -3,7 +3,6 @@ export interface Feedback {
   positive?: string;
   negative?: string;
   rating?: number;
-
   moveToNextRound?: boolean;
 }
 
