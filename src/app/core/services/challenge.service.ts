@@ -41,10 +41,6 @@ export class ChallengeService {
     return this.httpClient.get<Challenge>(`${this.endpoint}/${id}`);
   }
 
-  getReviewers(id: string): Observable<Author[]> {
-    return this.httpClient.get<Author[]>(`${this.endpoint}/reviewers/${id}`);
-  }
-
   create(challenge: Challenge): Observable<Challenge> {
     return this.httpClient.post<Challenge>(`${this.endpoint}`, challenge);
   }

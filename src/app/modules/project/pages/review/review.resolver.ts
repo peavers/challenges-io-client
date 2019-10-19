@@ -12,8 +12,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ReviewResolver implements Resolve<Challenge> {
-  constructor(private challengeService: ChallengeService, private codeFileService: CodeFileService) {
-  }
+  constructor(private challengeService: ChallengeService, private codeFileService: CodeFileService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     const challengeId = route.paramMap.get('id');
@@ -23,11 +22,13 @@ export class ReviewResolver implements Resolve<Challenge> {
     observables.push(this.challengeService.findById(challengeId));
     observables.push(this.codeFileService.getTableOfContent(challengeId));
 
-    return forkJoin(observables).pipe(map((allResponses) => {
-      return {
-        challenge: allResponses[0],
-        toc: allResponses[1]
-      };
-    }));
+    return forkJoin(observables).pipe(
+      map(allResponses => {
+        return {
+          challenge: allResponses[0],
+          toc: allResponses[1]
+        };
+      })
+    );
   }
 }

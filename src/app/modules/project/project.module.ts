@@ -16,6 +16,7 @@ import { WysiwygEditorComponent } from './components/wysiwyg-editor/wysiwyg-edit
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 import { NgPipesModule } from 'angular-pipes';
+import { ActionBarComponent } from './components/action-bar/action-bar-component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NgPipesModule } from 'angular-pipes';
     CodeFileComponent,
     CodeLineComponent,
     CodeCommentComponent,
-    WysiwygEditorComponent
+    WysiwygEditorComponent,
+    ActionBarComponent
   ],
   imports: [
     NgxMdModule.forRoot(),
@@ -42,5 +44,4 @@ import { NgPipesModule } from 'angular-pipes';
   exports: [CodeCommentComponent],
   entryComponents: []
 })
-export class ProjectModule {
-}
+export class ProjectModule {}

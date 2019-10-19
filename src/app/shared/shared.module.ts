@@ -21,22 +21,9 @@ import { UserPictureComponent } from './component/user-picture/user-picture.comp
     LMarkdownEditorModule,
     NgxMdModule
   ],
-  declarations: [
-    DeleteConfirmDialogComponent,
-    ScrollToTopComponent,
-    FeedbackDialogComponent,
-    UserPictureComponent
-  ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    ScrollToTopComponent,
-    UserPictureComponent
-  ],
+  declarations: [DeleteConfirmDialogComponent, ScrollToTopComponent, FeedbackDialogComponent, UserPictureComponent],
+  exports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ScrollToTopComponent, UserPictureComponent],
   entryComponents: [DeleteConfirmDialogComponent, FeedbackDialogComponent],
   providers: [MaterialModule]
 })
-export class SharedModule {
-}
+export class SharedModule {}
