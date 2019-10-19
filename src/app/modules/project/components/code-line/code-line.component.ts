@@ -24,11 +24,9 @@ export class CodeLineComponent implements OnInit {
 
   replyContent: string;
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   showCommentOrReplyBox() {
     if (this.codeLine.comments.length >= 1) {

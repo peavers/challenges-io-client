@@ -21,62 +21,22 @@ export class ReviewComponent implements OnInit {
 
   tableOfContent;
 
-  user;
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private challengeService: ChallengeService,
     private codeFileService: CodeFileService,
-    private clipboardService: ClipboardService,
     private pageScrollService: PageScrollService,
     private authService: AuthService,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
     @Inject(DOCUMENT) private document: any
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
-
     this.activatedRoute.data.subscribe(data => {
       this.challenge = data['data']['challenge'];
       this.tableOfContent = data['data']['toc'];
     });
 
-    this.user = this.authService.getUser();
-  }
-
-  deleteChallenge(challenge: Challenge) {
-    this.challengeService.delete(challenge);
-  }
-
-  copyToClip(url: string) {
-    this.clipboardService.copyFromContent(url);
-
-    this.snackBar.open(`Copied ${url}`, null, {
-      duration: 5 * 1000
-    });
-  }
-
-  feedback() {
-    let author: Author = {
-      avatarUrl: this.user.photoURL,
-      name: this.user.displayName,
-      email: this.user.email
-    };
-
-    let feedback: Feedback = {
-      author: author
-    };
-
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, {
-      width: '60vw',
-      data: [feedback, this.challenge, this.user]
-    });
-
-    dialogRef.afterClosed().subscribe((response: boolean) => {
-
-    });
+    this.authService.getUser();
   }
 
   uniqueCommentAuthor(codeFile: CodeFile): Array<Author> {
@@ -98,6 +58,4 @@ export class ReviewComponent implements OnInit {
 
     return authors.filter((e, i) => authors.findIndex(a => a.email === e.email) === i);
   }
-
-
 }

@@ -19,8 +19,7 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(public angularFireAuth: AngularFireAuth, private router: Router) {
-  }
+  constructor(public angularFireAuth: AngularFireAuth, private router: Router) {}
 
   doGoogleLogin() {
     return new Promise<any>(resolve => {
@@ -29,10 +28,15 @@ export class AuthService {
       provider.addScope('profile');
       provider.addScope('email');
 
-      this.angularFireAuth.auth.signInWithPopup(provider).then(res => {
-        resolve(res);
-        this.router.navigate(['/']);
-      });
+      this.angularFireAuth.auth.signInWithPopup(provider).then(
+        res => {
+          resolve(res);
+          this.router.navigate(['/']);
+        },
+        error => {
+          console.log('unable to communicate with Google', error);
+        }
+      );
     });
   }
 

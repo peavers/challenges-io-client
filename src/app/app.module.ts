@@ -16,7 +16,6 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { SharedModule } from './shared';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import java from 'highlight.js/lib/languages/java';
@@ -32,7 +31,7 @@ export function hljsLanguages() {
 }
 
 @NgModule({
-  declarations: [AppComponent, ContentLayoutComponent, SidebarComponent, NavbarComponent, LoginComponent],
+  declarations: [AppComponent, ContentLayoutComponent, NavbarComponent, LoginComponent],
   imports: [
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
@@ -58,5 +57,4 @@ export function hljsLanguages() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
