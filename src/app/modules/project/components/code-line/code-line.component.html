@@ -5,13 +5,15 @@
 <td class="code">
   <code [highlight]="codeLine.body" [ngClass]="{ 'error-line': showRedBackground() }"></code>
 
-  <div *ngIf="showCommentBox" class="columns is-multiline">
-    <div class="column is-8">
+  <div class="columns is-multiline">
+    <div *ngIf="showCommentBox" class="column is-8">
       <div class="comment-box">
         <app-wysiwyg-component (cancelEvent)="showCommentOrReplyBox()" (editorContentChange)="addNewComment($event)">
         </app-wysiwyg-component>
       </div>
+    </div>
 
+    <div class="column is-8">
       <div *ngIf="codeLine.comments.length >= 1" class="comment-box">
         <!-- Display all comments -->
         <div *ngFor="let comment of codeLine.comments">

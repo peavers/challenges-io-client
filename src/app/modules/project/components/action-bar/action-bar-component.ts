@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { ChallengeService } from '../../../../core/services/challenge.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClipboardService } from 'ngx-clipboard';
@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./action-bar-component.scss']
 })
 export class ActionBarComponent {
+
+  @Input()
   challenge: Challenge;
 
   constructor(
@@ -22,8 +24,8 @@ export class ActionBarComponent {
     @Inject(DOCUMENT) private document: any
   ) {}
 
-  deleteChallenge(challenge: Challenge) {
-    this.challengeService.delete(challenge);
+  deleteChallenge() {
+    this.challengeService.delete(this.challenge);
   }
 
   copyToClip(url: string) {
@@ -34,6 +36,5 @@ export class ActionBarComponent {
     });
   }
 
-  // TODO Sometime...
   feedback() {}
 }
