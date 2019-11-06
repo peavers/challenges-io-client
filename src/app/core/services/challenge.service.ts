@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Author, Challenge } from '../domain/modules';
+import { Challenge } from '../domain/modules';
 import { DeleteConfirmDialogComponent } from '../../shared/component/delete-confirm-dialog/delete-confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -52,8 +52,9 @@ export class ChallengeService {
   delete(challenge: Challenge): void {
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
       width: '30vw',
-      data: { name: challenge.author.name }
     });
+
+    console.log(challenge.id);
 
     dialogRef.afterClosed().subscribe(response => {
       if (response) {

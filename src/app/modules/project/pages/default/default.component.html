@@ -1,10 +1,10 @@
 <div class="section">
   <div class="container">
     <div class="columns is-multiline">
-      <div class="column is-6 is-offset-3" *ngFor="let challenge of challenges | async">
+      <div *ngFor="let challenge of challenges" class="column is-6 is-offset-3">
         <div class="review-list">
           <div class="columns">
-            <div class="column is-narrow">
+            <div *ngIf="challenge" class="column is-narrow">
               <app-user-picture
                 [name]="challenge.author.name"
                 [pictureUrl]="challenge.author.avatarUrl"
@@ -16,14 +16,12 @@
               <h1 class="title" routerLink="/review/{{ challenge.id }}">{{ challenge.author.name }}</h1>
 
               <p class="imported-date">
-                <span *ngIf="challenge.level && challenge.position"
-                  >{{ challenge.level }} {{ challenge.position }}, </span
-                >{{ challenge.repository.name }}, added {{ challenge.created | amTimeAgo }}
+                {{ challenge.level }} {{ challenge.position }}, added {{ challenge.created | amTimeAgo }}
               </p>
             </div>
           </div>
         </div>
-        <hr />
+        <hr/>
       </div>
     </div>
   </div>

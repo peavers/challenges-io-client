@@ -17,21 +17,7 @@
     </ng-template>
   </mat-menu>
 
-  <li class="action">
-    <a href="{{ challenge.repository.htmlUrl }}" mat-button target="_blank">
-      <mat-icon>code</mat-icon>
-      See on GitHub
-    </a>
-  </li>
-
-  <li *ngIf="challenge.lever" class="action">
-    <a href="{{ challenge.lever }}" mat-button target="_blank">
-      <mat-icon>link</mat-icon>
-      See on Lever
-    </a>
-  </li>
-
-  <li (click)="deleteChallenge(challenge)" class="action">
+  <li (click)="deleteChallenge()" class="action">
     <button mat-button>
       <mat-icon>delete_forever</mat-icon>
       Delete
