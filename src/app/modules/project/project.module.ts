@@ -17,6 +17,8 @@ import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 import { NgPipesModule } from 'angular-pipes';
 import { ActionBarComponent } from './components/action-bar/action-bar-component';
+import { ChallengeMetaComponent } from './components/challenge-meta/challenge-meta-component';
+import { TocItemComponent } from './components/toc-item/toc-item-component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ActionBarComponent } from './components/action-bar/action-bar-component
     CodeLineComponent,
     CodeCommentComponent,
     WysiwygEditorComponent,
-    ActionBarComponent
+    ActionBarComponent,
+    ChallengeMetaComponent,
+    TocItemComponent
   ],
   imports: [
     NgxMdModule.forRoot(),

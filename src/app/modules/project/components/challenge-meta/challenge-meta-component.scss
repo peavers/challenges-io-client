@@ -1,0 +1,21 @@
+.title {
+  margin: 0;
+  font-size: 22px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.meta {
+  font-size: 12px;
+}
+
+.imported-date {
+  font-size: 12px;
+  padding: 10px 0;
+}
+
+.mat-chip {
+  font-size: 12px;
+}

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Author, CodeFile, CodeLine, Comment } from '../../../../core/domain/modules';
+import { CodeFile } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 
 @Component({
@@ -14,13 +14,12 @@ export class CodeFileComponent implements OnInit {
   @Input()
   codeFile: CodeFile;
 
-  constructor(private codeFileService: CodeFileService) {}
+  constructor(private codeFileService: CodeFileService) {
+  }
 
   ngOnInit() {
     if (this.codeFile.size <= 4000) {
       this.getContent();
-    } else {
-      console.log('skipping large file: ', this.codeFile.location);
     }
   }
 
@@ -31,6 +30,8 @@ export class CodeFileComponent implements OnInit {
   }
 
   getContent() {
-    this.codeFileService.findById(this.challengeId, this.codeFile.id).subscribe(result => (this.codeFile = result));
+    this.codeFileService.findById(this.challengeId, this.codeFile.id).subscribe(result => {
+      this.codeFile = result;
+    });
   }
 }

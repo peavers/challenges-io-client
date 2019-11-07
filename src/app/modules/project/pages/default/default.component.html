@@ -1,28 +1,35 @@
-<div class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <div *ngFor="let challenge of challenges" class="column is-6 is-offset-3">
-        <div class="review-list">
-          <div class="columns">
-            <div *ngIf="challenge" class="column is-narrow">
-              <app-user-picture
-                [name]="challenge.author.name"
-                [pictureUrl]="challenge.author.avatarUrl"
-                [large]="true"
-              ></app-user-picture>
-            </div>
+<div *ngIf="challenges.length >= 1; else noChallenges">
+  <div class="section">
+    <div class="container">
+      <div class="columns is-multiline">
+        <div *ngFor="let challenge of challenges" class="column is-6 is-offset-3">
+          <div class="review-list">
+            <div class="columns">
 
-            <div class="column is-10">
-              <h1 class="title" routerLink="/review/{{ challenge.id }}">{{ challenge.author.name }}</h1>
+              <app-challenge-meta [challenge]="challenge"></app-challenge-meta>
 
-              <p class="imported-date">
-                {{ challenge.level }} {{ challenge.position }}, added {{ challenge.created | amTimeAgo }}
-              </p>
             </div>
           </div>
+          <hr/>
         </div>
-        <hr/>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #noChallenges>
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-12">
+          <div class="no-challenges has-text-centered">
+            <h1 class="title">No challenges to review</h1>
+            <p>
+              <button mat-button routerLink="/import">Import</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
