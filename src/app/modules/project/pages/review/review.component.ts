@@ -1,15 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ChallengeService } from '../../../../core/services/challenge.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClipboardService } from 'ngx-clipboard';
-import { Author, Challenge, CodeFile, Comment, Feedback } from '../../../../core/domain/modules';
+import { Challenge, CodeFile, Comment } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { FeedbackDialogComponent } from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
 import { AuthService } from '../../../../core/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-default',
@@ -19,16 +15,18 @@ import { AuthService } from '../../../../core/services/auth.service';
 export class ReviewComponent implements OnInit {
   challenge: Challenge;
 
-  tableOfContent;
+  uniqueComments: Observable<Comment[]> = new Observable<Comment[]>();
+
+  tableOfContent: CodeFile[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private challengeService: ChallengeService,
-    private codeFileService: CodeFileService,
     private pageScrollService: PageScrollService,
     private authService: AuthService,
+    private codeFileService: CodeFileService,
     @Inject(DOCUMENT) private document: any
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(data => {
@@ -39,23 +37,10 @@ export class ReviewComponent implements OnInit {
     this.authService.getUser();
   }
 
-  uniqueCommentAuthor(codeFile: CodeFile): Array<Author> {
-    let authors = [];
-
-    if (codeFile.codeLines === undefined) {
-      return;
-    }
-
-    for (const codeLine of codeFile.codeLines) {
-      if (codeLine.comments.length == 0) {
-        continue;
-      }
-
-      codeLine.comments.forEach((comment: Comment) => {
-        authors.push(comment.author);
-      });
-    }
-
-    return authors.filter((e, i) => authors.findIndex(a => a.email === e.email) === i);
+  uniqueCommentAuthor() {
+    this.tableOfContent.forEach(c => {
+      this.codeFileService.getFileUniqueReviewers(this.challenge.id, c.id);
+    });
   }
+
 }

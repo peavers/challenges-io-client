@@ -1,49 +1,41 @@
 <div *ngIf="challenge" class="section">
   <div class="container">
-    <div class="columns is-multiline">
-      <div *ngIf="challenge" class="column is-narrow">
-        <app-user-picture
-          [large]="true"
-          [name]="challenge.author.name"
-          [pictureUrl]="challenge.author.avatarUrl"
-        ></app-user-picture>
-      </div>
 
-      <div class="column is-10">
-        <h1 class="title">{{ challenge.author.name }}</h1>
+    <app-challenge-meta [challenge]="challenge"></app-challenge-meta>
 
-        <p class="imported-date">
-          {{ challenge.level }} {{ challenge.position }}, added {{ challenge.created | amTimeAgo }}
-        </p>
-      </div>
-
+    <div class="columns">
       <div class="column is-12">
         <app-action-bar-component [challenge]="challenge"></app-action-bar-component>
       </div>
-
     </div>
+  </div>
+</div>
 
-    <div *ngIf="tableOfContent as codeFiles" class="columns is-multiline">
-      <div class="column is-12 contents">
-        <table class="table">
-          <tr *ngFor="let codeFile of codeFiles">
-            <td>
-              <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
-                {{ codeFile.location }}
-              </a>
-            </td>
+<div *ngIf="challenge" class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="columns is-multiline">
+        <div class="column is-12 contents">
+          <table class="table">
+            <tr *ngFor="let codeFile of tableOfContent">
+              <td>
+                <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
+                  {{ codeFile.location }}
+                </a>
+              </td>
 
-            <td class="is-vertical-center">
-              <div *ngFor="let author of uniqueCommentAuthor(codeFile)" class="is-pulled-right is-vertical-center">
-                <app-user-picture [name]="author.name" [pictureUrl]="author.avatarUrl"></app-user-picture>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
+              <td class="is-vertical-center">
+                <div *ngFor="let comment of uniqueCommentAuthor(codeFile)" class="is-pulled-right is-vertical-center">
+                  <app-toc-item-component></app-toc-item-component>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
 
-      <div *ngFor="let codeFile of codeFiles">
-        <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
+        <div *ngFor="let codeFile of tableOfContent">
+          <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
+        </div>
       </div>
     </div>
   </div>
