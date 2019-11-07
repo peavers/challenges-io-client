@@ -3,16 +3,16 @@
   <div *ngIf="challenge" class="column is-narrow">
     <app-user-picture
       [large]="true"
-      [name]="challenge.author.name"
+      [name]="challenge.id"
       [pictureUrl]="challenge.author.avatarUrl"
     ></app-user-picture>
   </div>
 
   <div class="column is-10">
-    <h1 class="title" routerLink="/review/{{ challenge.id }}">{{ challenge.author.name }}</h1>
+    <h1 class="title" routerLink="/review/{{ challenge.id }}">{{ challenge.level }} {{ challenge.position }}</h1>
 
     <p class="imported-date">
-      {{ challenge.level }} {{ challenge.position }}, added {{ challenge.created | amTimeAgo }}
+      added {{ challenge.created | amTimeAgo }}
     </p>
   </div>
 </div>

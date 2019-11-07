@@ -19,11 +19,13 @@ import { SharedModule } from './shared';
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import java from 'highlight.js/lib/languages/java';
+import xml from 'highlight.js/lib/languages/xml';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 export function hljsLanguages() {
   return [
+    { name: 'xml', func: xml },
     { name: 'java', func: java },
     { name: 'typescript', func: typescript },
     { name: 'javascript', func: javascript }
@@ -57,4 +59,5 @@ export function hljsLanguages() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
