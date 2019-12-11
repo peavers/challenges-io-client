@@ -1,41 +1,40 @@
 <div *ngIf="challenge" class="section">
   <div class="container">
 
-    <app-challenge-meta [challenge]="challenge"></app-challenge-meta>
 
-    <div class="columns">
-      <div class="column is-12">
-        <app-action-bar-component [challenge]="challenge"></app-action-bar-component>
-      </div>
+    <div *ngIf="challenge.underReview" class="message has-text-centered">
+      <p><strong>This challenge is under review until three people have left feedback. While under review only
+        your comments are visible.</strong></p>
     </div>
+
+
+    <app-challenge-meta [challenge]="challenge"></app-challenge-meta>
   </div>
 </div>
 
 <div *ngIf="challenge" class="section">
   <div class="container">
-    <div class="columns">
-      <div class="columns is-multiline">
-        <div class="column is-12 contents">
-          <table class="table">
-            <tr *ngFor="let codeFile of tableOfContent">
-              <td>
-                <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
-                  {{ codeFile.location }}
-                </a>
-              </td>
+    <app-feedback-section-component [challenge]="challenge"></app-feedback-section-component>
+  </div>
+</div>
 
-              <td class="is-vertical-center">
-                <div *ngFor="let comment of uniqueCommentAuthor(codeFile)" class="is-pulled-right is-vertical-center">
-                  <app-toc-item-component></app-toc-item-component>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+<div *ngIf="challenge" class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <div class="column is-12 contents">
+        <table class="table">
+          <tr *ngFor="let codeFile of tableOfContent">
+            <td>
+              <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
+                {{ codeFile.location }}
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-        <div *ngFor="let codeFile of tableOfContent">
-          <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
-        </div>
+      <div *ngFor="let codeFile of tableOfContent">
+        <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
       </div>
     </div>
   </div>

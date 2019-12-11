@@ -1,0 +1,70 @@
+<div *ngIf="!challenge.underReview else underReview;" class="columns is-multiline">
+  <div class="column is-12">
+    <table class="table">
+      <tr>
+        <th>Reviewer</th>
+        <th>Next stage</th>
+        <th>Level of code</th>
+        <th>Comments</th>
+      </tr>
+      <tr (click)="editFeedback(feedback)" *ngFor="let feedback of challenge.feedback">
+        <td>
+          {{feedback.reviewer.displayName}}
+        </td>
+        <td>
+          {{feedback.nextStage}}
+        </td>
+        <td>
+          {{feedback.level}}
+        </td>
+        <td>
+          {{feedback.comments}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="column is-12 has-text-centered">
+  <div *ngIf="disableLeaveFeedback(); else allowFeedback">
+    <div matTooltip="You've already left feedback">
+      <button [disabled]="true" mat-button>Leave Feedback</button>
+    </div>
+  </div>
+
+  <ng-template #allowFeedback>
+    <mat-spinner-button (btnClick)="addFeedback()" [options]="btnOpts"></mat-spinner-button>
+  </ng-template>
+</div>
+
+<!-- Under review, only show the current users feedback-->
+<ng-template #underReview>
+
+  <div *ngIf="challenge.underReview else underReview" class="columns is-multiline">
+    <div class="column is-12">
+      <table class="table">
+        <tr>
+          <th>Reviewer</th>
+          <th>Next stage</th>
+          <th>Level of code</th>
+          <th>Comments</th>
+        </tr>
+        <tr (click)="editFeedback(feedback)" *ngIf="currentUserFeedback() as feedback">
+          <td>
+            {{feedback.reviewer.displayName}}
+          </td>
+          <td>
+            {{feedback.nextStage}}
+          </td>
+          <td>
+            {{feedback.level}}
+          </td>
+          <td>
+            {{feedback.comments}}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</ng-template>

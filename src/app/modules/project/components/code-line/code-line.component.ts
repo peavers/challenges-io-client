@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
-import { Author, CodeLine, Comment } from '../../../../core/domain/modules';
+import { CodeLine, Comment } from '../../../../core/domain/modules';
 import { Utils } from '../../../../shared/helper/utils';
 
 @Component({
@@ -24,9 +24,11 @@ export class CodeLineComponent implements OnInit {
 
   replyContent: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   showCommentOrReplyBox() {
     if (this.codeLine.comments.length >= 1) {
@@ -37,17 +39,10 @@ export class CodeLineComponent implements OnInit {
   }
 
   addNewComment($event) {
-    const user = this.authService.getUser();
-
-    let author: Author = {
-      avatarUrl: user.photoURL,
-      name: user.displayName,
-      email: user.email
-    };
 
     let comment: Comment = {
       id: Utils.generateUUID(),
-      author: author,
+      reviewer: this.authService.getReviewer(),
       body: $event,
       lineNumber: this.lineNumber + 1
     };

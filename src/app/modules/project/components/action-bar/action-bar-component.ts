@@ -1,10 +1,10 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChallengeService } from '../../../../core/services/challenge.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClipboardService } from 'ngx-clipboard';
 import { Challenge } from '../../../../core/domain/modules';
-import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-action-bar-component',
@@ -17,12 +17,13 @@ export class ActionBarComponent {
   challenge: Challenge;
 
   constructor(
+    private authService: AuthService,
     private challengeService: ChallengeService,
     private clipboardService: ClipboardService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-    @Inject(DOCUMENT) private document: any
-  ) {}
+    private dialog: MatDialog
+  ) {
+  }
 
   deleteChallenge() {
     this.challengeService.delete(this.challenge);
@@ -36,5 +37,6 @@ export class ActionBarComponent {
     });
   }
 
-  feedback() {}
+
 }
+

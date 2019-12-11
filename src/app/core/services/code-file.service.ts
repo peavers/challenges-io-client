@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CodeFile, Comment } from '../domain/modules';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -9,10 +9,6 @@ import { environment } from '../../../environments/environment';
 })
 export class CodeFileService {
   private readonly endpoint: string;
-
-  private codeFileSubject: BehaviorSubject<CodeFile[]> = new BehaviorSubject<CodeFile[]>([]);
-
-  private codeFileStore: CodeFile[] = [];
 
   constructor(private httpClient: HttpClient) {
     this.endpoint = `${environment.postServer}/v1/files`;
@@ -26,8 +22,8 @@ export class CodeFileService {
     return this.httpClient.get<CodeFile[]>(`${this.endpoint}/${projectId}/toc`);
   }
 
-  findById(projectId: string, fileId: string): Observable<CodeFile> {
-    return this.httpClient.get<CodeFile>(`${this.endpoint}/${projectId}/${fileId}`);
+  findById(projectId: string, fileId: string, reviewerId: string): Observable<CodeFile> {
+    return this.httpClient.get<CodeFile>(`${this.endpoint}/${projectId}/${fileId}/${reviewerId}`);
   }
 
   update(codeFile: CodeFile): void {

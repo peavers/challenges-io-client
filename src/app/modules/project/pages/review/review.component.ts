@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Challenge, CodeFile, Comment } from '../../../../core/domain/modules';
+import { Challenge, CodeFile } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
 import { AuthService } from '../../../../core/services/auth.service';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ChallengeService } from '../../../../core/services/challenge.service';
 
 @Component({
   selector: 'app-default',
@@ -15,8 +16,6 @@ import { Observable } from 'rxjs';
 export class ReviewComponent implements OnInit {
   challenge: Challenge;
 
-  uniqueComments: Observable<Comment[]> = new Observable<Comment[]>();
-
   tableOfContent: CodeFile[];
 
   constructor(
@@ -24,6 +23,8 @@ export class ReviewComponent implements OnInit {
     private pageScrollService: PageScrollService,
     private authService: AuthService,
     private codeFileService: CodeFileService,
+    private  challengeService: ChallengeService,
+    private dialog: MatDialog,
     @Inject(DOCUMENT) private document: any
   ) {
   }
@@ -36,11 +37,4 @@ export class ReviewComponent implements OnInit {
 
     this.authService.getUser();
   }
-
-  uniqueCommentAuthor() {
-    this.tableOfContent.forEach(c => {
-      this.codeFileService.getFileUniqueReviewers(this.challenge.id, c.id);
-    });
-  }
-
 }
