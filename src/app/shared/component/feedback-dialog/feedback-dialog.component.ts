@@ -1,7 +1,6 @@
 import { Component, Inject, NgZone } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Challenge, Feedback } from '../../../core/domain/modules';
-import { User } from '../../../core/services/auth.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Feedback } from '../../../core/domain/modules';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -9,15 +8,20 @@ import { User } from '../../../core/services/auth.service';
   styleUrls: ['./feedback-dialog.component.scss']
 })
 export class FeedbackDialogComponent {
+
+  nextStages: string[] = ['Yes', 'No'];
+
+  levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
+
   feedback: Feedback;
 
-  challenge: Challenge;
+  constructor(private _ngZone: NgZone,
+              private dialogRef: MatDialogRef<FeedbackDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: Feedback) {
+    this.feedback = data;
+  }
 
-  user: User;
-
-  constructor(private _ngZone: NgZone, @Inject(MAT_DIALOG_DATA) public data: [Feedback, Challenge, User]) {
-    this.feedback = data[0];
-    this.challenge = data[1];
-    this.user = data[2];
+  submit() {
+    this.dialogRef.close(this.feedback);
   }
 }

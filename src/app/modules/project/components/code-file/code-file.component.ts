@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CodeFile } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-code-file-component',
@@ -14,7 +15,7 @@ export class CodeFileComponent implements OnInit {
   @Input()
   codeFile: CodeFile;
 
-  constructor(private codeFileService: CodeFileService) {
+  constructor(private codeFileService: CodeFileService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -30,7 +31,9 @@ export class CodeFileComponent implements OnInit {
   }
 
   getContent() {
-    this.codeFileService.findById(this.challengeId, this.codeFile.id).subscribe(result => {
+    const reviewer = this.authService.getReviewer();
+
+    this.codeFileService.findById(this.challengeId, this.codeFile.id, reviewer.id).subscribe(result => {
       this.codeFile = result;
     });
   }

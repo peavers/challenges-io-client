@@ -2,6 +2,15 @@
   <div class="container">
     <div class="columns is-multiline">
       <div class="column is-6 is-offset-3">
+        <div class="message has-text-centered">
+          <p>Information added here will not be visible to the people doing the code review. This information is saved
+            in
+            order to align the code review
+            with the candidate in whichever recruitment platform being used.</p>
+        </div>
+      </div>
+
+      <div class="column is-6 is-offset-3">
         <div class="columns is-multiline">
           <div class="column is-12">
             <mat-form-field class="is-fullwidth">
@@ -10,26 +19,15 @@
                 [disabled]="btnOpts.active"
                 autocomplete="off"
                 matInput
-                placeholder="GitHub challenge location"
+                placeholder=""
               />
-              <mat-hint>https://github.com/user/project</mat-hint>
+              <mat-hint>Must be 'git cloneable'</mat-hint>
             </mat-form-field>
           </div>
 
           <div class="column is-6">
             <mat-form-field>
-              <mat-label>Level</mat-label>
-              <mat-select [(ngModel)]="challenge.level" [disabled]="btnOpts.active">
-                <mat-option *ngFor="let level of levels" [value]="level">
-                  {{ level }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="column is-6">
-            <mat-form-field>
-              <mat-label>Position</mat-label>
+              <mat-label>Applied for position</mat-label>
               <mat-select [(ngModel)]="challenge.position" [disabled]="btnOpts.active">
                 <mat-option *ngFor="let position of positions" [value]="position">
                   {{ position }}
@@ -38,17 +36,31 @@
             </mat-form-field>
           </div>
 
+          <div class="column is-6">
+            <mat-form-field>
+              <mat-label> at the level of</mat-label>
+              <mat-select [(ngModel)]="challenge.level" [disabled]="btnOpts.active">
+                <mat-option *ngFor="let level of levels" [value]="level">
+                  {{ level }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="column is-12">
+            <app-add-reviewers></app-add-reviewers>
+          </div>
+
           <div class="column is-12">
             <mat-form-field class="is-fullwidth">
               <input
-                [(ngModel)]="challenge.lever"
+                [(ngModel)]="challenge.applicant"
                 [disabled]="btnOpts.active"
                 autocomplete="off"
                 matInput
-                placeholder="Link to Lever"
+                placeholder="Link to applicant profile"
               />
-              <mat-hint>This will link the results to the Lever profile. The link here isn't visible to reviewers.
-              </mat-hint>
+              <mat-hint>HR tool used to manage candidates</mat-hint>
             </mat-form-field>
           </div>
         </div>

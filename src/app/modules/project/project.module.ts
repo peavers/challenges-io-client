@@ -19,6 +19,7 @@ import { NgPipesModule } from 'angular-pipes';
 import { ActionBarComponent } from './components/action-bar/action-bar-component';
 import { ChallengeMetaComponent } from './components/challenge-meta/challenge-meta-component';
 import { TocItemComponent } from './components/toc-item/toc-item-component';
+import { FeedbackSectionComponent } from './components/feedback-section/feedback-section-component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TocItemComponent } from './components/toc-item/toc-item-component';
     WysiwygEditorComponent,
     ActionBarComponent,
     ChallengeMetaComponent,
-    TocItemComponent
+    TocItemComponent,
+    FeedbackSectionComponent
   ],
   imports: [
     NgxMdModule.forRoot(),

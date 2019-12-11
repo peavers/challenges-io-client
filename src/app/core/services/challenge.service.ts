@@ -45,16 +45,14 @@ export class ChallengeService {
     return this.httpClient.post<Challenge>(`${this.endpoint}`, challenge);
   }
 
-  update(challenge: Challenge): void {
-    this.httpClient.patch<Challenge>(`${this.endpoint}`, challenge).subscribe();
+  update(challenge: Challenge): Observable<Challenge> {
+    return this.httpClient.patch<Challenge>(`${this.endpoint}`, challenge);
   }
 
   delete(challenge: Challenge): void {
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
-      width: '30vw',
+      width: '30vw'
     });
-
-    console.log(challenge.id);
 
     dialogRef.afterClosed().subscribe(response => {
       if (response) {
