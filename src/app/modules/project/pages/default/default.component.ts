@@ -10,8 +10,7 @@ import { Challenge } from '../../../../core/domain/modules';
 export class DefaultComponent implements OnInit {
   challenges: Challenge[] = [];
 
-  constructor(public challengeService: ChallengeService) {
-  }
+  constructor(public challengeService: ChallengeService) {}
 
   ngOnInit() {
     this.challengeService.findAll().subscribe(challenge => {

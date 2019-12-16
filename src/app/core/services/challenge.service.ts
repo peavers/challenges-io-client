@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Challenge } from '../domain/modules';
-import { DeleteConfirmDialogComponent } from '../../shared/component/delete-confirm-dialog/delete-confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -42,6 +41,9 @@ export class ChallengeService {
   }
 
   create(challenge: Challenge): Observable<Challenge> {
+
+    console.log(challenge);
+
     return this.httpClient.post<Challenge>(`${this.endpoint}`, challenge);
   }
 
@@ -49,21 +51,7 @@ export class ChallengeService {
     return this.httpClient.patch<Challenge>(`${this.endpoint}`, challenge);
   }
 
-  delete(challenge: Challenge): void {
-    const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
-      width: '30vw'
-    });
-
-    dialogRef.afterClosed().subscribe(response => {
-      if (response) {
-        this.httpClient.delete<Challenge>(`${this.endpoint}/${challenge.id}`).subscribe(() => {
-          this.snackBar.open(`Project deleted`, '', {
-            duration: 5 * 1000
-          });
-
-          this.router.navigate(['/']);
-        });
-      }
-    });
+  delete(challenge: Challenge): Observable<Challenge> {
+    return this.httpClient.delete<Challenge>(`${this.endpoint}/${challenge.id}`);
   }
 }

@@ -1,69 +1,67 @@
 <div class="section">
   <div class="container">
     <div class="columns is-multiline">
-      <div class="column is-6 is-offset-3">
+      <div class="column is-12">
         <div class="message has-text-centered">
-          <p>Information added here will not be visible to the people doing the code review. This information is saved
-            in
-            order to align the code review
-            with the candidate in whichever recruitment platform being used.</p>
+          <p>
+            Information added here will not be visible to the people doing the code review.
+          </p>
         </div>
       </div>
 
-      <div class="column is-6 is-offset-3">
-        <div class="columns is-multiline">
-          <div class="column is-12">
-            <mat-form-field class="is-fullwidth">
-              <input
-                [(ngModel)]="challenge.source"
-                [disabled]="btnOpts.active"
-                autocomplete="off"
-                matInput
-                placeholder=""
-              />
-              <mat-hint>Must be 'git cloneable'</mat-hint>
-            </mat-form-field>
-          </div>
+      <div class="column is-12">
+        <mat-form-field class="is-fullwidth">
+          <input
+            [(ngModel)]="challenge.source"
+            [disabled]="btnOpts.active"
+            autocomplete="off"
+            matInput
+            placeholder="Git clone url"
+          />
+        </mat-form-field>
+      </div>
 
-          <div class="column is-6">
-            <mat-form-field>
-              <mat-label>Applied for position</mat-label>
-              <mat-select [(ngModel)]="challenge.position" [disabled]="btnOpts.active">
-                <mat-option *ngFor="let position of positions" [value]="position">
-                  {{ position }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+      <div class="column is-6">
+        <mat-form-field>
+          <mat-label>Applied for position</mat-label>
+          <mat-select [(ngModel)]="challenge.position" [disabled]="btnOpts.active">
+            <mat-option *ngFor="let position of positions" [value]="position">
+              {{ position }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-          <div class="column is-6">
-            <mat-form-field>
-              <mat-label> at the level of</mat-label>
-              <mat-select [(ngModel)]="challenge.level" [disabled]="btnOpts.active">
-                <mat-option *ngFor="let level of levels" [value]="level">
-                  {{ level }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+      <div class="column is-6">
+        <mat-form-field>
+          <mat-label> at the level of</mat-label>
+          <mat-select [(ngModel)]="challenge.level" [disabled]="btnOpts.active">
+            <mat-option *ngFor="let level of levels" [value]="level">
+              {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-          <div class="column is-12">
-            <app-add-reviewers></app-add-reviewers>
-          </div>
+      <div class="column is-12">
+        <mat-form-field>
+          <mat-label>Reviewers</mat-label>
+          <mat-select [(ngModel)]="challenge.reviewers" [disabled]="btnOpts.active" multiple>
+            <mat-option *ngFor="let reviewer of reviewers | async" [value]="reviewer">{{ reviewer.email }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-          <div class="column is-12">
-            <mat-form-field class="is-fullwidth">
-              <input
-                [(ngModel)]="challenge.applicant"
-                [disabled]="btnOpts.active"
-                autocomplete="off"
-                matInput
-                placeholder="Link to applicant profile"
-              />
-              <mat-hint>HR tool used to manage candidates</mat-hint>
-            </mat-form-field>
-          </div>
-        </div>
+      <div class="column is-12">
+        <mat-form-field class="is-fullwidth">
+          <input
+            [(ngModel)]="challenge.applicant"
+            [disabled]="btnOpts.active"
+            autocomplete="off"
+            matInput
+            placeholder="Applicant profile"
+          />
+        </mat-form-field>
       </div>
     </div>
 

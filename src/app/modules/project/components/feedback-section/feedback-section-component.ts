@@ -34,8 +34,7 @@ export class FeedbackSectionComponent {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
-  ) {
-  }
+  ) {}
 
   disableLeaveFeedback(): boolean {
     return this.challenge.feedback.some(feedback => feedback.reviewer.id === this.authService.getUser().uid);

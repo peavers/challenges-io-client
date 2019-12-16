@@ -1,0 +1,15 @@
+<div class="column is-12">
+  <div class="message has-text-centered">
+    <p>These people are assigned to review this challenge.</p>
+
+    <mat-spinner-button (btnClick)="editReviewers()" [options]="btnOpts"></mat-spinner-button>
+  </div>
+</div>
+
+<div class="column is-12">
+  <table class="table is-fullwidth">
+    <tr *ngFor="let reviewer of challenge.reviewers">
+      <td>{{reviewer.email}}</td>
+    </tr>
+  </table>
+</div>

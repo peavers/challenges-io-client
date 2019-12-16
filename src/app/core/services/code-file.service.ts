@@ -22,8 +22,8 @@ export class CodeFileService {
     return this.httpClient.get<CodeFile[]>(`${this.endpoint}/${projectId}/toc`);
   }
 
-  findById(projectId: string, fileId: string, reviewerId: string): Observable<CodeFile> {
-    return this.httpClient.get<CodeFile>(`${this.endpoint}/${projectId}/${fileId}/${reviewerId}`);
+  findById(projectId: string, fileId: string): Observable<CodeFile> {
+    return this.httpClient.get<CodeFile>(`${this.endpoint}/${projectId}/${fileId}`);
   }
 
   update(codeFile: CodeFile): void {
