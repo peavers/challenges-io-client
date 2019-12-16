@@ -1,0 +1,21 @@
+<div class="column is-12">
+  <div class="message has-text-centered">
+    <p>Remember this code could belong to anyone. Maybe even someone in your team...</p>
+  </div>
+</div>
+
+<div class="column is-12 contents">
+  <table class="table">
+    <tr *ngFor="let codeFile of tableOfContent">
+      <td>
+        <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
+          {{ codeFile.location }}
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div *ngFor="let codeFile of tableOfContent">
+  <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
+</div>

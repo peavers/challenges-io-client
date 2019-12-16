@@ -18,6 +18,7 @@ export interface Reviewer {
   photoUrl?: string;
   displayName?: string;
   email?: string;
+  role?: string;
 }
 
 export interface CodeFile {

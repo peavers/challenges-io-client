@@ -3,7 +3,9 @@ import { ChallengeService } from '../../../../core/services/challenge.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { Router } from '@angular/router';
-import { Challenge } from '../../../../core/domain/modules';
+import { Challenge, Reviewer } from '../../../../core/domain/modules';
+import { Observable } from 'rxjs';
+import { ReviewerService } from '../../../../core/services/reviewer.service';
 
 @Component({
   selector: 'app-default',
@@ -14,6 +16,8 @@ export class ImportComponent implements OnInit {
   levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
 
   positions: string[] = ['Frontend engineer', 'Backend engineer', 'Tech team'];
+
+  reviewers: Observable<Reviewer[]> = new Observable<Reviewer[]>();
 
   btnOpts: MatProgressButtonOptions = {
     active: false,
@@ -28,10 +32,15 @@ export class ImportComponent implements OnInit {
 
   challenge: Challenge = {};
 
-  constructor(public challengeService: ChallengeService, private snackBar: MatSnackBar, private router: Router) {
-  }
+  constructor(
+    private challengeService: ChallengeService,
+    private reviewerService: ReviewerService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.reviewers = this.reviewerService.findAll();
   }
 
   import() {

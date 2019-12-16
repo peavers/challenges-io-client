@@ -1,42 +1,25 @@
 <div *ngIf="challenge" class="section">
   <div class="container">
+    <mat-tab-group mat-stretch-tabs dynamicHeight animationDuration="0">
+      <mat-tab label="Challenge">
+        <app-challenge-section-component
+          [challenge]="challenge"
+          [tableOfContent]="tableOfContent"
+        ></app-challenge-section-component>
+      </mat-tab>
 
+      <mat-tab label="Feedback">
+        <app-feedback-section-component [challenge]="challenge"></app-feedback-section-component>
+      </mat-tab>
 
-    <div *ngIf="challenge.underReview" class="message has-text-centered">
-      <p><strong>This challenge is under review until three people have left feedback. While under review only
-        your comments are visible.</strong></p>
-    </div>
+      <mat-tab label="Reviewers">
+        <app-reviewer-section-component [challenge]="challenge"></app-reviewer-section-component>
+      </mat-tab>
 
-
-    <app-challenge-meta [challenge]="challenge"></app-challenge-meta>
-  </div>
-</div>
-
-<div *ngIf="challenge" class="section">
-  <div class="container">
-    <app-feedback-section-component [challenge]="challenge"></app-feedback-section-component>
-  </div>
-</div>
-
-<div *ngIf="challenge" class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <div class="column is-12 contents">
-        <table class="table">
-          <tr *ngFor="let codeFile of tableOfContent">
-            <td>
-              <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
-                {{ codeFile.location }}
-              </a>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-      <div *ngFor="let codeFile of tableOfContent">
-        <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
-      </div>
-    </div>
+      <mat-tab label="Danger Zone">
+        <app-danger-zone-section-component [challenge]="challenge"></app-danger-zone-section-component>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
 

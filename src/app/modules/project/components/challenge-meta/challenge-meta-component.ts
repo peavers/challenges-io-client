@@ -7,10 +7,8 @@ import { Challenge } from '../../../../core/domain/modules';
   styleUrls: ['./challenge-meta-component.scss']
 })
 export class ChallengeMetaComponent {
-
   @Input()
   challenge: Challenge;
 
-  constructor() {
-  }
+  constructor() {}
 }

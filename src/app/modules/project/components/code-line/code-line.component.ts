@@ -24,11 +24,9 @@ export class CodeLineComponent implements OnInit {
 
   replyContent: string;
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   showCommentOrReplyBox() {
     if (this.codeLine.comments.length >= 1) {
@@ -39,7 +37,6 @@ export class CodeLineComponent implements OnInit {
   }
 
   addNewComment($event) {
-
     let comment: Comment = {
       id: Utils.generateUUID(),
       reviewer: this.authService.getReviewer(),
