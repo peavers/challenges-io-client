@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Challenge, Feedback } from '../../../../core/domain/modules';
 import { FeedbackDialogComponent } from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
 import { AuthService } from '../../../../core/services/auth.service';
@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './feedback-section-component.html',
   styleUrls: ['./feedback-section-component.scss']
 })
-export class FeedbackSectionComponent {
+export class FeedbackSectionComponent implements OnInit {
   @Input()
   challenge: Challenge;
 
@@ -34,7 +34,8 @@ export class FeedbackSectionComponent {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
-  ) {}
+  ) {
+  }
 
   disableLeaveFeedback(): boolean {
     return this.challenge.feedback.some(feedback => feedback.reviewer.id === this.authService.getUser().uid);
@@ -109,5 +110,9 @@ export class FeedbackSectionComponent {
         }
       });
     }
+  }
+
+  ngOnInit(): void {
+    this.btnOpts.disabled = this.disableLeaveFeedback();
   }
 }

@@ -1,6 +1,6 @@
 <div class="column is-12">
   <div class="message has-text-centered">
-    <p>Feedback is visible once all reviews are complete.</p>
+    <p>Feedback is visible if reviews are complete.</p>
 
     <mat-spinner-button (btnClick)="addFeedback()" [options]="btnOpts"></mat-spinner-button>
   </div>
@@ -8,30 +8,43 @@
 
 <div class="column is-12">
   <div *ngIf="!challenge.underReview else underReview;">
-
-  </div>
-</div>
-
-<!-- Under review, only show the current users feedback-->
-<ng-template #underReview class="column is-12">
-  <div *ngIf="challenge.underReview else underReview">
-
     <table class="table">
       <tr (click)="editFeedback(feedback)" *ngFor="let feedback of challenge.feedback">
-        <td>
-          <mat-icon>check</mat-icon>
-        </td>
         <td>
           {{feedback.reviewer.displayName}}
         </td>
         <td>
+          {{feedback.reviewer.email}}
+        </td>
+        <td>
           {{feedback.level}}
+        </td>
+        <td>
+          Yes
         </td>
         <td>
           {{feedback.comments}}
         </td>
       </tr>
     </table>
-
   </div>
+</div>
+
+<ng-template #underReview class="column is-12">
+  <table class="table">
+    <tr (click)="editFeedback(feedback)" *ngFor="let feedback of challenge.feedback">
+      <td>
+        <mat-icon>check</mat-icon>
+      </td>
+      <td>
+        {{feedback.reviewer.displayName}}
+      </td>
+      <td>
+        {{feedback.level}}
+      </td>
+      <td>
+        {{feedback.comments}}
+      </td>
+    </tr>
+  </table>
 </ng-template>

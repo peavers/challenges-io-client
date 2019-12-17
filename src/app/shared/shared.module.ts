@@ -9,6 +9,7 @@ import { FeedbackDialogComponent } from './component/feedback-dialog/feedback-di
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 import { UserPictureComponent } from './component/user-picture/user-picture.component';
+import { SelectReviewerDialogComponent } from './component/select-reviewer-dialog/select-reviewer-dialog.component';
 
 @NgModule({
   imports: [
@@ -23,21 +24,13 @@ import { UserPictureComponent } from './component/user-picture/user-picture.comp
   ],
   declarations: [
     DeleteConfirmDialogComponent,
+    SelectReviewerDialogComponent,
     ScrollToTopComponent,
     FeedbackDialogComponent,
-    UserPictureComponent,
-
+    UserPictureComponent
   ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    ScrollToTopComponent,
-    UserPictureComponent,
-
-  ],
-  entryComponents: [DeleteConfirmDialogComponent, FeedbackDialogComponent],
+  exports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ScrollToTopComponent, UserPictureComponent],
+  entryComponents: [DeleteConfirmDialogComponent, FeedbackDialogComponent, SelectReviewerDialogComponent],
   providers: [MaterialModule]
 })
 export class SharedModule {}
