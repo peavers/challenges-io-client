@@ -36,7 +36,7 @@
     "highlight.js": "^9.15.10",
     "mat-progress-buttons": "^8.0.5",
     "moment": "^2.24.0",
-    "ngx-clipboard": "^12.2.1",
+    "ngx-clipboard": "^12.3.0",
     "ngx-highlightjs": "^3.0.3",
     "ngx-markdown": "^8.2.1",
     "ngx-markdown-editor": "^2.1.3",
