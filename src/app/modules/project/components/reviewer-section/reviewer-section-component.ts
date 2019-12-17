@@ -1,11 +1,12 @@
 import { Component, Inject, Input } from '@angular/core';
-import { Challenge } from '../../../../core/domain/modules';
+import { Challenge, Feedback } from '../../../../core/domain/modules';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ChallengeService } from '../../../../core/services/challenge.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SelectReviewerDialogComponent } from '../../../../shared/component/select-reviewer-dialog/select-reviewer-dialog.component';
 
 @Component({
   selector: 'app-reviewer-section-component',
@@ -37,6 +38,18 @@ export class ReviewerSectionComponent {
   }
 
   editReviewers() {
+
+    const dialogRef = this.dialog.open(SelectReviewerDialogComponent, {
+      width: '30vw',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe((newFeedback: Feedback) => {
+      if (newFeedback) {
+
+      }
+    });
+
 
   }
 }
