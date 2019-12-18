@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CodeFile } from '../../../../core/domain/modules';
+import { Challenge, CodeFile } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 import { AuthService } from '../../../../core/services/auth.service';
 
@@ -10,7 +10,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class CodeFileComponent implements OnInit {
   @Input()
-  challengeId: string;
+  challenge: Challenge;
 
   @Input()
   codeFile: CodeFile;
@@ -32,7 +32,7 @@ export class CodeFileComponent implements OnInit {
   getContent() {
     const reviewer = this.authService.getReviewer();
 
-    this.codeFileService.findById(this.challengeId, this.codeFile.id).subscribe(result => {
+    this.codeFileService.findById(this.challenge.id, this.codeFile.id).subscribe(result => {
       this.codeFile = result;
     });
   }

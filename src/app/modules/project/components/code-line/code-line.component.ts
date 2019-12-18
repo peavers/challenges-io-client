@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
-import { CodeLine, Comment } from '../../../../core/domain/modules';
+import { Challenge, CodeLine, Comment } from '../../../../core/domain/modules';
 import { Utils } from '../../../../shared/helper/utils';
 
 @Component({
@@ -9,6 +9,10 @@ import { Utils } from '../../../../shared/helper/utils';
   styleUrls: ['./code-line.component.scss']
 })
 export class CodeLineComponent implements OnInit {
+
+  @Input()
+  challenge: Challenge;
+
   @Output()
   codeLineChange = new EventEmitter();
 
@@ -24,9 +28,14 @@ export class CodeLineComponent implements OnInit {
 
   replyContent: string;
 
-  constructor(private authService: AuthService) {}
+  comments: Comment[];
 
-  ngOnInit() {}
+  constructor(private authService: AuthService) {
+  }
+
+  ngOnInit() {
+    this.comments = this.challenge.underReview ? this.codeLine.comments.filter(comment => comment.reviewer.id === this.authService.getUser().uid) : this.codeLine.comments;
+  }
 
   showCommentOrReplyBox() {
     if (this.codeLine.comments.length >= 1) {
@@ -44,6 +53,7 @@ export class CodeLineComponent implements OnInit {
       lineNumber: this.lineNumber + 1
     };
 
+    this.comments.push(comment);
     this.codeLine.comments.push(comment);
     this.codeLineChange.emit(this.codeLine);
 
@@ -58,7 +68,11 @@ export class CodeLineComponent implements OnInit {
     this.codeLineChange.emit(this.codeLine);
   }
 
-  showRedBackground(): boolean {
-    return this.codeLine.comments.length >= 1 ? true : this.showReplyBox ? true : this.showCommentBox;
+  showBackground(): boolean {
+    if (this.comments.length >= 1) {
+      return true;
+    } else {
+      return this.showReplyBox ? true : this.showCommentBox;
+    }
   }
 }

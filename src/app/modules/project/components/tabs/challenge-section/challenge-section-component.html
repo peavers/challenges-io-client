@@ -17,5 +17,5 @@
 </div>
 
 <div *ngFor="let codeFile of tableOfContent">
-  <app-code-file-component [challengeId]="challenge.id" [codeFile]="codeFile"></app-code-file-component>
+  <app-code-file-component [challenge]="challenge" [codeFile]="codeFile"></app-code-file-component>
 </div>

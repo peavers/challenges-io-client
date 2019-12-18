@@ -18,11 +18,11 @@ import { NgxMdModule } from 'ngx-md';
 import { NgPipesModule } from 'angular-pipes';
 import { ChallengeMetaComponent } from './components/challenge-meta/challenge-meta-component';
 import { TocItemComponent } from './components/toc-item/toc-item-component';
-import { DangerZoneSectionComponent } from './components/danger-zone-section/danger-zone-section-component';
+import { DangerZoneSectionComponent } from './components/tabs/danger-zone-section/danger-zone-section-component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { FeedbackSectionComponent } from './components/feedback-section/feedback-section-component';
-import { ReviewerSectionComponent } from './components/reviewer-section/reviewer-section-component';
-import { ChallengeSectionComponent } from './components/challenge-section/challenge-section-component';
+import { FeedbackSectionComponent } from './components/tabs/feedback-section/feedback-section-component';
+import { ReviewerSectionComponent } from './components/tabs/reviewer-section/reviewer-section-component';
+import { ChallengeSectionComponent } from './components/tabs/challenge-section/challenge-section-component';
 
 @NgModule({
   declarations: [

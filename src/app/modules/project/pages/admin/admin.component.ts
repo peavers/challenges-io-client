@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatProgressButtonOptions } from 'mat-progress-buttons';
-import { Router } from '@angular/router';
 import { Reviewer } from '../../../../core/domain/modules';
 import { ReviewerService } from '../../../../core/services/reviewer.service';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { NewReviewerDialogComponent } from '../../../../shared/component/new-reviewer-dialog/new-reviewer-dialog.component';
 
 @Component({
   selector: 'app-admin-component',
@@ -16,20 +16,7 @@ export class AdminComponent implements OnInit {
 
   reviewer: Reviewer = {};
 
-  roles: string[] = ['User', 'Admin'];
-
-  btnOpts: MatProgressButtonOptions = {
-    active: false,
-    text: 'Create',
-    spinnerSize: 19,
-    raised: false,
-    stroked: false,
-    fullWidth: false,
-    disabled: false,
-    mode: 'indeterminate'
-  };
-
-  constructor(public reviewerService: ReviewerService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(public reviewerService: ReviewerService, private snackBar: MatSnackBar, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -37,30 +24,33 @@ export class AdminComponent implements OnInit {
   }
 
   create() {
-    this.snackBar.open('Working');
-    this.btnOpts.active = true;
+    const dialogRef = this.dialog.open(NewReviewerDialogComponent, {
+      width: '30vw',
+      data: this.reviewer
+    });
 
-    this.reviewerService.create(this.reviewer).subscribe(
-      result => {
-        this.btnOpts.active = false;
+    dialogRef.afterClosed().subscribe((newReviewer: Reviewer) => {
+      if (newReviewer) {
+        this.snackBar.open('Working');
 
-        this.snackBar.open('Reviewer created', null, {
-          duration: 5 * 1000
-        });
+        this.reviewerService.create(this.reviewer).subscribe(
+          result => {
+            this.snackBar.open('Reviewer created', null, {
+              duration: 5 * 1000
+            });
 
-        this.reviewer = {};
+            this.reviewer = {};
 
-        this.reviewerService.reviewerStore.push(result);
-
-      },
-      error => {
-        this.btnOpts.active = false;
-
-        this.snackBar.open('Reviewer failed', null, {
-          duration: 5 * 1000
-        });
+            this.reviewerService.reviewerStore.push(result);
+          },
+          error => {
+            this.snackBar.open('Reviewer failed', null, {
+              duration: 5 * 1000
+            });
+          }
+        );
       }
-    );
+    });
   }
 
   delete(reviewer: Reviewer) {

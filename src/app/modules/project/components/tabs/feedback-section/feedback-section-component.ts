@@ -1,8 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Challenge, Feedback } from '../../../../core/domain/modules';
-import { FeedbackDialogComponent } from '../../../../shared/component/feedback-dialog/feedback-dialog.component';
-import { AuthService } from '../../../../core/services/auth.service';
-import { ChallengeService } from '../../../../core/services/challenge.service';
+import { Challenge, Feedback } from '../../../../../core/domain/modules';
+import { FeedbackDialogComponent } from '../../../../../shared/component/feedback-dialog/feedback-dialog.component';
+import { AuthService } from '../../../../../core/services/auth.service';
+import { ChallengeService } from '../../../../../core/services/challenge.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
@@ -16,6 +16,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class FeedbackSectionComponent implements OnInit {
   @Input()
   challenge: Challenge;
+
+  currentFeedback: Feedback;
 
   btnOpts: MatProgressButtonOptions = {
     active: false,
@@ -35,14 +37,6 @@ export class FeedbackSectionComponent implements OnInit {
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
   ) {
-  }
-
-  disableLeaveFeedback(): boolean {
-    return this.challenge.feedback.some(feedback => feedback.reviewer.id === this.authService.getUser().uid);
-  }
-
-  currentUserFeedback(): Feedback {
-    return this.challenge.feedback.find(feedback => feedback.reviewer.id === this.authService.getUser().uid);
   }
 
   saveFeedback() {
@@ -113,6 +107,8 @@ export class FeedbackSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.btnOpts.disabled = this.disableLeaveFeedback();
+    this.btnOpts.disabled = this.challenge.feedback.some(feedback => feedback.reviewer.id === this.authService.getUser().uid);
+    this.currentFeedback = this.challenge.feedback.find(feedback => feedback.reviewer.id === this.authService.getUser().uid);
+
   }
 }

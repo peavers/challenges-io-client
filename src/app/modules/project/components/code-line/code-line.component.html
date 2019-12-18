@@ -3,7 +3,7 @@
 </td>
 
 <td class="code">
-  <code [highlight]="codeLine.body" [ngClass]="{ 'error-line': showRedBackground() }"></code>
+  <code [highlight]="codeLine.body" [ngClass]="{ 'error-line': showBackground() }"></code>
 
   <div class="columns is-multiline">
     <div *ngIf="showCommentBox" class="column is-8">
@@ -14,9 +14,9 @@
     </div>
 
     <div class="column is-8">
-      <div *ngIf="codeLine.comments.length >= 1" class="comment-box">
+      <div *ngIf="comments.length >= 1" class="comment-box">
         <!-- Display all comments -->
-        <div *ngFor="let comment of codeLine.comments">
+        <div *ngFor="let comment of comments">
           <app-code-comment-component
             (deleteCommentEvent)="deleteComment($event)"
             [comment]="comment"
