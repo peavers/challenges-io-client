@@ -44,7 +44,7 @@
     "ngx-moment": "^3.5.0",
     "ngx-page-scroll": "^7.0.0",
     "ngx-page-scroll-core": "^7.0.0",
-    "rsocket-websocket-client": "0.0.10",
+    "rsocket-websocket-client": "0.0.18",
     "rxjs": "~6.5.3",
     "zone.js": "~0.9.1"
   },
