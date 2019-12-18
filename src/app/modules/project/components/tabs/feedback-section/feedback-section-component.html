@@ -9,6 +9,21 @@
 <div class="column is-12">
   <div *ngIf="!challenge.underReview else underReview;">
     <table class="table">
+      <tr>
+        <th>
+          Reviewer
+        </th>
+        <th>Email</th>
+        <th>
+          Seniority
+        </th>
+        <th>
+          Next round
+        </th>
+        <th>
+          Comments
+        </th>
+      </tr>
       <tr (click)="editFeedback(feedback)" *ngFor="let feedback of challenge.feedback">
         <td>
           {{feedback.reviewer.displayName}}
@@ -20,9 +35,6 @@
           {{feedback.level}}
         </td>
         <td>
-          Yes
-        </td>
-        <td>
           {{feedback.comments}}
         </td>
       </tr>
@@ -32,12 +44,26 @@
 
 <ng-template #underReview class="column is-12">
   <table class="table">
-    <tr (click)="editFeedback(feedback)" *ngFor="let feedback of challenge.feedback">
-      <td>
-        <mat-icon>check</mat-icon>
-      </td>
+    <tr>
+      <th>
+        Reviewer
+      </th>
+      <th>
+        Seniority
+      </th>
+      <th>
+        Next stage
+      </th>
+      <th>
+        Comments
+      </th>
+    </tr>
+    <tr (click)="editFeedback(feedback)" *ngIf="currentFeedback as feedback">
       <td>
         {{feedback.reviewer.displayName}}
+      </td>
+      <td>
+        {{feedback.reviewer.email}}
       </td>
       <td>
         {{feedback.level}}

@@ -2,13 +2,31 @@
   <div class="section">
     <div class="container">
       <div class="columns is-multiline">
-        <div *ngFor="let challenge of challenges" class="column is-6 is-offset-3">
-          <div class="review-list">
-            <div class="columns">
-              <app-challenge-meta [challenge]="challenge"></app-challenge-meta>
-            </div>
+        <div class="column is-12">
+
+          <div class="message has-text-centered">
+            <p>You've got some work to do {{firstName}}</p>
           </div>
-          <hr />
+
+          <table class="table is-fullwidth">
+            <tr>
+              <th>State</th>
+              <th>Position</th>
+              <th>Imported</th>
+            </tr>
+            <tr *ngFor="let challenge of challenges" routerLink="/review/{{ challenge.id }}">
+              <td>
+                <span *ngIf="challenge.underReview">open</span>
+                <span *ngIf="!challenge.underReview">closed</span>
+              </td>
+              <td>
+                {{ challenge.position }}
+              </td>
+              <td>
+                {{ challenge.created | amTimeAgo}}
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
@@ -20,11 +38,8 @@
     <div class="container">
       <div class="columns">
         <div class="column is-12">
-          <div class="no-challenges has-text-centered">
-            <h1 class="title">No challenges to review</h1>
-            <p>
-              <button mat-button routerLink="/import">Import</button>
-            </p>
+          <div class="message has-text-centered">
+            <p>You're all done! Check back later for new challenges</p>
           </div>
         </div>
       </div>

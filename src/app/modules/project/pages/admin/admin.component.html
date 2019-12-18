@@ -2,38 +2,21 @@
   <div class="container">
     <div class="columns is-multiline">
 
-      <div class="column is-6 is-offset-3">
-        <div class="columns is-multiline">
-          <div class="column is-12">
-            <mat-form-field class="is-fullwidth">
-              <input
-                [(ngModel)]="reviewer.email"
-                [disabled]="btnOpts.active"
-                autocomplete="off"
-                matInput
-                placeholder="Email"
-              />
-            </mat-form-field>
-          </div>
 
-          <div class="column is-6">
-            <mat-form-field>
-              <mat-label>Role</mat-label>
-              <mat-select [(ngModel)]="reviewer.role" [disabled]="btnOpts.active">
-                <mat-option *ngFor="let role of roles" [value]="role">
-                  {{ role }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="column is-12 has-text-centered">
-            <mat-spinner-button (btnClick)="create()" [options]="btnOpts"></mat-spinner-button>
-          </div>
-        </div>
-      </div>
 
       <div class="column is-12">
         <table class="table is-fullwidth">
+          <tr>
+            <th>
+              Email
+            </th>
+            <th>
+              Role
+            </th>
+            <th (click)="create()">
+              Add
+            </th>
+          </tr>
           <tr *ngFor="let reviewer of reviewers | async">
 
             <td>{{reviewer.email}}</td>

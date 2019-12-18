@@ -36,5 +36,7 @@ export class ReviewComponent implements OnInit {
     });
 
     this.authService.getUser();
+
+
   }
 }

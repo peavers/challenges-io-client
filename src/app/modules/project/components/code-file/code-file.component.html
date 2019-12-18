@@ -27,6 +27,7 @@
 
     <tr *ngFor="let line of codeFile.codeLines; let i = index">
       <app-code-line-component
+        [challenge]="challenge"
         (codeLineChange)="saveCodeLine($event)"
         [codeLine]="line"
         [lineNumber]="i"
