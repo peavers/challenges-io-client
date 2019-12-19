@@ -15,7 +15,8 @@ export class CodeFileComponent implements OnInit {
   @Input()
   codeFile: CodeFile;
 
-  constructor(private codeFileService: CodeFileService, private authService: AuthService) {}
+  constructor(private codeFileService: CodeFileService, private authService: AuthService) {
+  }
 
   ngOnInit() {
     if (this.codeFile.size <= 4000) {

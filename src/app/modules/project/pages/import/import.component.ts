@@ -37,7 +37,8 @@ export class ImportComponent implements OnInit {
     private reviewerService: ReviewerService,
     private snackBar: MatSnackBar,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.reviewers = this.reviewerService.findAll();

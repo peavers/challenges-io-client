@@ -1,4 +1,4 @@
-name: Build
+name: Build and release
 on:
   push:
     branches:
@@ -24,12 +24,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Node ${{ matrix.node-version }}
+      - name: Using Node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm ci and npm run build
+      - name: Run npm build:build
         run: |
           npm ci
           npm run build:prod

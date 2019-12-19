@@ -40,4 +40,5 @@ import { NewReviewerDialogComponent } from './component/new-reviewer-dialog/new-
   ],
   providers: [MaterialModule]
 })
-export class SharedModule {}
+export class SharedModule {
+}
