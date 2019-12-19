@@ -16,24 +16,30 @@ import { WysiwygEditorComponent } from './components/wysiwyg-editor/wysiwyg-edit
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 import { NgPipesModule } from 'angular-pipes';
-import { ActionBarComponent } from './components/action-bar/action-bar-component';
 import { ChallengeMetaComponent } from './components/challenge-meta/challenge-meta-component';
 import { TocItemComponent } from './components/toc-item/toc-item-component';
-import { FeedbackSectionComponent } from './components/feedback-section/feedback-section-component';
+import { DangerZoneSectionComponent } from './components/tabs/danger-zone-section/danger-zone-section-component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { FeedbackSectionComponent } from './components/tabs/feedback-section/feedback-section-component';
+import { ReviewerSectionComponent } from './components/tabs/reviewer-section/reviewer-section-component';
+import { ChallengeSectionComponent } from './components/tabs/challenge-section/challenge-section-component';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     ImportComponent,
     ReviewComponent,
+    AdminComponent,
     CodeFileComponent,
     CodeLineComponent,
     CodeCommentComponent,
     WysiwygEditorComponent,
-    ActionBarComponent,
     ChallengeMetaComponent,
     TocItemComponent,
-    FeedbackSectionComponent
+    DangerZoneSectionComponent,
+    FeedbackSectionComponent,
+    ReviewerSectionComponent,
+    ChallengeSectionComponent
   ],
   imports: [
     NgxMdModule.forRoot(),
@@ -50,4 +56,5 @@ import { FeedbackSectionComponent } from './components/feedback-section/feedback
   exports: [CodeCommentComponent],
   entryComponents: []
 })
-export class ProjectModule {}
+export class ProjectModule {
+}

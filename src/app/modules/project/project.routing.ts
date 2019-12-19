@@ -4,6 +4,7 @@ import { DefaultComponent } from './pages/default/default.component';
 import { ImportComponent } from './pages/import/import.component';
 import { ReviewComponent } from './pages/review/review.component';
 import { ReviewResolver } from './pages/review/review.resolver';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
       {
         path: 'import',
         component: ImportComponent
+      },
+      {
+        path: 'admin',
+        component: AdminComponent
       }
     ]
   }
@@ -30,4 +35,5 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CircleRoutingModule {}
+export class CircleRoutingModule {
+}

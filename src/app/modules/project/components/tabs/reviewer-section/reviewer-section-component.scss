@@ -1,0 +1,21 @@
+.table {
+  width: 100%;
+  margin: 25px 0;
+
+  td {
+    vertical-align: middle;
+    height: 42px;
+    padding: 0;
+    border-color: #e7e9eb;
+    font-size: 14px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .rounded {
+    height: 32px;
+    width: 32px;
+  }
+}

@@ -1,0 +1,31 @@
+<div class="column is-12">
+  <div class="message has-text-centered">
+    <p *ngIf="challenge.underReview">This challenge is under review</p>
+    <p *ngIf="!challenge.underReview">This challenge review is complete</p>
+  </div>
+</div>
+
+<div class="column is-12">
+
+
+  <table class="table is-fullwidth">
+    <tr>
+      <th>
+        Reviewer
+      </th>
+      <th>
+        Contact
+      </th>
+      <th (click)="editReviewers()" class="has-text-right">Edit</th>
+    </tr>
+    <tr *ngFor="let reviewer of challenge.reviewers">
+      <td>
+        {{reviewer.displayName}}
+      </td>
+      <td>
+        {{reviewer.email}}
+      </td>
+      <td></td>
+    </tr>
+  </table>
+</div>
