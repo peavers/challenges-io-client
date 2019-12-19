@@ -12,7 +12,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ReviewResolver implements Resolve<Challenge> {
-  constructor(private challengeService: ChallengeService, private codeFileService: CodeFileService) {}
+  constructor(private challengeService: ChallengeService, private codeFileService: CodeFileService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     const challengeId = route.paramMap.get('id');

@@ -1,4 +1,4 @@
-<nav class="navbar is-fixed-top scrolling" role="navigation" aria-label="main navigation">
+<nav aria-label="main navigation" class="navbar is-fixed-top scrolling" role="navigation">
   <div class="navbar-item">
     challenges.io
   </div>
@@ -27,6 +27,6 @@
 </nav>
 
 <mat-menu #settingsMenu="matMenu">
-  <button routerLink="/admin" mat-menu-item>Admin</button>
+  <button mat-menu-item routerLink="/admin">Admin</button>
   <button (click)="googleLogout()" mat-menu-item>Logout</button>
 </mat-menu>

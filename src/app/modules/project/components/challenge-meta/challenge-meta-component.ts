@@ -10,5 +10,6 @@ export class ChallengeMetaComponent {
   @Input()
   challenge: Challenge;
 
-  constructor() {}
+  constructor() {
+  }
 }

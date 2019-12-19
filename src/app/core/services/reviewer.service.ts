@@ -12,15 +12,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ReviewerService {
-  get reviewerStore(): Reviewer[] {
-    return this._reviewerStore;
-  }
-
   private readonly endpoint: string;
-
   private reviewerSubject: BehaviorSubject<Reviewer[]> = new BehaviorSubject<Reviewer[]>([]);
-
-  private _reviewerStore: Reviewer[] = [];
 
   constructor(
     private httpClient: HttpClient,
@@ -29,6 +22,12 @@ export class ReviewerService {
     private router: Router
   ) {
     this.endpoint = `${environment.postServer}/v1/reviewers`;
+  }
+
+  private _reviewerStore: Reviewer[] = [];
+
+  get reviewerStore(): Reviewer[] {
+    return this._reviewerStore;
   }
 
   findAll(): Observable<Reviewer[]> {

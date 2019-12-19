@@ -15,7 +15,8 @@ const stompConfig: InjectableRxStompConfig = {
   heartbeatOutgoing: 20000,
   reconnectDelay: 200,
 
-  debug: (msg: string): void => {}
+  debug: (msg: string): void => {
+  }
 };
 
 @NgModule({

@@ -3,7 +3,6 @@
     <div class="columns is-multiline">
 
 
-
       <div class="column is-12">
         <table class="table is-fullwidth">
           <tr>
@@ -24,7 +23,7 @@
             <td>{{reviewer.role}}</td>
 
             <td class="is-narrow">
-              <button mat-icon-button (click)="delete(reviewer)">
+              <button (click)="delete(reviewer)" mat-icon-button>
                 <mat-icon>delete</mat-icon>
               </button>
             </td>

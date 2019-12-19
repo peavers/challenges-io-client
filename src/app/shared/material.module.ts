@@ -81,4 +81,5 @@ import { MatTreeModule } from '@angular/material/tree';
     MatFormFieldModule
   ]
 })
-export class MaterialModule {}
+export class MaterialModule {
+}

@@ -20,7 +20,8 @@ export class CodeCommentComponent implements OnInit {
     this.user = authService.getUser();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   deleteComment() {
     this.deleteCommentEvent.emit(this.comment);
