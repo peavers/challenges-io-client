@@ -8,16 +8,17 @@ import { Feedback } from '../../../core/domain/modules';
   styleUrls: ['./feedback-dialog.component.scss']
 })
 export class FeedbackDialogComponent {
-
   nextStages: string[] = ['Yes', 'No'];
 
   levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
 
   feedback: Feedback;
 
-  constructor(private _ngZone: NgZone,
-              private dialogRef: MatDialogRef<FeedbackDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Feedback) {
+  constructor(
+    private _ngZone: NgZone,
+    private dialogRef: MatDialogRef<FeedbackDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Feedback
+  ) {
     this.feedback = data;
   }
 

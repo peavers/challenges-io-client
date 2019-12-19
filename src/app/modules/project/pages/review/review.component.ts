@@ -23,7 +23,7 @@ export class ReviewComponent implements OnInit {
     private pageScrollService: PageScrollService,
     private authService: AuthService,
     private codeFileService: CodeFileService,
-    private  challengeService: ChallengeService,
+    private challengeService: ChallengeService,
     private dialog: MatDialog,
     @Inject(DOCUMENT) private document: any
   ) {
@@ -36,5 +36,7 @@ export class ReviewComponent implements OnInit {
     });
 
     this.authService.getUser();
+
+
   }
 }

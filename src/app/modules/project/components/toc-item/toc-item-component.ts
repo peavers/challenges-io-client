@@ -5,7 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './toc-item-component.html',
   styleUrls: ['./toc-item-component.scss']
 })
-export class TocItemComponent {
-
-
-}
+export class TocItemComponent {}

@@ -59,5 +59,4 @@ export function hljsLanguages() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

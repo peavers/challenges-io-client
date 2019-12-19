@@ -5,7 +5,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private angularFireAuth: AngularFireAuth) {}
+  constructor(private angularFireAuth: AngularFireAuth) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return from(this.handleAccess(request, next));
@@ -15,6 +16,9 @@ export class AuthInterceptor implements HttpInterceptor {
     let accessToken = '';
 
     await this.angularFireAuth.auth.currentUser.getIdToken(true).then(token => (accessToken = token));
+
+    console.log(accessToken);
+
     request = request.clone({
       setHeaders: {
         Authorization: 'Bearer ' + accessToken

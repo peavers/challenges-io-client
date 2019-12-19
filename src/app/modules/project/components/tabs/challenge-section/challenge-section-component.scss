@@ -1,0 +1,47 @@
+.review-list {
+  padding: 15px;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+ul {
+  margin-top: 20px;
+  font-size: 14px;
+  padding: 0;
+}
+
+.icon-count {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.table {
+  width: 100%;
+  margin: 25px 0;
+
+  td {
+    vertical-align: middle;
+    height: 42px;
+    padding: 0;
+    border-color: #e7e9eb;
+    font-size: 14px;
+  }
+
+  .rounded {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.users {
+  display: inline-block;
+  margin-right: 5px;
+}
