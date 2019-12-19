@@ -16,14 +16,6 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@master
 
-      - name: Cache node modules
-        uses: actions/cache@master
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Using Node ${{ matrix.node-version }}
         uses: actions/setup-node@master
         with:
