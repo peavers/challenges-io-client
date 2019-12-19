@@ -59,7 +59,7 @@
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "~12.12.21",
     "babel-loader": "^8.0.6",
-    "codelyzer": "^5.2.0",
+    "codelyzer": "^5.2.1",
     "eslint": "^6.2.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
