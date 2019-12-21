@@ -21,7 +21,7 @@ export class DangerZoneSectionComponent {
     active: false,
     text: 'Delete',
     spinnerSize: 19,
-    raised: false,
+    raised: true,
     stroked: false,
     fullWidth: false,
     disabled: false,

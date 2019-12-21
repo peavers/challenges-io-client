@@ -4,7 +4,6 @@ import { CircleRoutingModule } from './project.routing';
 import { MomentModule } from 'ngx-moment';
 import { MaterialModule } from '../../shared/material.module';
 import { DefaultComponent } from './pages/default/default.component';
-import { ImportComponent } from './pages/import/import.component';
 import { ReviewComponent } from './pages/review/review.component';
 import { HighlightModule } from 'ngx-highlightjs';
 import { CodeLineComponent } from './components/code-line/code-line.component';
@@ -17,7 +16,6 @@ import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 import { NgPipesModule } from 'angular-pipes';
 import { ChallengeMetaComponent } from './components/challenge-meta/challenge-meta-component';
-import { TocItemComponent } from './components/toc-item/toc-item-component';
 import { DangerZoneSectionComponent } from './components/tabs/danger-zone-section/danger-zone-section-component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { FeedbackSectionComponent } from './components/tabs/feedback-section/feedback-section-component';
@@ -27,7 +25,6 @@ import { ChallengeSectionComponent } from './components/tabs/challenge-section/c
 @NgModule({
   declarations: [
     DefaultComponent,
-    ImportComponent,
     ReviewComponent,
     AdminComponent,
     CodeFileComponent,
@@ -35,7 +32,6 @@ import { ChallengeSectionComponent } from './components/tabs/challenge-section/c
     CodeCommentComponent,
     WysiwygEditorComponent,
     ChallengeMetaComponent,
-    TocItemComponent,
     DangerZoneSectionComponent,
     FeedbackSectionComponent,
     ReviewerSectionComponent,

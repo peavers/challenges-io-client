@@ -1,24 +1,21 @@
-<div class="column is-12">
-  <div class="message has-text-centered">
-    <p>Feedback is visible if reviews are complete.</p>
-
+<div class="column is-12 has-text-centered">
+  <div class="action-bar">
     <mat-spinner-button (btnClick)="addFeedback()" [options]="btnOpts"></mat-spinner-button>
   </div>
 </div>
 
-<div class="column is-12">
+<div class="column is-12 element-box">
   <div *ngIf="!challenge.underReview else underReview;">
-    <table class="table">
+    <table class="table ">
       <tr>
         <th>
           Reviewer
         </th>
-        <th>Email</th>
         <th>
           Seniority
         </th>
         <th>
-          Next round
+          Next stage
         </th>
         <th>
           Comments
@@ -29,10 +26,10 @@
           {{feedback.reviewer.displayName}}
         </td>
         <td>
-          {{feedback.reviewer.email}}
+          {{feedback.level}}
         </td>
         <td>
-          {{feedback.level}}
+          {{feedback.nextStage}}
         </td>
         <td>
           {{feedback.comments}}
@@ -42,8 +39,8 @@
   </div>
 </div>
 
-<ng-template #underReview class="column is-12">
-  <table class="table">
+<ng-template #underReview class="column is-12 element-box">
+  <table class="table ">
     <tr>
       <th>
         Reviewer
@@ -63,10 +60,10 @@
         {{feedback.reviewer.displayName}}
       </td>
       <td>
-        {{feedback.reviewer.email}}
+        {{feedback.level}}
       </td>
       <td>
-        {{feedback.level}}
+        {{feedback.nextStage}}
       </td>
       <td>
         {{feedback.comments}}

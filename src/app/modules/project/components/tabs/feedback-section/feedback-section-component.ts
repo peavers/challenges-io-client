@@ -23,7 +23,7 @@ export class FeedbackSectionComponent implements OnInit {
     active: false,
     text: 'Leave feedback',
     spinnerSize: 19,
-    raised: false,
+    raised: true,
     stroked: false,
     fullWidth: false,
     disabled: false,

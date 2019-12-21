@@ -2,10 +2,6 @@
   padding: 15px;
 }
 
-hr {
-  margin-bottom: 0;
-}
-
 ul {
   margin-top: 20px;
   font-size: 14px;
@@ -20,11 +16,11 @@ ul {
 .table {
   width: 100%;
   margin: 25px 0;
+  padding: 10px;
 
   td {
     vertical-align: middle;
     height: 42px;
-    padding: 0;
     border-color: #e7e9eb;
     font-size: 14px;
   }

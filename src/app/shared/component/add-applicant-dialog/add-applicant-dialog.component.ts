@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { ChallengeService } from '../../../../core/services/challenge.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatProgressButtonOptions } from 'mat-progress-buttons';
-import { Router } from '@angular/router';
-import { Challenge, Reviewer } from '../../../../core/domain/modules';
-import { Observable } from 'rxjs';
-import { ReviewerService } from '../../../../core/services/reviewer.service';
+import { Component, Inject, NgZone } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {Challenge, Reviewer} from '../../../core/domain/modules';
+import {Observable} from "rxjs";
+import {MatProgressButtonOptions} from "mat-progress-buttons";
+import {ChallengeService} from "../../../core/services/challenge.service";
+import {ReviewerService} from "../../../core/services/reviewer.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-default',
-  templateUrl: './import.component.html',
-  styleUrls: ['./import.component.scss']
+  selector: 'app-delete-confirm-dialog',
+  templateUrl: './add-applicant-dialog.component.html',
+  styleUrls: ['./add-applicant-dialog.component.scss']
 })
-export class ImportComponent implements OnInit {
+export class AddApplicantDialogComponent {
+
   levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
 
   positions: string[] = ['Frontend engineer', 'Backend engineer', 'Tech team'];
@@ -32,19 +33,25 @@ export class ImportComponent implements OnInit {
 
   challenge: Challenge = {};
 
+
   constructor(
     private challengeService: ChallengeService,
     private reviewerService: ReviewerService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private _ngZone: NgZone,
+    private dialogRef: MatDialogRef<AddApplicantDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Reviewer
   ) {
-  }
-
-  ngOnInit() {
     this.reviewers = this.reviewerService.findAll();
   }
 
+  submit() {
+    this.dialogRef.close();
+  }
+
   import() {
+    this.dialogRef.close();
+
     this.snackBar.open('Working');
     this.btnOpts.active = true;
 
@@ -57,7 +64,6 @@ export class ImportComponent implements OnInit {
         });
 
         this.challenge = {};
-        this.router.navigate([`/review/${result.id}`]);
       },
       error => {
         this.btnOpts.active = false;

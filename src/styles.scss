@@ -8,6 +8,7 @@
 html,
 body {
   height: 100%;
+  background-color: #F4F7FA;
 }
 
 body {
@@ -150,7 +151,17 @@ hr {
 
 .table {
   th {
-    font-weight: normal;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
     font-size: 12px;
+    padding: 15px;
   }
+}
+
+.element-box {
+  background-color: #fff;
+  padding: 0;
+  border-radius: 4px;
+  box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
 }

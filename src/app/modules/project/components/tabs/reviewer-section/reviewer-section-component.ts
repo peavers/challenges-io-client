@@ -21,7 +21,7 @@ export class ReviewerSectionComponent {
     active: false,
     text: 'Edit Reviewers',
     spinnerSize: 19,
-    raised: false,
+    raised: true,
     stroked: false,
     fullWidth: false,
     disabled: false,

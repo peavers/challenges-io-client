@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AuthService } from '../../../../core/services/auth.service';
-import { Challenge, CodeLine, Comment } from '../../../../core/domain/modules';
-import { Utils } from '../../../../shared/helper/utils';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AuthService} from '../../../../core/services/auth.service';
+import {Challenge, CodeLine, Comment} from '../../../../core/domain/modules';
+import {Utils} from '../../../../shared/helper/utils';
 
 @Component({
   selector: 'app-code-line-component',
@@ -53,7 +53,10 @@ export class CodeLineComponent implements OnInit {
       lineNumber: this.lineNumber + 1
     };
 
-    this.comments.push(comment);
+    if (this.challenge.underReview) {
+      this.comments.push(comment);
+    }
+
     this.codeLine.comments.push(comment);
     this.codeLineChange.emit(this.codeLine);
 
