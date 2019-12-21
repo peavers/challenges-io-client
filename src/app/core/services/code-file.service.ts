@@ -23,8 +23,6 @@ export class CodeFileService {
   }
 
   update(codeFile: CodeFile): void {
-    console.log(codeFile);
-
     this.httpClient.patch<CodeFile>(`${this.endpoint}/${codeFile.projectId}`, codeFile).subscribe();
   }
 }

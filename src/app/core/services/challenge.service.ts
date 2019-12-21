@@ -41,9 +41,6 @@ export class ChallengeService {
   }
 
   create(challenge: Challenge): Observable<Challenge> {
-
-    console.log(challenge);
-
     return this.httpClient.post<Challenge>(`${this.endpoint}`, challenge);
   }
 
