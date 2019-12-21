@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthService} from '../../core/services/auth.service';
-import {MatDialog} from "@angular/material/dialog";
-import {Feedback} from "../../core/domain/modules";
-import {AddApplicantDialogComponent} from "../../shared/component/add-applicant-dialog/add-applicant-dialog.component";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Feedback } from '../../core/domain/modules';
+import { AddApplicantDialogComponent } from '../../shared/component/add-applicant-dialog/add-applicant-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +12,7 @@ import {AddApplicantDialogComponent} from "../../shared/component/add-applicant-
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public router: Router, private authService: AuthService, private dialog: MatDialog,) {
+  constructor(public router: Router, private authService: AuthService, private dialog: MatDialog) {
   }
 
   async ngOnInit() {

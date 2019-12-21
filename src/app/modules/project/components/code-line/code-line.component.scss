@@ -37,7 +37,8 @@ code {
 
 .error-line {
   background: rgba(214, 233, 255, 0.51);
-  border: 1px solid rgba(98, 135, 196, 0.43);
+  border-radius: 4px;
+  //border: 1px solid rgba(98, 135, 196, 0.43);
   box-sizing: border-box;
   margin-bottom: 5px;
 }

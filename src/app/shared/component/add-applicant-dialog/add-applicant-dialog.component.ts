@@ -1,11 +1,11 @@
 import { Component, Inject, NgZone } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {Challenge, Reviewer} from '../../../core/domain/modules';
-import {Observable} from "rxjs";
-import {MatProgressButtonOptions} from "mat-progress-buttons";
-import {ChallengeService} from "../../../core/services/challenge.service";
-import {ReviewerService} from "../../../core/services/reviewer.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { Challenge, Reviewer } from '../../../core/domain/modules';
+import { Observable } from 'rxjs';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
+import { ChallengeService } from '../../../core/services/challenge.service';
+import { ReviewerService } from '../../../core/services/reviewer.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-delete-confirm-dialog',

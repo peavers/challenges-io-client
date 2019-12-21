@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AuthService} from '../../../../core/services/auth.service';
-import {Challenge, CodeLine, Comment} from '../../../../core/domain/modules';
-import {Utils} from '../../../../shared/helper/utils';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Challenge, CodeLine, Comment } from '../../../../core/domain/modules';
+import { Utils } from '../../../../shared/helper/utils';
 
 @Component({
   selector: 'app-code-line-component',
