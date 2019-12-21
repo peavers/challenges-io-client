@@ -1,33 +1,27 @@
 <div class="section">
   <div class="container">
-    <div class="columns is-multiline">
-      <div class="column is-12 element-box">
-        <table class="table is-fullwidth">
-          <tr>
-            <th>
-              Email
-            </th>
-            <th>
-              Role
-            </th>
-            <th (click)="create()">
-              Add
-            </th>
-          </tr>
-          <tr *ngFor="let reviewer of reviewers | async">
-
-            <td>{{reviewer.email}}</td>
-
-            <td>{{reviewer.role}}</td>
-
-            <td class="is-narrow">
-              <button (click)="delete(reviewer)" mat-icon-button>
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </tr>
-        </table>
+    <div class="column is-12 has-text-centered">
+      <div class="action-bar">
+        <button (click)="create()" mat-raised-button>Add user</button>
       </div>
+    </div>
+
+    <div class="column is-12 element-box">
+      <table class="table is-fullwidth">
+        <tr>
+          <th>
+            Email
+          </th>
+          <th>
+            Role
+          </th>
+        </tr>
+        <tr *ngFor="let reviewer of reviewers | async">
+          <td>{{ reviewer.email }}</td>
+
+          <td>{{ reviewer.role }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

@@ -13,7 +13,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./add-applicant-dialog.component.scss']
 })
 export class AddApplicantDialogComponent {
-
   levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
 
   positions: string[] = ['Frontend engineer', 'Backend engineer', 'Tech team'];
@@ -33,7 +32,6 @@ export class AddApplicantDialogComponent {
 
   challenge: Challenge = {};
 
-
   constructor(
     private challengeService: ChallengeService,
     private reviewerService: ReviewerService,
@@ -45,7 +43,7 @@ export class AddApplicantDialogComponent {
     this.reviewers = this.reviewerService.findAll();
   }
 
-  submit() {
+  onNoClick() {
     this.dialogRef.close();
   }
 

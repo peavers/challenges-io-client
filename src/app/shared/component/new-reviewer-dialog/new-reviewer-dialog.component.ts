@@ -8,7 +8,6 @@ import { Reviewer } from '../../../core/domain/modules';
   styleUrls: ['./new-reviewer-dialog.component.scss']
 })
 export class NewReviewerDialogComponent {
-
   readonly roles: string[] = ['User', 'Admin'];
 
   reviewer: Reviewer;
@@ -23,5 +22,9 @@ export class NewReviewerDialogComponent {
 
   submit() {
     this.dialogRef.close(this.reviewer);
+  }
+
+  onNoClick() {
+    this.dialogRef.close();
   }
 }

@@ -25,4 +25,8 @@ export class FeedbackDialogComponent {
   submit() {
     this.dialogRef.close(this.feedback);
   }
+
+  onNoClick() {
+    this.dialogRef.close();
+  }
 }

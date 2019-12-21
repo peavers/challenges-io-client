@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./select-reviewer-dialog.component.scss']
 })
 export class SelectReviewerDialogComponent implements OnInit {
-
   reviewers: Observable<Reviewer[]> = new Observable<Reviewer[]>();
 
   modifiedReviewers: Reviewer[] = [];
@@ -20,12 +19,14 @@ export class SelectReviewerDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<SelectReviewerDialogComponent>,
     private reviewerService: ReviewerService,
     @Inject(MAT_DIALOG_DATA) public data
-  ) {
-
-  }
+  ) {}
 
   submit() {
     this.dialogRef.close(this.modifiedReviewers);
+  }
+
+  onNoClick() {
+    this.dialogRef.close();
   }
 
   ngOnInit(): void {

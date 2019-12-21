@@ -4,12 +4,7 @@
   <div class="columns is-multiline">
     <div class="column is-12">
       <mat-form-field class="is-fullwidth">
-        <input
-          [(ngModel)]="reviewer.email"
-          autocomplete="off"
-          matInput
-          placeholder="Email"
-        />
+        <input [(ngModel)]="reviewer.email" autocomplete="off" matInput placeholder="Email" />
       </mat-form-field>
     </div>
 
@@ -27,5 +22,7 @@
 </div>
 
 <div mat-dialog-actions>
+  <button (click)="onNoClick()" autofocus mat-button>Cancel</button>
+
   <button (click)="submit()" [mat-dialog-close]="true" mat-button>Submit</button>
 </div>
