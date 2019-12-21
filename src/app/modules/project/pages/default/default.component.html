@@ -7,18 +7,18 @@
             <tr>
               <th>State</th>
               <th>Position</th>
-              <th>Imported</th>
+              <th>Added</th>
             </tr>
             <tr *ngFor="let challenge of challenges" routerLink="/review/{{ challenge.id }}">
               <td>
-                <span *ngIf="challenge.underReview">open</span>
-                <span *ngIf="!challenge.underReview">closed</span>
+                <span *ngIf="challenge.underReview">In progress</span>
+                <span *ngIf="!challenge.underReview">Complete</span>
               </td>
               <td>
                 {{ challenge.position }}
               </td>
               <td>
-                {{ challenge.created | amTimeAgo}}
+                {{ challenge.created | amTimeAgo }}
               </td>
             </tr>
           </table>
