@@ -22,6 +22,7 @@ import java from 'highlight.js/lib/languages/java';
 import xml from 'highlight.js/lib/languages/xml';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 export function hljsLanguages() {
   return [
@@ -55,9 +56,9 @@ export function hljsLanguages() {
       useValue: {
         languages: hljsLanguages
       }
-    }
+    },
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

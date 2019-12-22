@@ -10,7 +10,7 @@ import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { NgxMdModule } from 'ngx-md';
 import { UserPictureComponent } from './component/user-picture/user-picture.component';
 import { SelectReviewerDialogComponent } from './component/select-reviewer-dialog/select-reviewer-dialog.component';
-import { NewReviewerDialogComponent } from './component/new-reviewer-dialog/new-reviewer-dialog.component';
+import { ReviewGroupDialogComponent } from './component/review-group-dialog/review-group-dialog.component';
 import { AddApplicantDialogComponent } from './component/add-applicant-dialog/add-applicant-dialog.component';
 
 @NgModule({
@@ -28,20 +28,27 @@ import { AddApplicantDialogComponent } from './component/add-applicant-dialog/ad
     DeleteConfirmDialogComponent,
     SelectReviewerDialogComponent,
     ScrollToTopComponent,
-    NewReviewerDialogComponent,
+    ReviewGroupDialogComponent,
     FeedbackDialogComponent,
     UserPictureComponent,
     AddApplicantDialogComponent
   ],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ScrollToTopComponent, UserPictureComponent, AddApplicantDialogComponent],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    ScrollToTopComponent,
+    UserPictureComponent,
+    AddApplicantDialogComponent
+  ],
   entryComponents: [
     DeleteConfirmDialogComponent,
     FeedbackDialogComponent,
     SelectReviewerDialogComponent,
-    NewReviewerDialogComponent,
+    ReviewGroupDialogComponent,
     AddApplicantDialogComponent
   ],
   providers: [MaterialModule]
 })
-export class SharedModule {
-}
+export class SharedModule {}

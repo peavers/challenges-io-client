@@ -1,3 +1,5 @@
+import { User } from 'firebase';
+
 export interface Feedback {
   level: string;
   nextStage: string;
@@ -45,4 +47,8 @@ export interface Challenge {
   underReview?: boolean;
   feedback?: Feedback[];
   reviewers?: Reviewer[];
+}
+
+export interface FirestoreUser extends User {
+  reviewGroup?: string;
 }

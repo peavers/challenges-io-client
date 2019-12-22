@@ -1,8 +1,8 @@
 <div class="section">
   <div class="container">
     <div class="column is-12 has-text-centered">
-      <div class="action-bar">
-        <button (click)="create()" mat-raised-button>Add user</button>
+      <div class="message">
+        Users must login first before assigning their roles.
       </div>
     </div>
 
@@ -10,16 +10,21 @@
       <table class="table is-fullwidth">
         <tr>
           <th>
+            Name
+          </th>
+          <th>
             Email
           </th>
           <th>
-            Role
+            Review group
           </th>
         </tr>
-        <tr *ngFor="let reviewer of reviewers | async">
+        <tr *ngFor="let reviewer of reviewers | async" (click)="update(reviewer)">
+          <td>{{ reviewer.displayName }}</td>
+
           <td>{{ reviewer.email }}</td>
 
-          <td>{{ reviewer.role }}</td>
+          <td>{{ reviewer.reviewGroup }}</td>
         </tr>
       </table>
     </div>

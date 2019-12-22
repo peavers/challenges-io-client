@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Reviewer } from '../../../../core/domain/modules';
+import { FirestoreUser, Reviewer } from '../../../../core/domain/modules';
 import { ReviewerService } from '../../../../core/services/reviewer.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { NewReviewerDialogComponent } from '../../../../shared/component/new-reviewer-dialog/new-reviewer-dialog.component';
+import { ReviewGroupDialogComponent } from '../../../../shared/component/review-group-dialog/review-group-dialog.component';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-admin-component',
@@ -12,35 +13,38 @@ import { NewReviewerDialogComponent } from '../../../../shared/component/new-rev
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  reviewers: Observable<Reviewer[]> = new Observable<Reviewer[]>();
+  reviewers: Observable<FirestoreUser[]> = new Observable<FirestoreUser[]>();
 
-  reviewer: Reviewer = {};
+  private itemsCollection: AngularFirestoreCollection<FirestoreUser>;
 
-  constructor(public reviewerService: ReviewerService, private snackBar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(
+    public reviewerService: ReviewerService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private firestore: AngularFirestore
+  ) {}
 
   ngOnInit() {
-    this.reviewers = this.reviewerService.findAll();
+    this.itemsCollection = this.firestore.collection<FirestoreUser>('users');
+    this.reviewers = this.itemsCollection.valueChanges();
   }
 
-  create() {
-    const dialogRef = this.dialog.open(NewReviewerDialogComponent, {
+  update(reviewer: FirestoreUser) {
+    const dialogRef = this.dialog.open(ReviewGroupDialogComponent, {
       width: '40vw',
-      data: this.reviewer
+      data: reviewer
     });
 
-    dialogRef.afterClosed().subscribe((newReviewer: Reviewer) => {
-      if (newReviewer) {
+    dialogRef.afterClosed().subscribe((firestoreUser: FirestoreUser) => {
+      if (firestoreUser) {
         this.snackBar.open('Working');
 
-        this.reviewerService.create(this.reviewer).subscribe(
+        const doc = this.firestore.doc<FirestoreUser>(`/users/${firestoreUser.uid}`);
+        doc.update(firestoreUser).then(
           result => {
-            this.snackBar.open('Reviewer created', null, {
+            this.snackBar.open('Reviewer saved', null, {
               duration: 5 * 1000
             });
-
-            this.reviewer = {};
-
-            this.reviewerService.reviewerStore.push(result);
           },
           error => {
             this.snackBar.open('Reviewer failed', null, {
