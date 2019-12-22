@@ -54,13 +54,12 @@ export class ReviewerService {
 
   delete(reviewer: Reviewer): void {
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
-      width: '30vw'
+      width: '40vw'
     });
 
     dialogRef.afterClosed().subscribe(response => {
       if (response) {
         this.httpClient.delete<Reviewer>(`${this.endpoint}/${reviewer.id}`).subscribe(() => {
-
           this.findAll();
 
           this.snackBar.open(`Reviewer deleted`, '', {

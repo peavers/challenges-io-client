@@ -21,7 +21,7 @@ export class FeedbackSectionComponent implements OnInit {
 
   btnOpts: MatProgressButtonOptions = {
     active: false,
-    text: 'Leave feedback',
+    text: 'Add feedback',
     spinnerSize: 19,
     raised: true,
     stroked: false,
@@ -36,8 +36,7 @@ export class FeedbackSectionComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
-  ) {
-  }
+  ) {}
 
   saveFeedback() {
     this.btnOpts.active = true;
@@ -62,7 +61,7 @@ export class FeedbackSectionComponent implements OnInit {
 
   addFeedback() {
     const dialogRef = this.dialog.open(FeedbackDialogComponent, {
-      width: '30vw',
+      width: '40vw',
       data: {}
     });
 
@@ -84,7 +83,7 @@ export class FeedbackSectionComponent implements OnInit {
       });
     } else {
       const dialogRef = this.dialog.open(FeedbackDialogComponent, {
-        width: '30vw',
+        width: '40vw',
         data: feedback
       });
 
@@ -107,8 +106,11 @@ export class FeedbackSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.btnOpts.disabled = this.challenge.feedback.some(feedback => feedback.reviewer.id === this.authService.getUser().uid);
-    this.currentFeedback = this.challenge.feedback.find(feedback => feedback.reviewer.id === this.authService.getUser().uid);
-
+    this.btnOpts.disabled = this.challenge.feedback.some(
+      feedback => feedback.reviewer.id === this.authService.getUser().uid
+    );
+    this.currentFeedback = this.challenge.feedback.find(
+      feedback => feedback.reviewer.id === this.authService.getUser().uid
+    );
   }
 }

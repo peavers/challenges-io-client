@@ -34,17 +34,15 @@ export class DangerZoneSectionComponent {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
-  ) {
-  }
+  ) {}
 
   deleteChallenge() {
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
-      width: '30vw'
+      width: '40vw'
     });
 
     dialogRef.afterClosed().subscribe(response => {
       if (response) {
-
         this.btnOpts.active = true;
 
         this.challengeService.delete(this.challenge).subscribe(

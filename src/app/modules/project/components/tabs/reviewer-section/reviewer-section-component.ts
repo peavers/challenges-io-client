@@ -34,12 +34,11 @@ export class ReviewerSectionComponent {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
-  ) {
-  }
+  ) {}
 
   editReviewers() {
     const dialogRef = this.dialog.open(SelectReviewerDialogComponent, {
-      width: '30vw',
+      width: '40vw',
       data: {}
     });
 

@@ -20,13 +20,12 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(public angularFireAuth: AngularFireAuth, private router: Router) {
-  }
+  constructor(public angularFireAuth: AngularFireAuth, private router: Router) {}
 
   doGoogleLogin() {
     return new Promise<any>(resolve => {
       let provider = new auth.GoogleAuthProvider();
-      // provider.setCustomParameters({ hd: 'codacy.com' });
+      provider.setCustomParameters({ hd: 'codacy.com' });
       provider.addScope('profile');
       provider.addScope('email');
 

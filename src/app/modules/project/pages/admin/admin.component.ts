@@ -16,8 +16,7 @@ export class AdminComponent implements OnInit {
 
   reviewer: Reviewer = {};
 
-  constructor(public reviewerService: ReviewerService, private snackBar: MatSnackBar, private dialog: MatDialog) {
-  }
+  constructor(public reviewerService: ReviewerService, private snackBar: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.reviewers = this.reviewerService.findAll();
@@ -25,7 +24,7 @@ export class AdminComponent implements OnInit {
 
   create() {
     const dialogRef = this.dialog.open(NewReviewerDialogComponent, {
-      width: '30vw',
+      width: '40vw',
       data: this.reviewer
     });
 

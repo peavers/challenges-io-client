@@ -52,10 +52,6 @@ input {
   font-size: 12px;
 }
 
-.mat-button-wrapper {
-  text-transform: uppercase;
-}
-
 hr {
   margin-bottom: 0;
 }
@@ -149,7 +145,11 @@ hr {
 }
 
 .button-text {
-  text-transform: uppercase;
+  text-transform: capitalize;
+}
+
+.mat-button-wrapper {
+  text-transform: capitalize;
 }
 
 .table {

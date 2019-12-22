@@ -11,22 +11,18 @@ import { AddApplicantDialogComponent } from '../../shared/component/add-applican
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  constructor(public router: Router, private authService: AuthService, private dialog: MatDialog) {}
 
-  constructor(public router: Router, private authService: AuthService, private dialog: MatDialog) {
-  }
-
-  async ngOnInit() {
-  }
+  async ngOnInit() {}
 
   addApplicant() {
     const dialogRef = this.dialog.open(AddApplicantDialogComponent, {
-      width: '30vw',
+      width: '40vw',
       data: {}
     });
 
     dialogRef.afterClosed().subscribe((newFeedback: Feedback) => {
       if (newFeedback) {
-
       }
     });
   }

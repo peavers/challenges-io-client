@@ -1,6 +1,5 @@
 <div *ngIf="challenge" class="section">
   <div class="container">
-
     <mat-tab-group animationDuration="0" dynamicHeight mat-stretch-tabs>
       <mat-tab label="Challenge">
         <app-challenge-section-component
@@ -13,7 +12,7 @@
         <app-feedback-section-component [challenge]="challenge"></app-feedback-section-component>
       </mat-tab>
 
-      <mat-tab label="Review Meta">
+      <mat-tab label="Meta">
         <app-reviewer-section-component [challenge]="challenge"></app-reviewer-section-component>
       </mat-tab>
 
