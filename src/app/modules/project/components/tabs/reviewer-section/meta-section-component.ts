@@ -7,13 +7,14 @@ import { DOCUMENT } from '@angular/common';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SelectReviewerDialogComponent } from '../../../../../shared/component/select-reviewer-dialog/select-reviewer-dialog.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-reviewer-section-component',
-  templateUrl: './reviewer-section-component.html',
-  styleUrls: ['./reviewer-section-component.scss']
+  selector: 'app-meta-section-component',
+  templateUrl: './meta-section-component.html',
+  styleUrls: ['./meta-section-component.scss']
 })
-export class ReviewerSectionComponent {
+export class MetaSectionComponent {
   @Input()
   challenge: Challenge;
 
@@ -33,6 +34,7 @@ export class ReviewerSectionComponent {
     private challengeService: ChallengeService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    private sanitizer: DomSanitizer,
     @Inject(DOCUMENT) private document: any
   ) {}
 

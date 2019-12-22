@@ -44,6 +44,7 @@ export interface Challenge {
   level?: string;
   position?: string;
   applicant?: string;
+  downloadUrl?: string;
   underReview?: boolean;
   feedback?: Feedback[];
   reviewers?: Reviewer[];

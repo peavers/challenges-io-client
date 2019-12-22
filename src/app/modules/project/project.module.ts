@@ -19,7 +19,7 @@ import { ChallengeMetaComponent } from './components/challenge-meta/challenge-me
 import { DangerZoneSectionComponent } from './components/tabs/danger-zone-section/danger-zone-section-component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { FeedbackSectionComponent } from './components/tabs/feedback-section/feedback-section-component';
-import { ReviewerSectionComponent } from './components/tabs/reviewer-section/reviewer-section-component';
+import { MetaSectionComponent } from './components/tabs/reviewer-section/meta-section-component';
 import { ChallengeSectionComponent } from './components/tabs/challenge-section/challenge-section-component';
 
 @NgModule({
@@ -34,7 +34,7 @@ import { ChallengeSectionComponent } from './components/tabs/challenge-section/c
     ChallengeMetaComponent,
     DangerZoneSectionComponent,
     FeedbackSectionComponent,
-    ReviewerSectionComponent,
+    MetaSectionComponent,
     ChallengeSectionComponent
   ],
   imports: [
@@ -52,5 +52,4 @@ import { ChallengeSectionComponent } from './components/tabs/challenge-section/c
   exports: [CodeCommentComponent],
   entryComponents: []
 })
-export class ProjectModule {
-}
+export class ProjectModule {}

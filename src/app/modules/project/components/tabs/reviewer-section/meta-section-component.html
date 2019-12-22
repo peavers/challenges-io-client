@@ -1,11 +1,18 @@
 <div class="column is-12 has-text-centered">
   <div class="action-bar">
-    <mat-spinner-button (btnClick)="editReviewers()" [options]="btnOpts"></mat-spinner-button>
+    <ul class="button-group">
+      <li><a mat-raised-button [href]="challenge.downloadUrl" download="challenge.zip">Download code</a></li>
+
+      <li>
+        <mat-spinner-button (btnClick)="editReviewers()" [options]="btnOpts"></mat-spinner-button>
+      </li>
+    </ul>
   </div>
 </div>
 
 <div class="column is-12 element-box">
   <table class="table is-fullwidth">
+    <tr></tr>
     <tr>
       <th>
         Reviewer
