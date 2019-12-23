@@ -1,7 +1,7 @@
 import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Reviewer } from '../../../core/domain/modules';
-import { ReviewerService } from '../../../core/services/reviewer.service';
+import { FirestoreService } from '../../../core/services/firestore.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class SelectReviewerDialogComponent implements OnInit {
   constructor(
     private _ngZone: NgZone,
     private dialogRef: MatDialogRef<SelectReviewerDialogComponent>,
-    private reviewerService: ReviewerService,
+    private firestoreService: FirestoreService,
     @Inject(MAT_DIALOG_DATA) public data
   ) {}
 
@@ -30,6 +30,6 @@ export class SelectReviewerDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reviewers = this.reviewerService.findAll();
+    this.reviewers = this.firestoreService.findAll();
   }
 }

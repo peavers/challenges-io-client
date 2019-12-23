@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FirestoreUser, Reviewer } from '../../../../core/domain/modules';
-import { ReviewerService } from '../../../../core/services/reviewer.service';
+import { FirestoreService } from '../../../../core/services/firestore.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewGroupDialogComponent } from '../../../../shared/component/review-group-dialog/review-group-dialog.component';
@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
   private itemsCollection: AngularFirestoreCollection<FirestoreUser>;
 
   constructor(
-    public reviewerService: ReviewerService,
+    public firestoreService: FirestoreService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private firestore: AngularFirestore
@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
       if (firestoreUser) {
         this.snackBar.open('Working');
 
-        this.reviewerService.update(firestoreUser).then(
+        this.firestoreService.update(firestoreUser).then(
           result => {
             this.snackBar.open('Reviewer saved', null, {
               duration: 5 * 1000
@@ -56,6 +56,6 @@ export class AdminComponent implements OnInit {
   }
 
   delete(reviewer: Reviewer) {
-    this.reviewerService.delete(reviewer);
+    this.firestoreService.delete(reviewer);
   }
 }

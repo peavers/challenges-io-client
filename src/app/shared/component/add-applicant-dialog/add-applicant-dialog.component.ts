@@ -4,7 +4,7 @@ import { Challenge, Reviewer } from '../../../core/domain/modules';
 import { Observable } from 'rxjs';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { ChallengeService } from '../../../core/services/challenge.service';
-import { ReviewerService } from '../../../core/services/reviewer.service';
+import { FirestoreService } from '../../../core/services/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -34,13 +34,13 @@ export class AddApplicantDialogComponent {
 
   constructor(
     private challengeService: ChallengeService,
-    private reviewerService: ReviewerService,
+    private firestoreService: FirestoreService,
     private snackBar: MatSnackBar,
     private _ngZone: NgZone,
     private dialogRef: MatDialogRef<AddApplicantDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Reviewer
   ) {
-    this.reviewers = this.reviewerService.findAll();
+    this.reviewers = this.firestoreService.findAll();
   }
 
   onNoClick() {
