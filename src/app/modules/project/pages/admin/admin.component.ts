@@ -54,8 +54,4 @@ export class AdminComponent implements OnInit {
       }
     });
   }
-
-  delete(reviewer: Reviewer) {
-    this.firestoreService.delete(reviewer);
-  }
 }
