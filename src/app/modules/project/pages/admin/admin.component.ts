@@ -39,8 +39,7 @@ export class AdminComponent implements OnInit {
       if (firestoreUser) {
         this.snackBar.open('Working');
 
-        const doc = this.firestore.doc<FirestoreUser>(`/users/${firestoreUser.uid}`);
-        doc.update(firestoreUser).then(
+        this.reviewerService.update(firestoreUser).then(
           result => {
             this.snackBar.open('Reviewer saved', null, {
               duration: 5 * 1000
