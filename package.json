@@ -10,6 +10,19 @@
     "e2e": "ng e2e",
     "build:prod": "ng build --prod"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.{ts,js,css,json,md}": [
+      "sort-package-json",
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.6",
@@ -63,8 +76,11 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^10.0.0-beta.13",
     "prettier": "^1.19.1",
     "protractor": "~5.4.0",
+    "sort-package-json": "^1.31.0",
     "ts-node": "~8.5.4",
     "tslint": "~5.20.1",
     "typescript": "~3.5.3"
