@@ -4,7 +4,7 @@ export interface Feedback {
   level: string;
   nextStage: string;
   comments: string;
-  reviewer: Reviewer;
+  firebaseUser: FirestoreUser;
 }
 
 export interface Comment {
@@ -48,6 +48,7 @@ export interface Challenge {
   underReview?: boolean;
   feedback?: Feedback[];
   reviewers?: Reviewer[];
+  reviewGroups?: string[];
 }
 
 export interface FirestoreUser extends User {

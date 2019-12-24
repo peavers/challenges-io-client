@@ -4,7 +4,14 @@
   </div>
 
   <div class="navbar-item">
-    <button mat-button routerLink="/">
+    <button
+      mat-button
+      routerLink="/"
+      [matBadgeHidden]="!badgeVisible"
+      [matBadge]="badgeValue.toString()"
+      matBadgeOverlap="true"
+      matBadgeSize="small"
+    >
       Reviews
     </button>
   </div>

@@ -67,7 +67,7 @@ export class FeedbackSectionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((newFeedback: Feedback) => {
       if (newFeedback) {
-        newFeedback.reviewer = this.authService.getReviewer();
+        newFeedback.firebaseUser = this.authService.getUser();
 
         this.challenge.feedback.push(newFeedback);
 
@@ -77,7 +77,7 @@ export class FeedbackSectionComponent implements OnInit {
   }
 
   editFeedback(feedback: Feedback) {
-    if (feedback.reviewer.id != this.authService.getUser().uid) {
+    if (feedback.firebaseUser.uid != this.authService.getUser().uid) {
       this.snackBar.open('Permission denied', null, {
         duration: 5 * 1000
       });
@@ -92,7 +92,7 @@ export class FeedbackSectionComponent implements OnInit {
           let items: Feedback[] = this.challenge.feedback;
 
           items.forEach((feedback, index) => {
-            if (feedback.reviewer.id === editedFeedback.reviewer.id) {
+            if (feedback.firebaseUser.uid === editedFeedback.firebaseUser.uid) {
               items[index] = editedFeedback;
             }
           });
@@ -107,10 +107,11 @@ export class FeedbackSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.btnOpts.disabled = this.challenge.feedback.some(
-      feedback => feedback.reviewer.id === this.authService.getUser().uid
+      feedback => feedback.firebaseUser.uid === this.authService.getUser().uid
     );
+
     this.currentFeedback = this.challenge.feedback.find(
-      feedback => feedback.reviewer.id === this.authService.getUser().uid
+      feedback => feedback.firebaseUser.uid === this.authService.getUser().uid
     );
   }
 }

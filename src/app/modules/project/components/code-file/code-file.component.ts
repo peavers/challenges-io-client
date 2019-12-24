@@ -15,8 +15,7 @@ export class CodeFileComponent implements OnInit {
   @Input()
   codeFile: CodeFile;
 
-  constructor(private codeFileService: CodeFileService, private authService: AuthService) {
-  }
+  constructor(private codeFileService: CodeFileService, private authService: AuthService) {}
 
   ngOnInit() {
     if (this.codeFile.size <= 4000) {
@@ -31,8 +30,6 @@ export class CodeFileComponent implements OnInit {
   }
 
   getContent() {
-    const reviewer = this.authService.getReviewer();
-
     this.codeFileService.findById(this.challenge.id, this.codeFile.id).subscribe(result => {
       this.codeFile = result;
     });

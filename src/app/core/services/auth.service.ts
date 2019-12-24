@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
 import { Router } from '@angular/router';
-import { Reviewer } from '../domain/modules';
+import { FirestoreUser } from '../domain/modules';
 
 export interface User {
   uid?: string;
@@ -41,20 +41,8 @@ export class AuthService {
     });
   }
 
-  public getUser(): User {
+  public getUser(): FirestoreUser {
     return this.angularFireAuth.auth.currentUser;
-  }
-
-  public getReviewer(): Reviewer {
-    const user = this.getUser();
-
-    let reviewer: Reviewer = {};
-    reviewer.photoUrl = user.photoURL;
-    reviewer.displayName = user.displayName;
-    reviewer.email = user.email;
-    reviewer.id = user.uid;
-
-    return reviewer;
   }
 
   public logout() {

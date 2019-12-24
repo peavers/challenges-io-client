@@ -9,7 +9,6 @@ import { Utils } from '../../../../shared/helper/utils';
   styleUrls: ['./code-line.component.scss']
 })
 export class CodeLineComponent implements OnInit {
-
   @Input()
   challenge: Challenge;
 
@@ -30,11 +29,12 @@ export class CodeLineComponent implements OnInit {
 
   comments: Comment[];
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.comments = this.challenge.underReview ? this.codeLine.comments.filter(comment => comment.reviewer.id === this.authService.getUser().uid) : this.codeLine.comments;
+    this.comments = this.challenge.underReview
+      ? this.codeLine.comments.filter(comment => comment.reviewer.id === this.authService.getUser().uid)
+      : this.codeLine.comments;
   }
 
   showCommentOrReplyBox() {
@@ -48,7 +48,7 @@ export class CodeLineComponent implements OnInit {
   addNewComment($event) {
     let comment: Comment = {
       id: Utils.generateUUID(),
-      reviewer: this.authService.getReviewer(),
+      reviewer: this.authService.getUser(),
       body: $event,
       lineNumber: this.lineNumber + 1
     };

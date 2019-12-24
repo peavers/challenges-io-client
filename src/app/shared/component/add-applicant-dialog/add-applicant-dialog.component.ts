@@ -13,9 +13,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./add-applicant-dialog.component.scss']
 })
 export class AddApplicantDialogComponent {
-  levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
+  readonly reviewGroups: string[] = ['Frontend', 'Backend', 'Tech Lead'];
 
-  positions: string[] = ['Frontend engineer', 'Backend engineer', 'Tech team'];
+  readonly levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
+
+  readonly positions: string[] = ['Frontend engineer', 'Backend engineer', 'Tech team'];
 
   reviewers: Observable<Reviewer[]> = new Observable<Reviewer[]>();
 

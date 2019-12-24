@@ -23,7 +23,7 @@
       </tr>
       <tr (click)="editFeedback(feedback)" *ngFor="let feedback of challenge.feedback">
         <td>
-          {{feedback.reviewer.displayName}}
+          {{feedback.firebaseUser.displayName}}
         </td>
         <td>
           {{feedback.level}}
@@ -57,7 +57,7 @@
     </tr>
     <tr (click)="editFeedback(feedback)" *ngIf="currentFeedback as feedback">
       <td>
-        {{feedback.reviewer.displayName}}
+        {{feedback.firebaseUser.displayName}}
       </td>
       <td>
         {{feedback.level}}

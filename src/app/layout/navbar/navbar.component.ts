@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Feedback } from '../../core/domain/modules';
 import { AddApplicantDialogComponent } from '../../shared/component/add-applicant-dialog/add-applicant-dialog.component';
+import { ChallengeService } from '../../core/services/challenge.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,24 +11,29 @@ import { AddApplicantDialogComponent } from '../../shared/component/add-applican
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public router: Router, private authService: AuthService, private dialog: MatDialog) {}
+  badgeVisible: boolean = false;
 
-  async ngOnInit() {}
+  badgeValue: number = 0;
 
-  addApplicant() {
-    const dialogRef = this.dialog.open(AddApplicantDialogComponent, {
-      width: '40vw',
-      data: {}
-    });
+  constructor(
+    public router: Router,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private challengeService: ChallengeService
+  ) {}
 
-    dialogRef.afterClosed().subscribe((newFeedback: Feedback) => {
-      if (newFeedback) {
-      }
+  async ngOnInit() {
+    this.challengeService.findAll().subscribe(results => {
+      this.badgeValue = results.length;
+      this.badgeVisible = results.length >= 1;
     });
   }
 
-  getUser() {
-    return this.authService.getUser();
+  addApplicant() {
+    this.dialog.open(AddApplicantDialogComponent, {
+      width: '40vw',
+      data: {}
+    });
   }
 
   googleLogout() {
