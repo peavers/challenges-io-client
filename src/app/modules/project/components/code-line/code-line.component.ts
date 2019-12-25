@@ -3,7 +3,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { Challenge, CodeFile, CodeLine } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SNACKBOX_ERROR, SNACKBOX_SUCCESS } from '../../../../core/constants';
+import { SNACKBOX_DISPLAY_TIME, SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS } from '../../../../core/constants';
 
 @Component({
   selector: 'app-code-line-component',
@@ -53,8 +53,8 @@ export class CodeLineComponent implements OnInit {
 
     this.codeFileService.update(this.codeFile).subscribe(
       result => {
-        this.snackBar.open('Comment saved', null, {
-          duration: SNACKBOX_SUCCESS
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
+          duration: SNACKBOX_DISPLAY_TIME
         });
 
         this.replyContent = '';
@@ -62,8 +62,8 @@ export class CodeLineComponent implements OnInit {
         this.showCommentBox = false;
       },
       error => {
-        this.snackBar.open('Comment failed to save. Try again.', null, {
-          duration: SNACKBOX_ERROR
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
+          duration: SNACKBOX_DISPLAY_TIME
         });
       }
     );

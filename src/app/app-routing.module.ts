@@ -40,5 +40,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AngularFireAuthGuard]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

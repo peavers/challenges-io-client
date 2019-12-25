@@ -7,6 +7,13 @@ import { DOCUMENT } from '@angular/common';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeedbackDialogComponent } from '../../../../../shared/component/dialogs/feedback-dialog/feedback-dialog.component';
+import {
+  DIALOG_WIDTH,
+  SNACKBOX_DISPLAY_TIME,
+  SNACKBOX_MESSAGE_FAILURE,
+  SNACKBOX_MESSAGE_SUCCESS,
+  SNACKBOX_PERMISSION_DENIED
+} from '../../../../../core/constants';
 
 @Component({
   selector: 'app-feedback-section-component',
@@ -45,15 +52,15 @@ export class FeedbackSectionComponent implements OnInit {
       result => {
         this.btnOpts.active = false;
 
-        this.snackBar.open('Feedback saved', null, {
-          duration: 5 * 1000
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
+          duration: SNACKBOX_DISPLAY_TIME
         });
       },
       error => {
         this.btnOpts.active = false;
 
-        this.snackBar.open('Feedback failed', null, {
-          duration: 5 * 1000
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
+          duration: SNACKBOX_DISPLAY_TIME
         });
       }
     );
@@ -61,7 +68,7 @@ export class FeedbackSectionComponent implements OnInit {
 
   addFeedback() {
     const dialogRef = this.dialog.open(FeedbackDialogComponent, {
-      width: '40vw',
+      width: DIALOG_WIDTH,
       data: {}
     });
 
@@ -78,12 +85,12 @@ export class FeedbackSectionComponent implements OnInit {
 
   editFeedback(feedback: Feedback) {
     if (feedback.firebaseUser.uid != this.authService.getUser().uid) {
-      this.snackBar.open('Permission denied', null, {
-        duration: 5 * 1000
+      this.snackBar.open(SNACKBOX_PERMISSION_DENIED, null, {
+        duration: SNACKBOX_DISPLAY_TIME
       });
     } else {
       const dialogRef = this.dialog.open(FeedbackDialogComponent, {
-        width: '40vw',
+        width: DIALOG_WIDTH,
         data: feedback
       });
 

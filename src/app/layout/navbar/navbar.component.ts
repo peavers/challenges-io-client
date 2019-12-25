@@ -4,6 +4,8 @@ import { AuthService } from '../../core/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddApplicantDialogComponent } from '../../shared/component/dialogs/add-applicant-dialog/add-applicant-dialog.component';
 import { ChallengeService } from '../../core/services/challenge.service';
+import { DIALOG_WIDTH } from '../../core/constants';
+import { FirestoreUser } from '../../core/domain/modules';
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +17,8 @@ export class NavbarComponent implements OnInit {
 
   badgeValue: number = 0;
 
+  user: FirestoreUser;
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -23,6 +27,8 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.user = this.authService.getUser();
+
     this.challengeService.findAll().subscribe(results => {
       this.badgeValue = results.length;
       this.badgeVisible = results.length >= 1;
@@ -31,7 +37,7 @@ export class NavbarComponent implements OnInit {
 
   addApplicant() {
     this.dialog.open(AddApplicantDialogComponent, {
-      width: '40vw',
+      width: DIALOG_WIDTH,
       data: {}
     });
   }

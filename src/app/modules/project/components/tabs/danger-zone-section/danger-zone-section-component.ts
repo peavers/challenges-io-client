@@ -7,6 +7,12 @@ import { DOCUMENT } from '@angular/common';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteConfirmDialogComponent } from '../../../../../shared/component/dialogs/delete-confirm-dialog/delete-confirm-dialog.component';
+import {
+  DIALOG_WIDTH,
+  SNACKBOX_DISPLAY_TIME,
+  SNACKBOX_MESSAGE_FAILURE,
+  SNACKBOX_MESSAGE_SUCCESS
+} from '../../../../../core/constants';
 
 @Component({
   selector: 'app-danger-zone-section-component',
@@ -38,7 +44,7 @@ export class DangerZoneSectionComponent {
 
   deleteChallenge() {
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
-      width: '40vw'
+      width: DIALOG_WIDTH
     });
 
     dialogRef.afterClosed().subscribe(response => {
@@ -49,15 +55,15 @@ export class DangerZoneSectionComponent {
           () => {
             this.btnOpts.active = false;
 
-            this.snackBar.open('Challenge deleted', null, {
-              duration: 5 * 1000
+            this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
+              duration: SNACKBOX_DISPLAY_TIME
             });
           },
           () => {
             this.btnOpts.active = false;
 
-            this.snackBar.open('Deletion failed', null, {
-              duration: 5 * 1000
+            this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
+              duration: SNACKBOX_DISPLAY_TIME
             });
           }
         );

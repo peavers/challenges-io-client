@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AuthService, User } from '../../../../core/services/auth.service';
 import { MdEditorOption } from 'ngx-markdown-editor';
 
 @Component({
@@ -16,8 +15,6 @@ export class WysiwygEditorComponent {
 
   editorContent: string;
 
-  user: User;
-
   options: MdEditorOption = {
     showPreviewPanel: false,
     showBorder: false,
@@ -28,9 +25,7 @@ export class WysiwygEditorComponent {
     resizable: false
   };
 
-  constructor(private authService: AuthService) {
-    this.user = this.authService.getUser();
-  }
+  constructor() {}
 
   save() {
     this.editorContentChange.emit(this.editorContent);

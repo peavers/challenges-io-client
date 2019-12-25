@@ -3,9 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Challenge } from '../domain/modules';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +14,7 @@ export class ChallengeService {
 
   private challengeStore: Challenge[] = [];
 
-  constructor(
-    private httpClient: HttpClient,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private router: Router
-  ) {
+  constructor(private httpClient: HttpClient) {
     this.endpoint = `${environment.postServer}/v1/challenges`;
   }
 

@@ -9,8 +9,7 @@ import { DOCUMENT } from '@angular/common';
 export class ScrollToTopComponent {
   windowScrolled: boolean;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
-  }
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

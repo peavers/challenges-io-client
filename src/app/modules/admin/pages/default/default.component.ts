@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FirestoreUser, Reviewer } from '../../../../core/domain/modules';
+import { FirestoreUser } from '../../../../core/domain/modules';
 import { FirestoreService } from '../../../../core/services/firestore.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewGroupDialogComponent } from '../../../../shared/component/dialogs/review-group-dialog/review-group-dialog.component';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {
+  DIALOG_WIDTH,
+  SNACKBAR_LOADING,
+  SNACKBOX_DISPLAY_TIME,
+  SNACKBOX_MESSAGE_FAILURE,
+  SNACKBOX_MESSAGE_SUCCESS
+} from '../../../../core/constants';
 
 @Component({
   selector: 'app-admin-component',
@@ -15,39 +21,31 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 export class DefaultComponent implements OnInit {
   reviewers: Observable<FirestoreUser[]> = new Observable<FirestoreUser[]>();
 
-  private itemsCollection: AngularFirestoreCollection<FirestoreUser>;
-
-  constructor(
-    private firestoreService: FirestoreService,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-    private firestore: AngularFirestore
-  ) {}
+  constructor(private firestoreService: FirestoreService, private snackBar: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.itemsCollection = this.firestore.collection<FirestoreUser>('users');
-    this.reviewers = this.itemsCollection.valueChanges();
+    this.reviewers = this.firestoreService.findAll();
   }
 
   update(reviewer: FirestoreUser) {
     const dialogRef = this.dialog.open(ReviewGroupDialogComponent, {
-      width: '40vw',
+      width: DIALOG_WIDTH,
       data: reviewer
     });
 
     dialogRef.afterClosed().subscribe((firestoreUser: FirestoreUser) => {
       if (firestoreUser) {
-        this.snackBar.open('Working');
+        this.snackBar.open(SNACKBAR_LOADING);
 
         this.firestoreService.update(firestoreUser).then(
           result => {
-            this.snackBar.open('Reviewer saved', null, {
-              duration: 5 * 1000
+            this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
+              duration: SNACKBOX_DISPLAY_TIME
             });
           },
           error => {
-            this.snackBar.open('Reviewer failed', null, {
-              duration: 5 * 1000
+            this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
+              duration: SNACKBOX_DISPLAY_TIME
             });
           }
         );

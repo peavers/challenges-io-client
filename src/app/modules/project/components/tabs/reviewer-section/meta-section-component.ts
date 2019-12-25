@@ -8,6 +8,7 @@ import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SelectReviewerDialogComponent } from '../../../../../shared/component/dialogs/select-reviewer-dialog/select-reviewer-dialog.component';
+import { DIALOG_WIDTH } from '../../../../../core/constants';
 
 @Component({
   selector: 'app-meta-section-component',
@@ -40,7 +41,7 @@ export class MetaSectionComponent {
 
   editReviewers() {
     const dialogRef = this.dialog.open(SelectReviewerDialogComponent, {
-      width: '40vw',
+      width: DIALOG_WIDTH,
       data: {}
     });
 
