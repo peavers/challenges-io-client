@@ -22,7 +22,7 @@ export class CodeFileService {
     return this.httpClient.get<CodeFile>(`${this.endpoint}/${projectId}/${fileId}`);
   }
 
-  update(codeFile: CodeFile): void {
-    this.httpClient.patch<CodeFile>(`${this.endpoint}/${codeFile.projectId}`, codeFile).subscribe();
+  update(codeFile: CodeFile): Observable<CodeFile> {
+    return this.httpClient.patch<CodeFile>(`${this.endpoint}/${codeFile.projectId}`, codeFile);
   }
 }

@@ -21,7 +21,7 @@
         </tr>
         <tr *ngFor="let reviewer of reviewers | async" (click)="update(reviewer)">
           <td>{{ reviewer.displayName }}</td>
-          `
+
           <td>{{ reviewer.email }}</td>
 
           <td>{{ reviewer.reviewGroup }}</td>

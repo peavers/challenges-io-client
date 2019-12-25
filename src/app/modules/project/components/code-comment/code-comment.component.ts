@@ -11,19 +11,13 @@ export class CodeCommentComponent implements OnInit {
   @Input()
   comment: Comment;
 
-  @Output()
-  deleteCommentEvent = new EventEmitter();
-
   user: User;
 
   constructor(private authService: AuthService) {
     this.user = authService.getUser();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  deleteComment() {
-    this.deleteCommentEvent.emit(this.comment);
-  }
+  deleteComment() {}
 }

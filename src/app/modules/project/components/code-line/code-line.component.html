@@ -14,13 +14,10 @@
     </div>
 
     <div class="column is-8">
-      <div *ngIf="comments.length >= 1" class="comment-box">
+      <div *ngIf="codeLine.comments.length >= 1" class="comment-box">
         <!-- Display all comments -->
-        <div *ngFor="let comment of comments">
-          <app-code-comment-component
-            (deleteCommentEvent)="deleteComment($event)"
-            [comment]="comment"
-          ></app-code-comment-component>
+        <div *ngFor="let comment of codeLine.comments">
+          <app-code-comment-component [comment]="comment"></app-code-comment-component>
         </div>
 
         <!-- Reply button-->

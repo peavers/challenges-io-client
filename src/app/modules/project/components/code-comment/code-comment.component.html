@@ -1,11 +1,14 @@
 <article class="media">
   <figure class="media-left">
-    <app-user-picture [name]="comment.reviewer.displayName" [pictureUrl]="comment.reviewer.photoUrl"></app-user-picture>
+    <app-user-picture
+      [name]="comment.firebaseUser.displayName"
+      [pictureUrl]="comment.firebaseUser.photoURL"
+    ></app-user-picture>
   </figure>
   <div class="media-content">
     <div class="content">
       <p class="author-name">
-        {{ comment.reviewer.displayName }} <span class="imported-date">{{ comment.created | amTimeAgo }}</span>
+        {{ comment.firebaseUser.displayName }} <span class="imported-date">{{ comment.created | amTimeAgo }}</span>
       </p>
       <p>
         <ngx-md>{{ comment.body }}</ngx-md>
@@ -13,7 +16,7 @@
     </div>
   </div>
 
-  <div *ngIf="comment.reviewer.id === user.uid" class="media-right">
+  <div *ngIf="comment.firebaseUser.uid === user.uid" class="media-right">
     <button [matMenuTriggerFor]="editMenu" mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>

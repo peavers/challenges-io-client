@@ -25,7 +25,7 @@ export class AuthService {
   doGoogleLogin() {
     return new Promise<any>(resolve => {
       let provider = new auth.GoogleAuthProvider();
-      provider.setCustomParameters({ hd: 'codacy.com' });
+      // provider.setCustomParameters({ hd: 'codacy.com' });
       provider.addScope('profile');
       provider.addScope('email');
 

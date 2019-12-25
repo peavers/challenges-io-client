@@ -8,11 +8,9 @@ export interface Feedback {
 }
 
 export interface Comment {
-  id?: string;
-  reviewer?: Reviewer;
+  firebaseUser?: FirestoreUser;
   body?: string;
   created?: number;
-  lineNumber: number;
 }
 
 export interface Reviewer {
