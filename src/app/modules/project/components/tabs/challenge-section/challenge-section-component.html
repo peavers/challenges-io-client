@@ -3,7 +3,7 @@
     <tr>
       <th>Files</th>
     </tr>
-    <tr *ngFor="let codeFile of tableOfContent">
+    <tr *ngFor="let codeFile of tableOfContent | async">
       <td>
         <a [href]="'#' + codeFile.id" pageScroll pageScrollDuration="0" pageScrollOffset="70">
           {{ codeFile.location }}
@@ -13,6 +13,6 @@
   </table>
 </div>
 
-<div *ngFor="let codeFile of tableOfContent">
+<div *ngFor="let codeFile of tableOfContent | async">
   <app-code-file-component [challenge]="challenge" [codeFile]="codeFile"></app-code-file-component>
 </div>

@@ -5,12 +5,12 @@
 
   <div class="navbar-item">
     <button
-      mat-button
-      routerLink="/"
       [matBadgeHidden]="!badgeVisible"
       [matBadge]="badgeValue.toString()"
+      mat-button
       matBadgeOverlap="true"
       matBadgeSize="small"
+      routerLink="/"
     >
       Reviews
     </button>
@@ -34,6 +34,7 @@
 </nav>
 
 <mat-menu #settingsMenu="matMenu">
-  <button mat-menu-item routerLink="/admin">Admin</button>
+  <button mat-menu-item routerLink="/admin">Admin config</button>
+  <button mat-menu-item routerLink="/profile">Your profile</button>
   <button (click)="googleLogout()" mat-menu-item>Logout</button>
 </mat-menu>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddApplicantDialogComponent } from '../../shared/component/add-applicant-dialog/add-applicant-dialog.component';
+import { AddApplicantDialogComponent } from '../../shared/component/dialogs/add-applicant-dialog/add-applicant-dialog.component';
 import { ChallengeService } from '../../core/services/challenge.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   badgeValue: number = 0;
 
   constructor(
-    public router: Router,
+    private router: Router,
     private authService: AuthService,
     private dialog: MatDialog,
     private challengeService: ChallengeService

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultComponent } from './pages/default/default.component';
-import { ReviewComponent } from './pages/review/review.component';
 
 export const routes: Routes = [
   {
@@ -10,10 +9,6 @@ export const routes: Routes = [
       {
         path: '',
         component: DefaultComponent
-      },
-      {
-        path: 'review/:id',
-        component: ReviewComponent
       }
     ]
   }
@@ -23,4 +18,4 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CircleRoutingModule {}
+export class RoutingModule {}

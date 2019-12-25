@@ -17,7 +17,6 @@ import { NgxMdModule } from 'ngx-md';
 import { NgPipesModule } from 'angular-pipes';
 import { ChallengeMetaComponent } from './components/challenge-meta/challenge-meta-component';
 import { DangerZoneSectionComponent } from './components/tabs/danger-zone-section/danger-zone-section-component';
-import { AdminComponent } from './pages/admin/admin.component';
 import { FeedbackSectionComponent } from './components/tabs/feedback-section/feedback-section-component';
 import { MetaSectionComponent } from './components/tabs/reviewer-section/meta-section-component';
 import { ChallengeSectionComponent } from './components/tabs/challenge-section/challenge-section-component';
@@ -26,7 +25,6 @@ import { ChallengeSectionComponent } from './components/tabs/challenge-section/c
   declarations: [
     DefaultComponent,
     ReviewComponent,
-    AdminComponent,
     CodeFileComponent,
     CodeLineComponent,
     CodeCommentComponent,

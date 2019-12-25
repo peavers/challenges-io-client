@@ -1,12 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Challenge, CodeFile } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
-import { PageScrollService } from 'ngx-page-scroll-core';
-import { DOCUMENT } from '@angular/common';
-import { AuthService } from '../../../../core/services/auth.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ChallengeService } from '../../../../core/services/challenge.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-default',
@@ -14,29 +11,17 @@ import { ChallengeService } from '../../../../core/services/challenge.service';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-  challenge: Challenge;
-
-  tableOfContent: CodeFile[];
+  challenge: Observable<Challenge> = new Observable<Challenge>();
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private pageScrollService: PageScrollService,
-    private authService: AuthService,
+    private route: ActivatedRoute,
     private codeFileService: CodeFileService,
-    private challengeService: ChallengeService,
-    private dialog: MatDialog,
-    @Inject(DOCUMENT) private document: any
-  ) {
-  }
+    private challengeService: ChallengeService
+  ) {}
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(data => {
-      this.challenge = data['data']['challenge'];
-      this.tableOfContent = data['data']['toc'];
-    });
+    const challengeId = this.route.snapshot.paramMap.get('id');
 
-    this.authService.getUser();
-
-
+    this.challenge = this.challengeService.findById(challengeId);
   }
 }

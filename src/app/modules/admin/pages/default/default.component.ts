@@ -4,21 +4,21 @@ import { FirestoreUser, Reviewer } from '../../../../core/domain/modules';
 import { FirestoreService } from '../../../../core/services/firestore.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ReviewGroupDialogComponent } from '../../../../shared/component/review-group-dialog/review-group-dialog.component';
+import { ReviewGroupDialogComponent } from '../../../../shared/component/dialogs/review-group-dialog/review-group-dialog.component';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-admin-component',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  templateUrl: './default.component.html',
+  styleUrls: ['./default.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class DefaultComponent implements OnInit {
   reviewers: Observable<FirestoreUser[]> = new Observable<FirestoreUser[]>();
 
   private itemsCollection: AngularFirestoreCollection<FirestoreUser>;
 
   constructor(
-    public firestoreService: FirestoreService,
+    private firestoreService: FirestoreService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private firestore: AngularFirestore

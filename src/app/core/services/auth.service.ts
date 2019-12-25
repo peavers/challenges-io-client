@@ -20,7 +20,7 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(public angularFireAuth: AngularFireAuth, private router: Router) {}
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {}
 
   doGoogleLogin() {
     return new Promise<any>(resolve => {

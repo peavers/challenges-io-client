@@ -1,11 +1,8 @@
-<div *ngIf="challenge" class="section">
+<div *ngIf="challenge | async as challenge" class="section">
   <div class="container">
     <mat-tab-group animationDuration="0" dynamicHeight mat-stretch-tabs>
       <mat-tab label="Challenge">
-        <app-challenge-section-component
-          [challenge]="challenge"
-          [tableOfContent]="tableOfContent"
-        ></app-challenge-section-component>
+        <app-challenge-section-component [challenge]="challenge"></app-challenge-section-component>
       </mat-tab>
 
       <mat-tab label="Feedback">

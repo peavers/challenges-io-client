@@ -1,6 +1,6 @@
 import { Component, Inject, NgZone } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Feedback } from '../../../core/domain/modules';
+import { Feedback } from '../../../../core/domain/modules';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -17,7 +17,7 @@ export class FeedbackDialogComponent {
   constructor(
     private _ngZone: NgZone,
     private dialogRef: MatDialogRef<FeedbackDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Feedback
+    @Inject(MAT_DIALOG_DATA) private data: Feedback
   ) {
     this.feedback = data;
   }

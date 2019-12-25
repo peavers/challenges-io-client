@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteConfirmDialogComponent } from '../../../../../shared/component/delete-confirm-dialog/delete-confirm-dialog.component';
+import { DeleteConfirmDialogComponent } from '../../../../../shared/component/dialogs/delete-confirm-dialog/delete-confirm-dialog.component';
 
 @Component({
   selector: 'app-danger-zone-section-component',

@@ -1,6 +1,6 @@
 import { Component, Inject, NgZone } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FirestoreUser } from '../../../core/domain/modules';
+import { FirestoreUser } from '../../../../core/domain/modules';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -15,7 +15,7 @@ export class ReviewGroupDialogComponent {
   constructor(
     private _ngZone: NgZone,
     private dialogRef: MatDialogRef<ReviewGroupDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: FirestoreUser
+    @Inject(MAT_DIALOG_DATA) private data: FirestoreUser
   ) {
     this.reviewer = data;
   }

@@ -13,8 +13,7 @@ export class DefaultComponent implements OnInit {
 
   firstName: string;
 
-  constructor(public challengeService: ChallengeService, private authService: AuthService) {
-  }
+  constructor(private challengeService: ChallengeService, private authService: AuthService) {}
 
   ngOnInit() {
     this.challengeService.findAll().subscribe(challenge => {

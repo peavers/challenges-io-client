@@ -1,12 +1,12 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Challenge, Feedback } from '../../../../../core/domain/modules';
-import { FeedbackDialogComponent } from '../../../../../shared/component/feedback-dialog/feedback-dialog.component';
 import { AuthService } from '../../../../../core/services/auth.service';
 import { ChallengeService } from '../../../../../core/services/challenge.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FeedbackDialogComponent } from '../../../../../shared/component/dialogs/feedback-dialog/feedback-dialog.component';
 
 @Component({
   selector: 'app-feedback-section-component',
