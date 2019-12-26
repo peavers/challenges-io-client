@@ -6,6 +6,12 @@ import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { ChallengeService } from '../../../../core/services/challenge.service';
 import { FirestoreService } from '../../../../core/services/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  SNACKBOX_DISPLAY_TIME,
+  SNACKBOX_LOADING,
+  SNACKBOX_MESSAGE_FAILURE,
+  SNACKBOX_MESSAGE_SUCCESS
+} from "../../../../core/constants";
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -52,15 +58,15 @@ export class AddApplicantDialogComponent {
   import() {
     this.dialogRef.close();
 
-    this.snackBar.open('Working');
+    this.snackBar.open(SNACKBOX_LOADING);
     this.btnOpts.active = true;
 
     this.challengeService.create(this.challenge).subscribe(
       result => {
         this.btnOpts.active = false;
 
-        this.snackBar.open('Import success', null, {
-          duration: 5 * 1000
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
+          duration:SNACKBOX_DISPLAY_TIME
         });
 
         this.challenge = {};
@@ -68,8 +74,8 @@ export class AddApplicantDialogComponent {
       error => {
         this.btnOpts.active = false;
 
-        this.snackBar.open('Import failed', null, {
-          duration: 5 * 1000
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
+          duration: SNACKBOX_DISPLAY_TIME
         });
       }
     );

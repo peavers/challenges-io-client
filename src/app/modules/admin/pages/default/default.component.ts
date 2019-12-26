@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReviewGroupDialogComponent } from '../../../../shared/component/dialogs/review-group-dialog/review-group-dialog.component';
 import {
   DIALOG_WIDTH,
-  SNACKBAR_LOADING,
+  SNACKBOX_LOADING,
   SNACKBOX_DISPLAY_TIME,
   SNACKBOX_MESSAGE_FAILURE,
   SNACKBOX_MESSAGE_SUCCESS
@@ -35,7 +35,7 @@ export class DefaultComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((firestoreUser: FirestoreUser) => {
       if (firestoreUser) {
-        this.snackBar.open(SNACKBAR_LOADING);
+        this.snackBar.open(SNACKBOX_LOADING);
 
         this.firestoreService.update(firestoreUser).then(
           result => {
