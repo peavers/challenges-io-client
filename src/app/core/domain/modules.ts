@@ -8,8 +8,9 @@ export interface Feedback {
 }
 
 export interface Comment {
-  firebaseUser?: FirestoreUser;
-  body?: string;
+  firebaseUser: FirestoreUser;
+  body: string;
+  codeLineId: string;
   created?: number;
 }
 
@@ -30,7 +31,7 @@ export interface CodeFile {
 }
 
 export interface CodeLine {
-  id?: number;
+  id?: string;
   body?: string;
   comments?: Comment[];
 }

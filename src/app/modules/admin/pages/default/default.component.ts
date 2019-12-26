@@ -8,7 +8,6 @@ import { ReviewGroupDialogComponent } from '../../../../shared/component/dialogs
 import {
   DIALOG_WIDTH,
   SNACKBOX_LOADING,
-  SNACKBOX_DISPLAY_TIME,
   SNACKBOX_MESSAGE_FAILURE,
   SNACKBOX_MESSAGE_SUCCESS
 } from '../../../../core/constants';
@@ -21,7 +20,8 @@ import {
 export class DefaultComponent implements OnInit {
   reviewers: Observable<FirestoreUser[]> = new Observable<FirestoreUser[]>();
 
-  constructor(private firestoreService: FirestoreService, private snackBar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(private firestoreService: FirestoreService, private snackBar: MatSnackBar, private dialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.reviewers = this.firestoreService.findAll();
@@ -38,15 +38,11 @@ export class DefaultComponent implements OnInit {
         this.snackBar.open(SNACKBOX_LOADING);
 
         this.firestoreService.update(firestoreUser).then(
-          result => {
-            this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
-              duration: SNACKBOX_DISPLAY_TIME
-            });
+          () => {
+            this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
           },
-          error => {
-            this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
-              duration: SNACKBOX_DISPLAY_TIME
-            });
+          () => {
+            this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
           }
         );
       }

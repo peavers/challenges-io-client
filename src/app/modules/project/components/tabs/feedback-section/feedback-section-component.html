@@ -55,7 +55,7 @@
         Comments
       </th>
     </tr>
-    <tr (click)="editFeedback(feedback)" *ngIf="currentFeedback as feedback">
+    <tr (click)="editFeedback(feedback)" *ngIf="currentUserFeedback as feedback">
       <td>
         {{feedback.firebaseUser.displayName}}
       </td>

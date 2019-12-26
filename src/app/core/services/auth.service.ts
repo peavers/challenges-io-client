@@ -14,7 +14,7 @@ export class AuthService {
 
   doGoogleLogin() {
     return new Promise<any>(resolve => {
-      let provider = new auth.GoogleAuthProvider();
+      const provider = new auth.GoogleAuthProvider();
       // provider.setCustomParameters({ hd: 'codacy.com' });
       provider.addScope('profile');
       provider.addScope('email');
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   public logout() {
-    this.angularFireAuth.auth.signOut().then(() => console.log("Bye!"));
+    this.angularFireAuth.auth.signOut().then(() => console.log('Bye!'));
 
     this.router.navigate(['/login']);
   }

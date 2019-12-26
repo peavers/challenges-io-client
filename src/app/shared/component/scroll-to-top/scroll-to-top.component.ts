@@ -26,7 +26,7 @@ export class ScrollToTopComponent {
 
   scrollToTop() {
     (function smoothscroll() {
-      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
       if (currentScroll > 0) {
         window.scrollTo(0, 0);
       }

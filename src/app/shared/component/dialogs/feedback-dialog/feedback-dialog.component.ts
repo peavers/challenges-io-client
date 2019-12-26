@@ -1,6 +1,7 @@
 import { Component, Inject, NgZone } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Feedback } from '../../../../core/domain/modules';
+import { POSITION_LEVEL, YES_NO } from '../../../../core/constants';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -8,14 +9,13 @@ import { Feedback } from '../../../../core/domain/modules';
   styleUrls: ['./feedback-dialog.component.scss']
 })
 export class FeedbackDialogComponent {
-  nextStages: string[] = ['Yes', 'No'];
+  nextStages: string[] = YES_NO;
 
-  levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
+  levels: string[] = POSITION_LEVEL;
 
   feedback: Feedback;
 
   constructor(
-    private _ngZone: NgZone,
     private dialogRef: MatDialogRef<FeedbackDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: Feedback
   ) {

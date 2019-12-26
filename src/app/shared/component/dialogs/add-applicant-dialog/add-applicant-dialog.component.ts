@@ -7,11 +7,13 @@ import { ChallengeService } from '../../../../core/services/challenge.service';
 import { FirestoreService } from '../../../../core/services/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
-  SNACKBOX_DISPLAY_TIME,
+  POSITION_LEVEL,
+  POSITIONS,
+  REVIEW_GROUP,
   SNACKBOX_LOADING,
   SNACKBOX_MESSAGE_FAILURE,
   SNACKBOX_MESSAGE_SUCCESS
-} from "../../../../core/constants";
+} from '../../../../core/constants';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -19,11 +21,11 @@ import {
   styleUrls: ['./add-applicant-dialog.component.scss']
 })
 export class AddApplicantDialogComponent {
-  readonly reviewGroups: string[] = ['Frontend', 'Backend', 'Tech Lead'];
+  readonly reviewGroups: string[] = REVIEW_GROUP;
 
-  readonly levels: string[] = ['Intern', 'Junior', 'Intermediate', 'Senior'];
+  readonly levels: string[] = POSITION_LEVEL;
 
-  readonly positions: string[] = ['Frontend engineer', 'Backend engineer', 'Tech team'];
+  readonly positions: string[] = POSITIONS;
 
   reviewers: Observable<Reviewer[]> = new Observable<Reviewer[]>();
 
@@ -44,7 +46,6 @@ export class AddApplicantDialogComponent {
     private challengeService: ChallengeService,
     private firestoreService: FirestoreService,
     private snackBar: MatSnackBar,
-    private _ngZone: NgZone,
     private dialogRef: MatDialogRef<AddApplicantDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: Reviewer
   ) {
@@ -57,26 +58,19 @@ export class AddApplicantDialogComponent {
 
   import() {
     this.dialogRef.close();
-
     this.snackBar.open(SNACKBOX_LOADING);
     this.btnOpts.active = true;
 
     this.challengeService.create(this.challenge).subscribe(
-      result => {
+      () => {
         this.btnOpts.active = false;
-
-        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
-          duration:SNACKBOX_DISPLAY_TIME
-        });
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
 
         this.challenge = {};
       },
-      error => {
+      () => {
         this.btnOpts.active = false;
-
-        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
-          duration: SNACKBOX_DISPLAY_TIME
-        });
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
       }
     );
   }
