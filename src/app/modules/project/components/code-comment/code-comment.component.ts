@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Comment, FirestoreUser} from '../../../../core/domain/modules';
-import {AuthService} from '../../../../core/services/auth.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Comment, FirestoreUser } from '../../../../core/domain/modules';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-code-comment-component',
@@ -10,6 +10,9 @@ import {AuthService} from '../../../../core/services/auth.service';
 export class CodeCommentComponent implements OnInit {
   @Input()
   comment: Comment;
+
+  @Output()
+  deleteCommentEvent = new EventEmitter();
 
   user: FirestoreUser;
 
@@ -21,5 +24,6 @@ export class CodeCommentComponent implements OnInit {
   }
 
   deleteComment() {
+    this.deleteCommentEvent.emit(this.comment);
   }
 }

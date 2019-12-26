@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Challenge, CodeFile} from '../../../../core/domain/modules';
-import {CodeFileService} from '../../../../core/services/code-file.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Challenge, CodeFile } from '../../../../core/domain/modules';
+import { CodeFileService } from '../../../../core/services/code-file.service';
+import { SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS } from '../../../../core/constants';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-code-file-component',
@@ -14,13 +16,26 @@ export class CodeFileComponent implements OnInit {
   @Input()
   codeFile: CodeFile;
 
-  constructor(private codeFileService: CodeFileService) {
+  constructor(private codeFileService: CodeFileService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
     if (this.codeFile.size <= 4000) {
       this.getContent();
     }
+  }
+
+  saveCodeLine($event) {
+    this.codeFile.codeLines[$event.id] = $event;
+
+    this.codeFileService.update(this.codeFile).subscribe(
+      () => {
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
+      },
+      () => {
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
+      }
+    );
   }
 
   getContent() {
