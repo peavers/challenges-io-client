@@ -11,3 +11,11 @@
   display: flex;
   align-items: center;
 }
+
+.table {
+  td {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
