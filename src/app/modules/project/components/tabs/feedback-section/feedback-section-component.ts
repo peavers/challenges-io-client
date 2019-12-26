@@ -9,7 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeedbackDialogComponent } from '../../../../../shared/component/dialogs/feedback-dialog/feedback-dialog.component';
 import {
   DIALOG_WIDTH,
-  SNACKBOX_DISPLAY_TIME,
   SNACKBOX_MESSAGE_FAILURE,
   SNACKBOX_MESSAGE_SUCCESS,
   SNACKBOX_PERMISSION_DENIED
@@ -24,11 +23,11 @@ export class FeedbackSectionComponent implements OnInit {
   @Input()
   challenge: Challenge;
 
-  currentFeedback: Feedback;
+  currentUserFeedback: Feedback;
 
   btnOpts: MatProgressButtonOptions = {
     active: false,
-    text: 'Add feedback',
+    text: 'Add Feedback',
     spinnerSize: 19,
     raised: true,
     stroked: false,
@@ -43,25 +42,30 @@ export class FeedbackSectionComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: any
-  ) {}
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.btnOpts.disabled = this.challenge.feedback.some(
+      feedback => feedback.firebaseUser.uid === this.authService.getUser().uid
+    );
+
+    this.currentUserFeedback = this.challenge.feedback.find(
+      feedback => feedback.firebaseUser.uid === this.authService.getUser().uid
+    );
+  }
 
   saveFeedback() {
     this.btnOpts.active = true;
 
     this.challengeService.update(this.challenge).subscribe(
-      result => {
+      () => {
         this.btnOpts.active = false;
-
-        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
-          duration: SNACKBOX_DISPLAY_TIME
-        });
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
       },
-      error => {
+      () => {
         this.btnOpts.active = false;
-
-        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
-          duration: SNACKBOX_DISPLAY_TIME
-        });
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
       }
     );
   }
@@ -72,23 +76,18 @@ export class FeedbackSectionComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe((newFeedback: Feedback) => {
-      if (newFeedback) {
-        newFeedback.firebaseUser = this.authService.getUser();
-
-        this.challenge.feedback.push(newFeedback);
-
+    dialogRef.afterClosed().subscribe((feedback: Feedback) => {
+      if (feedback) {
+        feedback.firebaseUser = this.authService.getUser();
+        this.challenge.feedback.push(feedback);
+        this.currentUserFeedback = feedback;
         this.saveFeedback();
       }
     });
   }
 
   editFeedback(feedback: Feedback) {
-    if (feedback.firebaseUser.uid != this.authService.getUser().uid) {
-      this.snackBar.open(SNACKBOX_PERMISSION_DENIED, null, {
-        duration: SNACKBOX_DISPLAY_TIME
-      });
-    } else {
+    if (this.challenge.underReview || feedback.firebaseUser.uid === this.authService.getUser().uid) {
       const dialogRef = this.dialog.open(FeedbackDialogComponent, {
         width: DIALOG_WIDTH,
         data: feedback
@@ -96,29 +95,21 @@ export class FeedbackSectionComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe((editedFeedback: Feedback) => {
         if (editedFeedback) {
-          let items: Feedback[] = this.challenge.feedback;
+          const feedbackItems: Feedback[] = this.challenge.feedback;
 
-          items.forEach((feedback, index) => {
-            if (feedback.firebaseUser.uid === editedFeedback.firebaseUser.uid) {
-              items[index] = editedFeedback;
+          feedbackItems.forEach((item, index) => {
+            if (item.firebaseUser.uid === editedFeedback.firebaseUser.uid) {
+              feedbackItems[index] = editedFeedback;
             }
           });
 
-          this.challenge.feedback = items;
+          this.challenge.feedback = feedbackItems;
 
           this.saveFeedback();
         }
       });
+    } else {
+      this.snackBar.open(SNACKBOX_PERMISSION_DENIED);
     }
-  }
-
-  ngOnInit(): void {
-    this.btnOpts.disabled = this.challenge.feedback.some(
-      feedback => feedback.firebaseUser.uid === this.authService.getUser().uid
-    );
-
-    this.currentFeedback = this.challenge.feedback.find(
-      feedback => feedback.firebaseUser.uid === this.authService.getUser().uid
-    );
   }
 }

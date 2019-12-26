@@ -13,9 +13,9 @@ import { FirestoreUser } from '../../core/domain/modules';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  badgeVisible: boolean = false;
+  badgeVisible = false;
 
-  badgeValue: number = 0;
+  badgeValue = 0;
 
   user: FirestoreUser;
 

@@ -21,7 +21,7 @@ export class UserPictureComponent {
       this.name = authService.getUser().displayName;
     }
 
-    if (this.pictureUrl == undefined) {
+    if (this.pictureUrl === undefined) {
       this.pictureUrl = authService.getUser().photoURL;
     }
   }

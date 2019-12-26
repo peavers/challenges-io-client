@@ -15,7 +15,6 @@ export class SelectReviewerDialogComponent implements OnInit {
   modifiedReviewers: Reviewer[] = [];
 
   constructor(
-    private _ngZone: NgZone,
     private dialogRef: MatDialogRef<SelectReviewerDialogComponent>,
     private firestoreService: FirestoreService,
     @Inject(MAT_DIALOG_DATA) private data

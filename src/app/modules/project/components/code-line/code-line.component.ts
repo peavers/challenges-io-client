@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
-import { Challenge, CodeFile, CodeLine } from '../../../../core/domain/modules';
+import { Challenge, CodeFile, CodeLine, Comment } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SNACKBOX_DISPLAY_TIME, SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS } from '../../../../core/constants';
+import { SNACKBOX_DISPLAY_TIME, SNACKBOX_MESSAGE_SUCCESS } from '../../../../core/constants';
+import { CommentService } from '../../../../core/services/comment.service';
 
 @Component({
   selector: 'app-code-line-component',
@@ -30,12 +31,15 @@ export class CodeLineComponent implements OnInit {
   replyContent: string;
 
   constructor(
+    private commentService: CommentService,
     private authService: AuthService,
     private codeFileService: CodeFileService,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   showCommentOrReplyBox() {
     if (this.codeLine.comments.length >= 1) {
@@ -46,31 +50,28 @@ export class CodeLineComponent implements OnInit {
   }
 
   addNewComment(editorContent) {
-    this.codeLine.comments.push({
+    const comment: Comment = {
       firebaseUser: this.authService.getUser(),
-      body: editorContent
-    });
+      body: editorContent,
+      codeLineId: this.codeLine.id
+    };
 
-    this.codeFileService.update(this.codeFile).subscribe(
+    this.replyContent = '';
+    this.showReplyBox = false;
+    this.showCommentBox = false;
+
+    this.commentService.save(comment).subscribe(
       result => {
-        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS, null, {
-          duration: SNACKBOX_DISPLAY_TIME
-        });
+        this.codeLine.comments.push(comment);
 
-        this.replyContent = '';
-        this.showReplyBox = false;
-        this.showCommentBox = false;
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
       },
       error => {
-        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE, null, {
-          duration: SNACKBOX_DISPLAY_TIME
+        this.snackBar.open(error, null, {
+          duration: SNACKBOX_DISPLAY_TIME * 100
         });
       }
     );
-  }
-
-  deleteComment($event) {
-    this.codeLine.comments = this.codeLine.comments.filter(x => x.firebaseUser.uid !== $event.id);
   }
 
   showBackground(): boolean {
