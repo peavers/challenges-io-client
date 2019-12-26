@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Challenge, CodeFile, CodeLine, Comment } from '../../../../core/domain/modules';
 import { CodeFileService } from '../../../../core/services/code-file.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SNACKBOX_DISPLAY_TIME, SNACKBOX_MESSAGE_SUCCESS } from '../../../../core/constants';
+import { SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS } from '../../../../core/constants';
 import { CommentService } from '../../../../core/services/comment.service';
 
 @Component({
@@ -23,6 +23,9 @@ export class CodeLineComponent implements OnInit {
 
   @Input()
   lineNumber: number;
+
+  @Output()
+  codeLineChange = new EventEmitter();
 
   showReplyBox: boolean;
 
@@ -61,17 +64,21 @@ export class CodeLineComponent implements OnInit {
     this.showCommentBox = false;
 
     this.commentService.save(comment).subscribe(
-      result => {
+      () => {
         this.codeLine.comments.push(comment);
 
         this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
       },
-      error => {
-        this.snackBar.open(error, null, {
-          duration: SNACKBOX_DISPLAY_TIME * 100
-        });
+      () => {
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
       }
     );
+  }
+
+  deleteComment($event: Comment) {
+    this.codeLine.comments = this.codeLine.comments.filter(x => x.firebaseUser.uid !== $event.firebaseUser.uid);
+
+    this.codeLineChange.emit(this.codeLine);
   }
 
   showBackground(): boolean {
