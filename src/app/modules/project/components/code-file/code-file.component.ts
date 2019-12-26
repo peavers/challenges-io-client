@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Challenge, CodeFile } from '../../../../core/domain/modules';
-import { CodeFileService } from '../../../../core/services/code-file.service';
-import { AuthService } from '../../../../core/services/auth.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {Challenge, CodeFile} from '../../../../core/domain/modules';
+import {CodeFileService} from '../../../../core/services/code-file.service';
 
 @Component({
   selector: 'app-code-file-component',
@@ -15,7 +14,8 @@ export class CodeFileComponent implements OnInit {
   @Input()
   codeFile: CodeFile;
 
-  constructor(private codeFileService: CodeFileService) {}
+  constructor(private codeFileService: CodeFileService) {
+  }
 
   ngOnInit() {
     if (this.codeFile.size <= 4000) {

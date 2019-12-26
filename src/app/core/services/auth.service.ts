@@ -1,26 +1,16 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import {Injectable} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {auth} from 'firebase/app';
 
-import { Router } from '@angular/router';
-import { FirestoreUser } from '../domain/modules';
-
-export interface User {
-  uid?: string;
-  displayName?: string;
-  email?: string;
-  phoneNumber?: string;
-  photoURL?: string;
-  providerId?: string;
-  githubLogin?: string;
-  githubAccessToken?: string;
-}
+import {Router} from '@angular/router';
+import {FirestoreUser} from '../domain/modules';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {}
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
+  }
 
   doGoogleLogin() {
     return new Promise<any>(resolve => {
@@ -46,7 +36,7 @@ export class AuthService {
   }
 
   public logout() {
-    this.angularFireAuth.auth.signOut();
+    this.angularFireAuth.auth.signOut().then(() => console.log("Bye!"));
 
     this.router.navigate(['/login']);
   }
