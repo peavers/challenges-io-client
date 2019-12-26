@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Comment} from '../../../../core/domain/modules';
-import {AuthService, User} from '../../../../core/services/auth.service';
+import {Comment, FirestoreUser} from '../../../../core/domain/modules';
+import {AuthService} from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-code-comment-component',
@@ -11,7 +11,7 @@ export class CodeCommentComponent implements OnInit {
   @Input()
   comment: Comment;
 
-  user: User;
+  user: FirestoreUser;
 
   constructor(private authService: AuthService) {
     this.user = authService.getUser();
