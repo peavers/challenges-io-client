@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Comment, FirestoreUser } from '../../../../core/domain/modules';
-import { AuthService } from '../../../../core/services/auth.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {CodeFile, CodeLine, Comment, FirestoreUser} from '../../../../core/domain/modules';
+import {AuthService} from '../../../../core/services/auth.service';
+import {SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS} from '../../../../core/constants';
+import {CodeFileService} from '../../../../core/services/code-file.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-code-comment-component',
@@ -9,14 +12,21 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class CodeCommentComponent implements OnInit {
   @Input()
-  comment: Comment;
+  codeFile: CodeFile;
 
-  @Output()
-  deleteCommentEvent = new EventEmitter();
+  @Input()
+  codeLine: CodeLine;
+
+  @Input()
+  comment: Comment;
 
   user: FirestoreUser;
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private codeFileService: CodeFileService,
+    private snackBar: MatSnackBar
+  ) {
     this.user = authService.getUser();
   }
 
@@ -24,6 +34,15 @@ export class CodeCommentComponent implements OnInit {
   }
 
   deleteComment() {
-    this.deleteCommentEvent.emit(this.comment);
+    this.codeLine.comments = this.codeLine.comments.filter(item => item.id !== this.comment.id);
+
+    this.codeFileService.update(this.codeFile).subscribe(
+      () => {
+        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
+      },
+      () => {
+        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
+      }
+    );
   }
 }

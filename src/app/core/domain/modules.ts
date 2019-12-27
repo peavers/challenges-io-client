@@ -8,6 +8,7 @@ export interface Feedback {
 }
 
 export interface Comment {
+  id?: string;
   firebaseUser: FirestoreUser;
   body: string;
   codeLineId: string;

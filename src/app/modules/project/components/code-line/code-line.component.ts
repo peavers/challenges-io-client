@@ -59,26 +59,20 @@ export class CodeLineComponent implements OnInit {
       codeLineId: this.codeLine.id
     };
 
+    this.codeLine.comments.push(comment);
+
     this.replyContent = '';
     this.showReplyBox = false;
     this.showCommentBox = false;
 
     this.commentService.save(comment).subscribe(
       () => {
-        this.codeLine.comments.push(comment);
-
         this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
       },
       () => {
         this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
       }
     );
-  }
-
-  deleteComment($event: Comment) {
-    this.codeLine.comments = this.codeLine.comments.filter(x => x.firebaseUser.uid !== $event.firebaseUser.uid);
-
-    this.codeLineChange.emit(this.codeLine);
   }
 
   showBackground(): boolean {

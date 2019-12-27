@@ -17,10 +17,7 @@
       <div *ngIf="codeLine.comments.length >= 1" class="comment-box">
         <!-- Display all comments -->
         <div *ngFor="let comment of codeLine.comments">
-          <app-code-comment-component
-            [comment]="comment"
-            (deleteCommentEvent)="deleteComment($event)"
-          ></app-code-comment-component>
+          <app-code-comment-component [comment]="comment" [codeFile]="codeFile" [codeLine]="codeLine"></app-code-comment-component>
         </div>
 
         <!-- Reply button-->
