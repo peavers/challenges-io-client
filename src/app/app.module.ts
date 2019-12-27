@@ -17,11 +17,12 @@ import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import java from 'highlight.js/lib/languages/java';
 import xml from 'highlight.js/lib/languages/xml';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { SNACKBOX_DISPLAY_TIME } from './core/constants';
 
 export function hljsLanguages() {
   return [
@@ -36,12 +37,9 @@ export function hljsLanguages() {
   declarations: [AppComponent, ContentLayoutComponent, NavbarComponent, LoginComponent],
   imports: [
     BrowserModule,
-
-    AngularFireModule.initializeApp(environment.firebase, 'my-app-name'), // imports firebase/app needed for everything
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule, // imports firebase/storage only needed for storage features
-
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     NgxPageScrollModule,
     CoreModule,
     SharedModule,
@@ -57,7 +55,8 @@ export function hljsLanguages() {
       useValue: {
         languages: hljsLanguages
       }
-    }
+    },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: SNACKBOX_DISPLAY_TIME } }
   ],
   bootstrap: [AppComponent]
 })

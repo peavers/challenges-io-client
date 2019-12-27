@@ -19,7 +19,6 @@ import { DangerZoneSectionComponent } from './components/tabs/danger-zone-sectio
 import { FeedbackSectionComponent } from './components/tabs/feedback-section/feedback-section-component';
 import { MetaSectionComponent } from './components/tabs/reviewer-section/meta-section-component';
 import { ChallengeSectionComponent } from './components/tabs/challenge-section/challenge-section-component';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,6 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
   exports: [CodeCommentComponent],
   entryComponents: [],
   providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }
   ]
 })
 export class ProjectModule {
