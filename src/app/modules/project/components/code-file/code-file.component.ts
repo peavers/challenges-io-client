@@ -25,19 +25,6 @@ export class CodeFileComponent implements OnInit {
     }
   }
 
-  saveCodeLine($event) {
-    this.codeFile.codeLines[$event.id] = $event;
-
-    this.codeFileService.update(this.codeFile).subscribe(
-      () => {
-        this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
-      },
-      () => {
-        this.snackBar.open(SNACKBOX_MESSAGE_FAILURE);
-      }
-    );
-  }
-
   getContent() {
     this.codeFileService.findById(this.challenge.id, this.codeFile.id).subscribe(result => {
       this.codeFile = result;
