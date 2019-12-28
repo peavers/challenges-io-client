@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AuthService } from '../../../../core/services/auth.service';
-import { Challenge, CodeFile, CodeLine, Comment } from '../../../../core/domain/modules';
-import { CodeFileService } from '../../../../core/services/code-file.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS } from '../../../../core/constants';
-import { CommentService } from '../../../../core/services/comment.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AuthService} from '../../../../core/services/auth.service';
+import {Challenge, CodeFile, CodeLine, Comment} from '../../../../core/domain/modules';
+import {CodeFileService} from '../../../../core/services/code-file.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS} from '../../../../core/constants';
+import {CommentService} from '../../../../core/services/comment.service';
+
+import uuidv1 from "uuid/v1";
 
 @Component({
   selector: 'app-code-line-component',
@@ -54,19 +56,23 @@ export class CodeLineComponent implements OnInit {
 
   addNewComment(editorContent) {
     const comment: Comment = {
+      id: uuidv1(),
       firebaseUser: this.authService.getUser(),
       body: editorContent,
       codeLineId: this.codeLine.id
     };
 
-    this.codeLine.comments.push(comment);
-
     this.replyContent = '';
     this.showReplyBox = false;
     this.showCommentBox = false;
 
+    this.codeLine.comments.push(comment);
+
     this.commentService.save(comment).subscribe(
-      () => {
+      (codeFile: CodeFile) => {
+
+        this.codeFile = codeFile;
+
         this.snackBar.open(SNACKBOX_MESSAGE_SUCCESS);
       },
       () => {

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CodeFile, CodeLine, Comment, FirestoreUser} from '../../../../core/domain/modules';
 import {AuthService} from '../../../../core/services/auth.service';
 import {SNACKBOX_MESSAGE_FAILURE, SNACKBOX_MESSAGE_SUCCESS} from '../../../../core/constants';
@@ -33,8 +33,10 @@ export class CodeCommentComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteComment() {
-    this.codeLine.comments = this.codeLine.comments.filter(item => item.id !== this.comment.id);
+  deleteComment(comment: Comment) {
+    console.log(this.codeLine.comments);
+
+    this.codeLine.comments = this.codeLine.comments.filter((item: Comment) => item.id !== comment.id);
 
     this.codeFileService.update(this.codeFile).subscribe(
       () => {
