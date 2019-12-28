@@ -15,7 +15,7 @@ export class ChallengeService {
   private challengeStore: Challenge[] = [];
 
   constructor(private httpClient: HttpClient) {
-    this.endpoint = `${environment.postServer}/v1/challenges`;
+    this.endpoint = `${environment.postServer}/v1/projects`;
   }
 
   findAll(): Observable<Challenge[]> {
