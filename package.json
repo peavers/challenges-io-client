@@ -70,7 +70,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.8",
+    "lint-staged": "^10.0.9",
     "prettier": "^2.0.2",
     "protractor": "~5.4.3",
     "sort-package-json": "^1.40.0",
