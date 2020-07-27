@@ -44,7 +44,7 @@
     "highlight.js": "^10.1.2",
     "mat-progress-buttons": "^8.0.7",
     "moment": "^2.27.0",
-    "ngx-highlightjs": "^4.0.2",
+    "ngx-highlightjs": "^4.1.1",
     "ngx-markdown": "^9.1.1",
     "ngx-markdown-editor": "^2.5.0",
     "ngx-md": "^8.1.6",
