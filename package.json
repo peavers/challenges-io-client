@@ -49,7 +49,7 @@
     "ngx-markdown-editor": "^2.5.0",
     "ngx-md": "^8.1.6",
     "ngx-moment": "^5.0.0",
-    "ngx-page-scroll": "^7.0.0",
+    "ngx-page-scroll": "^7.0.3",
     "ngx-page-scroll-core": "^7.0.0",
     "rxjs": "~6.6.2",
     "uuid": "^8.3.0",
