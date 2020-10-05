@@ -52,7 +52,7 @@
     "ngx-page-scroll": "^7.0.3",
     "ngx-page-scroll-core": "^7.0.3",
     "rxjs": "~6.6.3",
-    "uuid": "^8.3.0",
+    "uuid": "^8.3.1",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
