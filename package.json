@@ -51,7 +51,7 @@
     "ngx-moment": "^5.0.0",
     "ngx-page-scroll": "^7.0.4",
     "ngx-page-scroll-core": "^7.0.3",
-    "rxjs": "~6.6.6",
+    "rxjs": "~6.6.7",
     "uuid": "^8.3.2",
     "zone.js": "~0.10.3"
   },
