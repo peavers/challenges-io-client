@@ -61,7 +61,7 @@
     "@angular/compiler-cli": "~8.2.6",
     "@angular/language-service": "~11.2.7",
     "@babel/core": "^7.13.14",
-    "@types/jasmine": "~3.6.8",
+    "@types/jasmine": "~3.6.9",
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "~14.14.37",
     "babel-loader": "^8.2.2",
